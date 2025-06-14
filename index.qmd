@@ -235,3 +235,6 @@ Try dragging `Gender` to the vertical axis of the graph:
 
 No. It will work, but the screen really is just too small.
 
+### How do I cite this book? {-}
+
+Erickson, T. (2025). _Awash in data: An introduction to data science and data moves with CODAP._ eeps media. https://codap.xyz/awash/
