@@ -1,0 +1,91 @@
+{{< include _awash-setup.qmd  >}}
+
+# Classification trees in CODAP using Arbor
+
+_Arbor_ is a CODAP plugin that helps you make classification trees.
+If you are in a workshop or a class, your teacher will probably tell you a lot of what's here.
+You can use this site as a reference, to remember what you've forgotten,
+or as a stand-alone self-paced course, in which case you can just work through the headings you see at left.
+
+## Overview {-}
+
+Anatomy of a tree
+: Learn how to read a tree, using data from the *Titanic* disaster.
+
+First driving lesson
+: The basics of how to make a tree using *Arbor*.
+
+Trees and graphs
+: Trees and graphs are both ways of looking at the data. 
+And they are intimately connected.
+Learn how to use graphs to help you make th ebest trees.
+
+Fbola example
+: Another example dataset, this time in a medical context.
+Use the tree to decide who probably has the virus.
+
+Tree quality
+: What makes a tree a *good* tree?
+*Arbor* can help you calculate tree quality.
+
+Breast cancer example
+: With a numerical predictor, we create our own measure of tree quality,
+and use it with graphs to make the best tree.
+
+Machine learning connection
+: Classification is an important topic in machine learning.
+This explains the connection and how work with *Arbor* might fit in. 
+
+The configuration box
+: When you "configure" a node in a tree, there is a dialog box.
+This explains all of its controls.
+
+
+## Commentary
+
+We're used to looking at data in graphs and tables. 
+But they are not the only possibilities. 
+Modern infographics often display data in interesting and novel ways.
+CODAP is not as flexible as a Real Programming System 
+in its ability to make graphics.
+In CODAP, mostly, you get graphs with perpendicular axes,  dots for points, and sometimes bars or lines.
+Of course, CODAP is always evolving, so we don't know what will be possible in a month or a couple years.
+
+But because CODAP has an open architecture---it uses plugins---it's possible 
+to make new visualizations for CODAP that are not really part of "core" CODAP.
+That's how we can work with trees. 
+
+A number of us in CODAP-land have come to love trees 
+as a way of displaying data. 
+We find that:
+
+* For most students, trees are a new kind of data visualization. 
+Furthermore, we know that making multiple representations 
+is often a great way to help more students understand a topic.
+* Trees give students a chance to invent statistical measures, 
+that is, to create mathematical formulas that compute something for the students’ purposes.
+* Trees act not only as data visualizations 
+but also as algorithms: they describe procedures for making decisions. 
+    This helps students see that data can be genuinely useful and connected to daily life, 
+and supports developing students’ computational acumen.
+* Trees open a door to machine learning, a powerful and up-and-coming topic.
+
+But because you will have done it, you'll understand better what's going on. 
+
+### About contexts for trees
+
+All of the lessons we will start with have a vaguely medical context. 
+This is because it's really easy to see how trees are useful 
+if you're trying to diagnose some ailment.
+
+But medicine is not the only relevant context,
+and diagnosis is not the only possible purpose.
+You can use these trees in any situation that calls for _classification_:
+for separating the cases of a dataset into two (or more) groups.
+
+### Classification and regression trees
+
+We just made a point that the underlying purpose of the trees
+we use here is to classify cases, to put them into groups.
+Such trees are called _classification trees_.
+There are also _regression_ trees.

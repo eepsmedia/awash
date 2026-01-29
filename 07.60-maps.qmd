@@ -1,0 +1,297 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Maps {#maps-chapter}
+
+If you click on the **Map** icon in the toolbar, a world map appears. 
+You can display _locations_ and _areas_ on maps. 
+
+**Locations** appear as points; to have a point, the case must have two attributes, one for latitude and one for longitude.
+These are measured in degrees. 
+Typically, a west longitude is negative, so, for example, San Francisco is at about -122.
+
+**Areas** are regions on the map, for example, countries or States. 
+You could easily encounter a CODAP document with areas all set up; 
+then, if you drag an attribute into the map, the regions will color according to the value of the attribute,
+just as points do in regular graphs. 
+
+The tricky thing is when you want to set up a CODAP document with a map on your own.
+
+## Locations: Maps that show points {#maps-points-section}
+
+If your dataset has locations in latitude and longitude, CODAP will make a map where each location shows up as a point. 
+To make this work, the location attributes must be named **latitude** or **lat**; 
+and **longitude**, **long**, or **lon**.
+These are all in decimal degrees. 
+If you have degrees, minutes, and seconds, you have to convert.
+This can be an interesting data-munging task.
+
+In the live illustration below, each case is a building in New York City. 
+Notice that it includes **lat** and **lon**. 
+
+* Make a map simply by clicking the **Map** tool.
+Notice how it zooms automatically to enclose the points.
+* Drag `Height` into the map to color the points.
+* Change the point size and color in the **layers** palette on the right edge of the map.
+* Try selecting a building in the table, then zooming in to the map to see its location. 
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/NYC-buildings.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+Not all location maps are so urban! 
+The next example has data from Movebank.org, an animal-tracking data repository. 
+It shows the motion of a grey wolf in Alberta, Canada over a couple of months. 
+Animal tracks like these are therefore time series, that is, they have latitude and longitude--and time.
+
+Here are some things to try:
+
+* Make a graph with `time` on the horizontal axis. 
+It's just a dot plot, but it will show you *when* the data are. 
+The points are not evenly spaced.
+* Select points in the graph to see where the wolf was at that time.
+* Use the ruler palette to connect the points. 
+Consider in what situations this is useful.
+* Select a day or two of points when the data are dense. 
+Hide the unselected points; zoom in, restore the points, rescale the map to zoom back out.
+* Use the temperature and altitude attributes in the map and/or in the graph. 
+* Use the **greatCircleDistance** function (it's in "other" functions)
+to calculate the distance between points.
+* Subtract `prev(time)` from `time` to get the time between points in seconds. 
+Use that with the distance to compute the wolf's average speed during the interval.
+* Think about the stories the data tell about this wolf.
+
+
+<script>
+    theURL = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FjSf1mvRqYTboreKC6qYU%2Ffile.json";
+    awash.codapInNewTab(theURL, "Click this to make a new tab with the wolf tracking data." );
+</script>
+
+## Areas: Maps that show regions {#maps-areas-section}
+
+Maps do more than show dots at specific locations. 
+We also use maps to show data "by area." 
+The live illustration has a dataset with information on land use in the lower 48 States. 
+
+1. Click the **Map** tool to make a map. The States appear.
+1. Drag attributes into the map to color the states.
+1. Notice the `%crop` attribute, which is computed. Try that one! What do you see?
+1. Make other computed attributes as you see fit.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/land-use-by-state.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+
+## Setting up Boundaries for CODAP Maps: the simple case {#setting-up-boundaries-1-section}
+
+Areas work great as long as the dataset has been set up with the appropriate _boundaries_.
+As an example, we have prepared a dataset with median home prices by State
+from March 2023.
+
+If you have a dataset with a column that has the names or IDs of some _common_ 
+boundary type---let's say US States, as in our example---and 
+you drag an attribute into the map, _nothing happens_.
+
+1. In the live demo below, try dropping `Avg. Median Sale Price` into the map. 
+It doesn't work!
+
+The problem is that our document does not have the boundaries in it. Here is how to fix that:
+
+2. Make a new attribute and name it **boundaries**.
+
+1. Open up the formula editor for your new attribute.
+
+
+::: {.column-page-right}
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FzOsrmYLdq3Zky4KFhYVo%2Ffile.json";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+4. You need a special function. Under **---Insert Function--**, choose the **Lookup functions** section.
+
+1. Choose **lookupBoundary**. You will see this:
+
+![after choosing `lookupBoundary`](art/lookup-boundary.png){fig-align="center" width="50%"}
+
+As you can see, there are two arguments: 
+**boundary_set** and **boundary_key**. For **boundary_set**, 
+you need a special name, which you may not remember.
+
+6. Select **boundary_set** and open the **- - -Insert Value- - -** menu. 
+The lower part of that list has special names such as 
+$\pi$---and also the various boundary sets that are currently installed.
+For our example, choose **US_state_boundaries**. 
+(You can type it in if you like; CODAP will help with typeahead.)
+
+1. Finally, replace **boundary_key** 
+with the name of the attribute that has the "key," 
+in this case, the one that has the names of states in it. 
+In our case, this is `Region`.
+
+A this point, the map might show some color---but not show the entire US!
+If that's the case, press the rescale button ![](art/palettes/rescale.png)
+on the _Map_.
+
+Now, if we drag `Avg. Median Sale Price` into the map, 
+we should see a map colored by sale price, like this:
+
+![Median home prices in March 2023. Notice that North Dakota and Wyoming are missing.](art/maps-median-home-price.png){}
+
+::: {.callout-note}
+The State attribute does not have to have the full name of the State in it. 
+Attributes with the standard two-letter postal abbreviation work too.
+:::
+
+## Setting up boundaries from scratch {#setting-up-boundaries-2-section}
+
+If you want to use a set of boundaries that are not listed in CODAP's "boundary sets," you have more work to do.
+
+The boundaries CODAP uses are in a file format called "geoJSON." 
+That's the magic word you use when searching for the boundaries you need.
+Let's do an example.
+
+Right now, as I write this section, it's November 2020, and Georgia is really important in the Presidential race.
+We want to make a map that shows, by county, who is ahead (we see these all the time on TV and on news sites).
+
+So we search for "Georgia county geoJSON" and find a file to download; 
+this one is called [**GA-13-georgia-counties.json**](htmls-and-sources/GA-13-georgia-counties.json){target="_blank"}.
+It begins like this:
+
+``` {.sourceCode .markdown .code-with-copy}
+{"type":"Topology",
+	"transform":
+	{
+		"scale":[0.00176728378633945,0.0012459509163533049],
+		"translate":[-85.60593932520246,30.360363878941108]},
+		"arcs":[[[105,2986],[92,16],[120,-4]],[[317,2998],[-1,-11],
+			[71,0]],[[387,2987],[-32,-105],[-40,1],[0,-39]],[[315,2844],
+```
+
+and goes on for quite a while.
+What are all those numbers in `arcs`?
+The boundaries of the counties. 
+So there are thousands of numbers representing points on the map.
+
+We also look for vote tallies; 
+we find them in an HTML table and process that 
+(see the [chapter on munging](#preparing-chapter)) 
+to get a file called [**Georgia-votes-bycounty.csv**](htmls-and-sources/Georgia-votes-by-county.csv){target="_blank"}. 
+It begins like this:
+
+``` {.sourceCode .markdown .code-with-copy}
+COUNTY,BIDEN,TRUMP
+Appling,1779,6526
+Atkinson,825,2300
+Bacon,625,4018
+Baker,652,897
+Baldwin,9140,8903
+```
+
+and continues with one case per county.
+
+Then (you don't have to do this right now; 
+we did it for the example that's coming up), 
+
+1. Drag the boundaries file (ending in **.json**) into CODAP. 
+You will see a map of Georgia, or whatever you found a map of.
+You will also see a table of the objects whose boundaries appear;
+in our case, these are Georgia counties. 
+Notice that the table has their names in the `NAME` attribute. 
+
+1. Drag the _vote tallies_ file into CODAP.
+This creates a second, more straightforward table, with the votes 
+and the county names.
+
+At this point you will see something like the document 
+in the live illustration below.
+We have renamed the datasets **geography** and **votes** to clarify things. 
+Notice the `boundary` attribute at the far right of the **geography** table. 
+Those are tiny representations of the boundary shapes 
+the map needs to work properly.
+
+We have two tables; we need all the data in one table: the **votes** table. 
+This is a job for a [_joining_ data move](#joining-chapter)!
+
+3. Drag the `NAME` attribute from **geography** and drop it onto
+the `COUNTY` attribute in **votes**. 
+(Both columns contain the same thing: the names of the counties.)
+
+Now **votes** has the `boundary` attribute. 
+We no longer need the **geography** dataset,
+but we can't just delete it without some preparation.
+
+4. Scroll right to find the `boundary` attribute in the **votes** table.
+
+1. Click on the `boundary` column header in the **votes** table.
+A menu appears.
+Choose **Delete Formula (Keeping Values)**. 
+
+1. In the **Tables** tool, delete the **geography** dataset.
+You may now delete, hide, or get rid of the formulas 
+of any other geographical attributes in the **votes** table, as you see fit.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/GA-2020-election.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+7. If you don't have one already, make a map. You'll see the Georgia counties!
+
+1. Now drag a data attribute (such as **Biden**) into the map. Yay! We get a colored map!
+
+::: {.callout-note}
+## Why delete **geography**?
+
+You can make a map without doing the steps about un-linking
+the `boundary` attribute and deleting the **geography** dataset.
+However, the map will be a little confused because it's 
+not clear which dataset is providing the data.
+
+I have seen the colors be a little weird until I got rid of the second table.
+:::
+
+9. Now you can set yourself a task, such as making a CNN-worthy
+map of Georgia where Trump counties are red and Biden counties are blue, 
+and the depth of the color reflects 
+the size of the lead. 
+
+::: {.callout-tip}
+## Teachers, note
+
+This is not just a mechanical exercise! 
+The problem of what constitutes a big lead is an interesting one;
+what formula should you use to decide?
+Should it be by percentage or by absolute vote?
+:::
+
+## A small gotcha about boundaries
+
+Weeks or months from now, you'll be making a map with boundaries and forget the details. 
+One of them is that you need a **boundaries** attribute in the table.
+Another is exactly what formula to use for the boundary. 
+It will be something like, `lookupBoundary(US_state_boundaries, State)`.
+
+And then a thing we haven't talked about: the name of the **boundaries** attribute.
+If you call it `boundaries`, it's fine. 
+But if you call it something else, the map won't work...*unless* you 
+"type" the attribute as a boundary.
+
+Suppose you called the attribute `border` by mistake. 
+Do this:
+
+1. Go to the attribute's menu and choose **Edit Attribute Properties...**. 
+A dialog appears.
+1. Under **type**, choose **boundary**. 
+1. Delete the bad map and make a new one. Your boundaries should appear. 
+

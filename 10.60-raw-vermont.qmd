@@ -1,0 +1,320 @@
+{{< include _awash-setup.qmd  >}}
+
+# Raw Vermont {#project-raw-vermont}
+
+Your data will be a 1% sample of the people of Vermont.
+There are two special features of this mini-project:
+
+* You will need to decode raw-ish data. 
+That is, this one has data that's more "in the wild."
+* The data includes not only people, but also "households." 
+So we get data about the households such as how many rooms there are.
+Furthemore, the people are *inside* households. 
+This means you can ask questions and make claims
+about relationships between the households and the people, for example: "a household with children will have more bedrooms."
+
+Click the `csv` icon to download that data...but don't try to use it without reading the rest of this chapter!
+
+<a href='_csv-for-download/vermont-2023-ipums.csv' download='Vermont-2023.csv' target='_blank'>
+<img src="art/csv.png" width="32">
+download Vermont 2023 1% sample
+</a>
+
+
+## Background 
+
+The Bureau of the Census collects data on Americans---not just every ten years, 
+but all the time as part of the American Community Survey.
+
+In addition to summaries, they publish "microdata," that is, data about individuals. 
+In CODAP, you can get access to this data though the **Microdata** plugin, 
+which you can find in the **Plugins** menu
+under **Getting Data**.
+
+That plugin gives you nicely-formatted data that appears as a CODAP table.
+
+In this project, however, we take one step backwards,
+and start with data that's in the form in which we received it from 
+<a href="https://ipums.org">IPUMS</a>,
+a service at the University of Minnesota. 
+
+You'll get a CSV that has not been decoded.
+What does that look like?
+Like this:
+
+![](art/vermont-csv-raw.png){width="80%" fig-align="center"}
+
+Ewww. 
+But you can see what's going on:
+the first line (which is four lines long)
+contains the names of the attributes---the column headings, separated by commas. 
+Then each line has values, separated by commas.
+You can drag that `csv` file into CODAP (or a spreadsheet, or a browser), and
+it will become a table:
+
+![](art/vermont-csv-codap.png){width="80%" fig-align="center"}
+
+Better, but what do those numbers mean? 
+You can see a plausible `income` value (`INCTOT`) over
+on the right, 
+but `SEX` is full of ones and twos. 
+Which one is `female`??
+
+You'll find that out in the documentation from IPUMS. 
+
+::: {.callout-tip}
+IPUMS is a free service, 
+but you have to sign up.
+
+Especially if you are a teacher, that's easy. 
+And it means that you can get a file just like this one for wherever---and whenever---you want.
+
+The details of how you get exactly that can be tricky, but with some persistence, 
+you can figure out how to make your request.
+Pro tip: you don't want your whole State.
+But you might want your [PUMA (Public Use Microdata Area)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html){target="_blank"}. 
+And that's a column you can filter by.
+:::
+
+## Getting documentation on variables {#getting-documentation-on-variables}
+
+Suppose we want to know what `MARST` is
+and what the codes mean.
+
+[Here is a link to a useful page](https://usa.ipums.org/usa-action/variables/alphabetical){target="_blank"}
+on the IPUMS site. 
+Go there and do this:
+
+* Under **Select Harmonized Variables** and **A–Z**, choose **M** (for `MARST`).
+You should see this (and more).
+
+![](art/vermont-doc-get-marst.png){width="80%" fig-align="center"}
+
+::: {.column-margin}
+Aha! `MARST` is marital status!
+
+Also, note the **Type** column, with values of `P` and `H`.
+This indicates whether the variable is a "person" or "household" variable.
+That distinction will become useful shortly.
+:::
+
+* Click the underlined `MARST` in the list.
+You will go to a page about Marital Status.
+* Click the **CODES** tab to see which
+numbers mean what:
+
+![](art/vermont-doc-marst-codes.png){width="60%" fig-align="center"}
+
+Now you know, for example, that `5` means `Widowed`.
+Follow the same procedure to find codes for any of the columns. 
+
+Then, if you like, you should substutite suitable strings for the numbers in the dataset.
+That way, when you make a graph, you'll see "widowed" instead of "5".
+
+::: {.column-margin}
+This is a "calculating" data move, even though it requires no calculation: 
+you're changing the values for individual cases.
+:::
+
+One really great way to do this is to group the data 
+by `MARST` (or whatever)---by dragging left---and then 
+to edit the values *once* in that leftmost table.
+Then drag it back to the right.
+We described this process in detail 
+[in the chapter on calculating and recoding](#decode-numbers-to-categories).
+
+## Household variables
+
+Your data includes data about households as well as data about individuals. 
+What does that mean?
+
+Each row in the file is a person. 
+But people who live in the same household are grouped together. 
+This may be clearer with an example. 
+Here is that same CODAP table with a single household selected:
+
+![](art/vermont-one-family.png){width="80%" fig-align="center"}
+
+First: how do we know they're in one household? 
+There are several ways, but the one you can see in this illustration 
+is in the column called `PERNUM` (person number).
+See how every houehold restarts with one?
+
+So who is in this household? 
+We looked up `SEX` and found that `2` is `female`. 
+So we have what looks like a 39-year-old...mother? 
+With three kids, aged 16, 15, and 7. 
+The 15-year-old is a daughter. 
+And they are all unmarried (`MARST` = 6).
+
+Looking farther to the left, 
+it looks as if their place has 5 bedrooms. 
+Pretty deluxe!
+But wait: 
+If we look up `BEDROOMS` in the documentation,
+we see that the code of `05` indicates *four* bedrooms. 
+Tricky. Treacherous. 
+
+In any case, you can imagine that dealing with households by looking at `PERNUM`
+is difficult and time-consuming.
+So here's what we recommend:
+
+* Scroll leftwards in the table to find the `SERIAL` column.
+This is the serial number for the *household*.
+* Drag `SERIAL` left, making new groups. 
+
+Since there is a fresh value of `SERIAL` for each household, this action separates the 
+dataset into households. 
+
+Many other variables are "household" variables as well^[In fact, all of the household variables start out to the left of the person variables in the `csv` file.];
+you can therefore drag them leftwards to join `SERIAL` in what you can rename as the "households" collection:
+
+![The red arrow shows where I have edited the name of the collection. Also, notice that when I selected the household on the left, all five of its people got selected on the right.](art/vermont-grouped.png){width="100%" fig-align="center"}
+
+::: {.column-margin}
+This time the mom is divorced, and has four sons.
+The oldest one seems to have a job!
+Mom has a GED; 
+to decode that `64`, I looked up `EDUC` and clicked a button for "detailed"---which is `EDUCD`.
+:::
+
+::: {.callout-tip}
+## Use "choosy" to reduce the number of columns
+
+Your table may be littered with columns you don't want to see any more. 
+Mine sure was.
+
+So I opened **choosy** from the Plugins menu under **Data Moves** and 
+
+* Made all columns invisible by clicking on the slash-eye icon.
+* Made the ones I really wanted visible one by one.
+
+Of course you can use choosy to un-hide any attributes you want back.
+Read all about choosy by clicking its info button after you launch it.
+:::
+
+Now you can explore questions about household data or person data---or questions that mix the two.
+For example, you could claim that people in the cities make more money than people in the country.
+Income is attached to the person, but what we'll call `urban` 
+is attached to the household. 
+So you can make a graph like the one in the margin---which suggests that
+the urban advantage may not be all that big.
+
+::: {.column-margin}
+![The median income for urban folks is slightly higher.](art/vermont-urban-rural-income.png)
+:::
+
+
+## Group Quarters (`GQ`)
+
+You may notice that the household variables for the first 400 or so
+households look strange.
+
+That's connected to the `GQ` variable:
+"Group Quarters."
+This is for people who don't live
+in a traditional household, like
+an apartment or house. 
+There is a wide variety of
+group quarters.
+They include:
+
+* Homeless shelters
+* Skilled nursing facilities
+* Military barracks
+* Prisons
+* College dorms
+
+Be aware of this if you're drawing conclusions about households. 
+You might want to filter the group quarters out---or not. 
+
+## PUMAs
+
+No, not big cats. 
+These are Public Use Microdata Areas.
+The idea is that each PUMA has at least 100,000
+people in it.
+This makes it easier to make the data anonymous, but still have some geographical relevance.
+
+Since Vermont is *small* (which is why
+we chose it for this example),
+there are only 4 PUMAs in the State.
+
+| number | PUMA  |
+|--|-------|
+| 00100  |  Northern Vermont---Grand Isle, Franklin, Lamoille, Orleans, Caledonia & Essex Counties |
+| 00200  | Central Vermont---Addison, Washington & Orange Counties |
+| 00300  | Chittenden County |
+| 00400  | Southern Vermont---Rutland, Windsor, Bennington & Windham Counties |
+
+: Vermont PUMAs
+
+And since `PUMA` is a household variable, 
+you can use it to, for example, 
+compare income or housing size between the northern
+and southern parts of the State. 
+
+## Wait...what am I supposed to do?
+
+* Download the data (link near the top of this page). 
+It's a `csv` file. 
+Figure out where it is on your computer
+(probably in something like a `Downloads` folder).
+* Drag the file into an open, blank CODAP document.
+* When it asks, tell it you want to import all of the data.
+* Drag `SERIAL` to the left to group by household.
+* Recode several of the variables (start with `SEX` and `MARST`)
+using the instructions above. 
+* Before you go too far, make at least a graph or two to establish that the data make sense.
+* Explore more data and graphs, thinking about how to incorporate
+household data. 
+* Maybe drag additional variables (such as `GQ`) leftwards to join `SERIAL`.
+
+During this process, you will encounter things that 
+don't seem to make sense. 
+Persist! Get help! See if you can understand them!
+
+* Come up with a simple, straightforward claim or question that
+you can address using the data. 
+(Desperate? Try "people with more money have bigger homes")
+* Make a graphic that addresses the claim.
+
+Then, eventually,
+
+* Be critical of that original claim, and do additional analysis
+to add nuance.
+
+## Heartfelt reflection and advice
+
+These data give you a view into the lives of over 6000 Vermonters in 2023.
+For me, adding the household data makes the data much more three-dimensional. 
+
+So here's a task your teacher might even assign:
+
+Scroll somewhere in the middle of the file and find a household. 
+And tell its story. 
+Like in the last illustration, we have a divorced mom with four sons. 
+She makes under $30000 a year, and has a rent of $560. 
+What is her life like? 
+Why didn't she finish high school? 
+When did she get her GED?
+What's it like to be the oldest son, who is only 15 and made $1200 last year? 
+Do the two little ones share a bedroom? 
+What's that like? 
+
+The point being: 
+We make generalizations about the world and our society when we make graphs comparing income and education; or when
+we search out sources of injustice, exploring how persons of color don't get the educational attainment that whites do; 
+or when we study history, seeing how the percentage of women in the workforce has increased dramatically
+in the last century.
+
+But in every one of our graphs---especially the ones made of dots---we should remember that 
+they are made up of actual individual people,
+and every person has their own story. 
+
+Those individual stories do in fact contribute to trends, trends we measure and name,
+trends that suggest policies that
+might make people's lives better. 
+
+But every dot is someone different.
+And one of the dots is you.

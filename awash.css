@@ -1,0 +1,22 @@
+a {
+  text-decoration: none;
+}
+
+.datamove {
+    background-color: #ddf;
+    padding-left: 2em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+.inline-hed {
+  font-weight: bold;
+}
+
+tr:nth-child(odd)   { background-color:#eee; }
+tr:nth-child(even)    { background-color:#fff; }
+  
+.downloadIcon, infoIcon {
+  width : 2em;
+}

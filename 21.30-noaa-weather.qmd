@@ -1,0 +1,111 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# The NOAA Weather Portals {#noaa-chapter}
+
+This chapter describes two data portals that
+students can use to explore historical weather data at various stations.
+The weather data include temperature and precipitation,
+either daily or monthly, for the last few decades.
+Of course there is more data than this out in the world:
+hourly data, humidity, air pressure, and more,
+for some stations going back for over a century.
+But these plugins try to manage the complexity of weather data
+to give beginners a great deal of interesting data without overwhelming them (and us).
+
+These are similar to the [BART data portal](#bart-chapter) and
+the Census portals that are part of the lessons in this book.
+But they are different in that they get their data
+directly from [NOAA, the National Oceanic and Atmospheric Administration](https://www.noaa.gov/){target="_blank"},
+using a data feed they provide, 
+rather than a dataset we have downloaded and massaged and posted
+expressly for this purpose.
+That means that, usually, weather from just a few days ago is in the dataset. 
+
+## The little one (by Tim)
+
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://codap.xyz/plugins/noaa-cdo/";
+    awash.codapInNewTab(theURL, "Here is a link to a CODAP document with the \"little\" NOAA portal installed." );
+</script>
+
+This plugin will let you choose...
+
+* from a small selection of diverse stations,
+with a leaning towards California (because it was created for
+a workshop in the LA area);
+* whether the data are daily or monthly; and
+* from among a small selection of data, e.g., precipitation or average temperature.
+
+The software lets you choose dates back to roughly 1900.
+
+![The 'little' NOAA data portal](art/noaa-tim-setup.png){fig-align="center" width="60%"}
+
+Then there's this thing about a "spreader." 
+
+This is because we have been exploring a concept in data organization called "tidy data."
+I will not go into it here; 
+suffice to say:
+
+* If you get only one type of data, you will not have a problem.
+Just put `value` on the vertical axis.
+* If you get two temperatures (e.g., **tMin** and **tMax**) do the same, and
+plop `what` into the middle of the graph.
+* If you mix the data, like you get precipitation and temperature,
+your graphs will be unruly unless you use the spreader. 
+Why? You'll have a column called `value` that will include both temperatures and rainfall amounts,
+so the graph will be a mess. 
+The spreader will make a new table with temperature and rainfall in different columns.
+* Organize your table first, then click **make spreader**. 
+* You can always close the spreader and make a new one if you want.
+
+Experiment, write me an email, or just use the bigger, more modern NOAA data portal!
+
+## World weather from codap.xyz
+
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://codap.xyz/plugins/worldWeather/";
+    awash.codapInNewTab(theURL, "Here is a link to a CODAP document with the \"little\" NOAA portal installed." );
+</script>
+
+More data from NOAA, kind of like the plugin above, but simpler. 
+Differences:
+
+* You just get one station at a time. You want another station? Select it and download with a new click of **get weather**.
+* You have no choice about what data you get. Temperatures and precipitation. That's it.
+* They come in separate columns, therefore no spreading necessary. 
+* Daily data only.
+* The stations are in various places around the world, with special emphasis
+on regions where people have expressed interest.
+
+![World weather data portal from codap.xyz, showing April 2023 high and low temperatures in Tehran.](art/world-weather-tmax-tmin.png){fig-align="center" width="80%"}
+
+
+## The big one (by Concord)
+When the nice people at [Concord Consortium](http://www.concord.org)
+saw my NOAA Portal they realized they needed something like it 
+for a project they were doing.
+So they took my code and expanded upon it.
+
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FtrsmzuwYx54FLS3tVzSF%2Ffile.json";
+    awash.codapInNewTab(theURL, "Here is a link to a CODAP document with the \"big\" NOAA portal installed." );
+</script>
+
+> You can also access this portal from any CODAP document by choosing 
+**NOAA Weather** in the **Plugins** menu under **Getting Data**.
+
+
+There are differences:
+
+* Very cool: It has a map you can use to choose from among a zillion stations.
+* You can only get one station at a time.
+* If you want more than one measurement, they appear in different columns.
+This is usually what you want.
+Also, this means you do not have to worry about tidy datasets or spreading.
+* The data go back, apparently, only to 1970. 
+* I have had trouble entering dates sometimes.
+
+::: {.column-page-right}
+![The 'big' NOAA data portal. Mt Washington in New Hampshire is selected](art/noaa-concord-setup.png){fig-align="center"}
+:::

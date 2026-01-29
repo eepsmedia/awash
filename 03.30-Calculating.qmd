@@ -1,0 +1,303 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Calculating and Recoding {#calculating-chapter}
+
+Sometimes, the data you have is not in the form you want. 
+This chapter addresses situations where you have the information 
+in one or more attributes (columns),
+but it needs to be transformed somehow and placed in a new column
+that you can use to do what you want.
+This often (but not always) means that you will need
+a _formula_ to compute the contents of that new column. 
+
+> Sometimes you will want to compute something like the mean or median.
+That's a similar but different situation 
+which we will talk about [in the next chapter](#summarizing-chapter),
+The difference is that a calculation like `mean()` takes input from
+an entire group of cases.
+It's a _summary_, an _aggregate measure_, because the value, the mean, 
+applies to the whole group rather than to each individual. 
+It works a little differently.
+
+> Here, we will be computing values that apply to each case individually.
+
+## A simple example: unit conversion
+
+You have a bunch of data about the heights of children and teens.
+The problem is that the `Weight` attribute is measured in kilograms.
+For some reason, your audience will not understand this new-fangled metric system,
+so you decide to make your graphs in pounds instead.
+
+The basic plan is simple: create a new column, give it a name (e.g., `WtLb`),
+and then give the new column a formula (`Weight * 2.2`). Here's the step-by-step;
+try it out in the live illustration below.
+
+1. Be sure the table is selected.
+1. Click the gray circle with the plus sign near its upper right. 
+A new column appears for the new attribute.
+Its name is selected, ready for entering.
+1. Type the new name: `WtLb`. Then press **enter** to complete the edit.
+1. Click on the new name. A menu appears. Choose **Edit Formula...**.
+1. In the formula box, enter `Weight * 2.2` and press **Apply**.
+Notice that the formula you enter is _only the part to the right of the equals sign_.
+
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/weight-in-pounds.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+Now you can change the graph to `WtLb` by dragging the new attribute name 
+to replace the old one.
+
+Small extra: Notice that `WtLb` has no units in parentheses. 
+Let's fix that.
+
+1. Click `WtLb` just like we did to get the formula editor.
+1. This time, choose **Edit Attribute Properties...** Notice what we have here. Cool stuff.
+1. Enter `pounds` in the **unit** box. 
+1. Press **Apply**. Shazam! The units appear!
+
+> Fathom aficionados from the ancient years will justly lament the loss of units arithmetic.
+Good old Fathom actually knew the conversions.
+
+## Making Numeric Attributes Categorical {#recode-numeric-to-categorical-section}
+
+You can use formulas to convert numerical attributes to categorical.
+Suppose you're investigating income, but graphs with income on them quickly become complicated:
+they stretch over a wide range and they're badly skewed.
+
+So for exploratory purposes, you'd like to divide the population into two groups:
+
+* Those making \$40,000 or more, which you will label `"$$"`, and
+* everybody else, which you will label `"$"`.
+
+Here's how to do it; use the example live document below.
+
+1. With the table selected, click the gray circle with the plus sign to make a new attribute.
+1. Give it a good name (e.g., `money`) and press **enter** to complete the edit.
+1. Click the new name to get the menu, and choose **Edit formula...**.
+1. In the formula editor, enter `if(TotalIncome >= 40000, "$$", "$")`. Press **Apply**. 
+The column should fill with values. Don't leave out the quote marks!
+1. Make a graph that uses your attribute. For example, put `EmplStatus` on one
+axis, and then plop `money` into the middle. Aha! 
+Employed people are more likely to be in the `$$` group!
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/ACS-CA-2013-1000peeps.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+
+Notice how that `if()` function works. 
+It's like the one in most spreadsheets, and takes three arguments.
+Consider this formula for an attribute called `kindOfPet`:
+
+`if(sound = "woof", "dog", "cat")`
+
+* The first is a "Boolean" expression, either true or false.
+* The second is what you get if the expression is true (the pet is a dog).
+* The third is what you get if the expression is false (the pet is a cat).
+
+Use `money` as you would any attribute. 
+You can use it to make graphs, and you can use it in other calculations.
+
+::: {.callout-tip}
+## Trinary alternative!
+
+If you don't like the `if()` syntax, 
+there's an alternative: a *trinary* operator. 
+A formula for `kindOfPet` looks like this:
+
+`(sound = "woof") ? "dog" : "cat"`
+
+All the best programming languages have this.
+:::
+
+::: {.callout-warning}
+## Gotcha! (still true, February 2025)
+
+However: If you drag `money` to the left to make groups---a perfectly 
+reasonable thing to do---CODAP will not do what you want. Why not? 
+CODAP tries to apply that formula to the entire group (as it would `median(TotalIncome)`)
+and it can't because there are many different values of `TotalIncome` in the group, 
+so it can't tell what value to assign to `money`.
+
+Therefore, before you drag, click on the column header, and in the menu that appears,
+choose **Delete Formula (Keeping Values)**. 
+Now the `money` column---filled with `$$` and `$`---is just as if you had typed in every value separately.
+
+Just be aware: now, if you change someone's `TotalIncome`, 
+their `money` value will not change,
+because _you deleted the formula_.
+Similarly, if you import more data, there is no formula to fill in new values for `money`.
+:::
+
+## Decoding numeric attributes that are really categorical {#decode-numbers-to-categories}
+
+Here's the situation:
+you get data from some outside source (e.g., the US Census)
+and when you look at it, 
+it's just a bunch of numbers. 
+Like this:
+
+![](art/recode-texans-raw.png)
+
+Everything is numbers, but it's clear that only two of the columns---`AGE` and `INCTOT`---are
+actually numeric. 
+The rest appear to use numbers as codes for what must be categorical values.
+Like, `SEX` must really be "female" and "male".
+
+The numbers make it hard to understand any graph you make. 
+They also make it hard even to get the kind of graph you want. 
+For example, suppose we want to plot `AGE` and group it by `SEX`.
+If you just do the obvious, you get a scatter plot using the values 1 and 2 for `SEX`.
+What we really want is a *categorical* plot.
+
+You *could* get that by clicking on `SEX`. 
+A menu appears, and you can choose **Treat as categorical**.
+
+![On the left, the plain graph. On the right, we've chosen to treat `SEX` as categorical.](art/recode-texans-categorical-graph.png){width="60%" fig-align="center"}
+
+But let's actually convert those values to strings like "male" and "female".
+If we do that, CODAP will just naturally make the right graph.
+The plan is to substitute "male" for all the `1`s in the column and "female" for all the `2`s.
+Of course, doing it one at a time is madness.
+
+Here's a very CODAP/data-move way to accomplish this:
+
+1. Drag `SEX` to the left, that is, group by `SEX`. 
+Now there is only *one* `1` and only *one* `2`. 
+1. Edit the values `1` and `2` to be `male` and `female` respectively.
+1. Drag `SEX` back over to the right.
+Now each case has `female` or `male` instead of the numbers.
+
+
+::: {.column-margin}
+![We have dragged `SEX` left and are about to type `male`.](art/recode-texans-ready-to-type.png)
+:::
+
+You can try this in the live example below. 
+When you've decoded `SEX`, make a graph and verify that CODAP treats it as categorical.
+
+::: {.column-page-right}
+<script>
+    const theURLtex = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FyY175Zco66jq53uzXOXF%2Ffile.json";
+    awash.liveDemoAt(theURLtex);
+</script>
+:::
+
+### How did we know that `1` was `male`? {-}
+
+Whoever provided the data should also provide what's 
+often called a "codebook." 
+This could be a file or some web page that describes the codes.
+We get Census data from [IPUMS](https://ipums.org),
+and IPUMS has a [page where you can look up variable names](https://usa.ipums.org/usa-action/variables/alphabetical). 
+
+For example, the information on `MARST` looks like this:
+
+![](art/vermont-doc-marst-codes.png){width="60%" fig-align="center"}
+
+You can also read about this in the ["Raw Vermont" project](#getting-documentation-on-variables).
+   
+
+::: {.callout-warning}
+## This technique is an exception {#no-delete-exception}
+
+Ordinarily, [we warn you](#always-new-column) always to make a new column.
+Don't ever throw away data! 
+if it's in your way, hide it; don't erase it! 
+
+In this section, we *could* have had you make a new column 
+(e.g., `SEXtext`) and put it parallel to the `SEX` column. 
+You might fill it using a formula such as `IF(SEX = 1, "male", "female")`.
+
+But here, (a) this technique is so easy and elegant, it seems a shame to complicate it.
+and (b) we're not actually changing the data, only how it looks. 
+
+Does that mean it's not a data move? 
+Shhh. Don't ask such deep questions.
+:::
+
+## Reducing the number of categories in a categorical attribute {#recoding-categorical-section}
+
+Sometimes, a categorical attribute has many categories, 
+and you want to group them together. 
+With States, for example, you might want to group them by "region," 
+so you would put California, Oregon, and Washington into a region called "Pacific," 
+and so forth for the rest of the states.
+
+Let's practice this skill with something simpler, using the data we just used above.
+We are going to reduce the six categories in `Education`
+to two categories: `collegiate`, which means they went to college at all,
+and `no college`, which means they never did.
+
+We _could_ make a formula, but it would be ugly and complicated.
+Instead, we will simply type the new values in,
+extending the technique from the previous section.
+
+Won't that take a long time? We have 1000 cases!
+No, because we'll type them only once. Do this using the live illustration below:
+
+1. Drag `Education` left to make (six) groups by education level.
+Select the table.
+1. Click the "left" gray circle (the "add attribute" circle), 
+just above and to the right of `Education`.
+This makes a new column.
+1. Name it `college`.
+1. In that column, enter the appropriate values for each category.
+That is, double-click the _cell_ and actually type `collegiate` or `no college`.
+You can use **Copy** and **Paste** if you like.
+1. You have now _re-coded_ `Education` so that the "improved" values are in `college`. 
+You no longer need `Education` to make your groups, so drag it back to the right. 
+Now you have only two groups (the `college` groups) on the left.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/ACS-CA-2013-1000peeps.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+
+You can use this new attribute as you would any other:
+
+5. Make a graph with `Gender` on the horizontal axis.
+1. Plop `college` into the middle of the graph. 
+1. In the "configuration" palette (below the ruler palette on the graph), 
+choose **Fuse Dots Into Bars**.
+1. Hover over the bars; what do you learn from the percentages that appear?
+
+Also,
+
+9. Make a graph of `TotalIncome` with the new attribute, `college`, on the other axis. 
+A useful, telling graph! Stay in school, kids...
+
+## By the way: Always make a new column! {#always-new-column}
+
+This is a practice you should ingrain into your data-analysis muscle memory:
+**Avoid destroying data**.^[Okay, except for [the exception](#no-delete-exception)]
+
+Seems obvious, but the techniques we mentioned here sometimes lead students into that trap.
+
+So: When you're recoding `Education` into `anyCollege`, you might be tempted to
+(**do not do this!**):
+
+1. Drag `Education` left to make six groups be education level.
+1. Edit `graduate`, `bachelor's`, and `some college` to be `collegiate`.
+1. Edit the rest to be `no college`.
+
+Do you see the problem? 
+You have overwritten the original data. 
+Suppose, later, you decide you want your collegiate group to be only people who have finished
+a bachelor's degree? 
+You no longer have anyone with `some college` to move from one category to the other.
+
+Therefore, _leave the original data as it is, and put any new data in a new column_.
+Then if you change your mind, you don't have to start over.

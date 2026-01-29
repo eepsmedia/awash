@@ -1,0 +1,48 @@
+{{< include _awash-setup.qmd  >}}
+
+# Visualizations  {#visualization-part-overview}
+
+CODAP's graphs are limited.
+I think that's a good thing in this context,
+because entering into the broader world of visualizations
+would be a distraction.
+Really, it's a whole 'nother course.
+
+So this part will limit itself to helping students see what's possible in CODAP.
+The basics are easy, but some not-basics can be a little subtle.
+
+To do this, we'll also indulge in a little design philosophy,
+partly so you can see where the designers are coming from,
+the better to anticipate how CODAP might make something work.
+
+## Student graphs and commentary
+
+Before that, however:
+
+In our work with the students, 
+we focus on communicating well with the graphs that
+CODAP makes available.
+
+Here is a problematic example of what well-meaning students can create:
+
+![A student graph about mobility.](art/student-marital-moving.png){fig-align="center" width="60%"}
+
+This graph leaves us in an "awash" state.
+It _does_ show the data,
+and a careful reader can figure out some patterns, but it's too busy, 
+too complicated,  _too much work_ for the reader to understand what's going on.
+As a good communicator,
+you want your audience to get your message as easily as possible.
+Sure, you want them to think,
+but you want them to start thinking already seeing what you see in the data.
+
+So consider two things we could do about it.
+One is to turn dots into bars, and leverage the legend.
+The other is to make some a new summary attribute or two, and plot those.
+
+::: {.datamove}
+Notice that both choices involve _grouping_ and _summarizing_.
+The bars-and-legend version gives you one plausible graphic scheme for free;
+yet the DIY choice---making attributes---is more flexible, 
+though for the moment it limits you to dots.
+:::

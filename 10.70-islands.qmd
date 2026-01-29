@@ -1,0 +1,94 @@
+{{< include _awash-setup.qmd  >}}
+
+# The Islands {#project-islands}
+
+This is so a resource I wish I had created!
+
+Michael Bullmer, from Brisbane, Queensland, in Australia (where they make Bluey),
+created a simulation of a bunch of people living
+in villages on a small archipelago.
+He designed it to be used in a stats class,
+so you can perform experiments or just do 
+observational studies.
+
+::: {.callout-important}
+## Getting to the Islands
+
+You'll need a login. 
+Write to [island@maths.uq.edu.au](mailto:island@maths.uq.edu.au).
+
+Then, go to [https://islands.smp.uq.edu.au/login.php](https://islands.smp.uq.edu.au/login.php){target="_blank"}
+:::
+I love just exploring and looking for phenomena about which I can collect data,
+make claims, and construct visualizations to evaluate and document my claims.
+The problem (and beauty) with this simulation is that, *as in real life*, 
+collecting data takes time and effort.
+Therefore, it would be really great to have help. 
+
+![](art/islands-pulse.png)
+
+> I measured Leigh's pulse. 
+This took less than a minute, but long enough so that if I wanted to do 100 people, it would take a long time. Notice that I had to get his consent first.
+He doesn't look too happy; I'm concerned.
+
+A project, therefore, goes something like this:
+
+1. You introduce students to the web site,
+demonstrating briefly how things work.
+1. You turn them loose, probably in pairs, 
+to explore and find out what they can.
+Ideally, this is open-ended, but if you are more pressed for time,
+you can give them a kind of scavenger hunt,
+or even specific tasks (e.g., go to any house, 
+ask someone inside to participate in a study,
+and measure their pulse).
+1. Debrief this free exploration, 
+finding out who has learned what,
+and letting them share. 
+Now all the students should know a wider
+range
+of what's possible than they found on their own.
+1. Homework! Explore a bit more and come up with an idea
+for a project that takes more than four people to complete.
+1. In class, do pair-share (homework was *think*). List all the ideas. Process that list to come up with a short list of project ideas. 
+Honor all ideas, of course, but you're the adult in the room who can help choose the ones that will work.
+1. Let students form groups of more than four and pick a topic.
+It's OK to duplicate. 
+In fact, it's OK if the whole class does the same project.
+(I did this---we studied an epidemic we found. 
+I made myself in charge of setting procedures for sharing the data on Google Sheets)
+
+::: {.callout-tip}
+Are you the teacher? 
+
+If so, you know that you absolutely have to try out
+some of this before you show it to students, right?
+It's wonderful for them to discover some things that you don't know,
+but you must follow the principle of having a "deep bench": you have to have, in your pocket,
+an interesting thing to study, ready to go. 
+:::
+
+## Island essentials
+
+Here are some things it's good to know. 
+Consider which of these you would demonstrate to students, which you would put on a scavenger hunt, 
+and which you just want them to find out on their own.
+
+* Time is always flowing. Sometimes people are asleep. Remember that this is based in Australia.
+* There is a system for recording dates. I like students to figure it out, but so you know: there are  28 days in a year :).
+* When you log in, you start with a map. Click on a town to see all its buildings.
+* The buildings are numbered, so an address is a town plus the number.
+* If you click on a house, you see a list of the people in it.
+* Anywhere you see the name of a person, 
+you can click to get their page.
+* A person's page includes 
+  * links to their immediate relatives
+  * a detailed history
+  * a button for tasks
+* Tasks require consent and take time. 
+There are a wide variety of tasks.
+* In each town, there is a town hall, with records.
+We discovered epidemics in death records.
+* Other special buildings might include a school and a newspaper.
+* In addition to towns, there are other places with data, such as agricultural research stations. 
+There you can design and perform experiments.

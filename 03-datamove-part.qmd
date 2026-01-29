@@ -1,0 +1,84 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Data Moves  {#datamove-part-overview}
+
+Over the years, some colleagues and I have watched students (and ourselves) 
+do interesting, rich data tasks.
+From those observations, we have come to believe in "data moves":
+common, identifiable actions that alter a dataset in important ways---
+enhancing it, reorganizing it, 
+nudging it into a form where it can tell its story.
+We even [wrote a paper](https://escholarship.org/uc/item/0mg8m7g6){target="_blank"} about data moves.
+We see that these moves, while simple on the surface,
+contain great power for those that use them well---
+and spell trouble for students who don't understand them. 
+Furthermore, perhaps because they seem simple,
+and because they are largely unnecessary in a traditional statistics class, 
+they don't get taught.
+
+Some students (perhaps the ones who later become statistics teachers) 
+just naturally pick them up through exposure to data...but others never do.
+Maybe, if we pay attention to data moves in our teaching and curriculum design,
+more students will be successful, learn about data and data analysis,
+and bring much-needed perspectives to the field. 
+
+Even in this short introduction to data science, students use the 
+most important ("core") data moves; 
+not only that, they can identify the data moves they are using.
+We have tried to identify data-move moments in the lessons and commentary.
+
+In the next few chapters, we'll elaborate a bit more on the data moves
+that appear in this book, how they fit together, and, importantly,
+how you actually do them in CODAP.
+The blue section headings below are links to the corresponding chapters.
+
+### [Filtering](#filtering-and-selection-chapter) {-}
+_Filtering_ means looking at a subset of the data.
+Choosing the right subset can crack a tough analysis right open.
+Good filters can also give you insight into what to do next.
+
+We have put some comments on _selection_ in this chapter as well,
+because filtering in CODAP requires selection.
+
+### [Grouping](#grouping-chapter) {-}
+Putting data into groups is a fundamental part of data analysis.
+We often group in order to compare one group to another.
+But it turns out that grouping has other functions as well, 
+for example, to facilitate other computations.
+
+### [Calculating](#calculating-chapter) {-}
+When you don't have an attribute that's exactly what you want,
+sometimes you can  make it out of attributes you already have.
+This often involves calculation (for example, in a units conversion)
+but not always.
+
+### [Summarizing](#summarizing-chapter) {-}
+_Summarizing_, in this context, means characterizing a group.
+A clear example is computing the mean height of a group of people. 
+That mean height summarizes the group, 
+and helps us compare that group to some other group.
+Sometimes, people call that value a _measure_ 
+or an _aggregate measure_ of the group.
+
+### [Joining](#joining-chapter) {-}
+When you need to use data from two or more datasets as part of the same 
+analysis, you have to _join_ them together.
+This is a more advanced move, but some students have ideas they want to pursue
+that require joining.
+
+## And two more {-}
+As I suggested in the introduction, 
+data moves are not all there is to data science. 
+You'll find two more chapters bundled with the data moves listed above,
+in their own chapters:
+
+### [Preparing and cleaning data](#preparing-chapter) {-}
+In this book, students use data we provide,
+or data they choose from data portals. 
+When you bring in your own data, it's often "unruly."
+That requires a whole new set of skills.
+
+### [Visualization and communication](#visualization-part-overview) {-}
+This is a giant topic to which we cannot do justice.
+Still, there are a few things that need to be said.

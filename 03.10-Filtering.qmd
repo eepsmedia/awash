@@ -1,0 +1,316 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Filtering and Selection {#filtering-and-selection-chapter}
+
+This chapter reflects on the _filtering_ data move 
+and then discusses the various ways to filter data in CODAP.
+There are four basic techniques: [_selection_](#selection-as-filtering),
+[_hiding_](#hiding), 
+[_setting aside_](#setting-aside),
+and through [_initial choice_](#initial-choice-section).
+
+In data analysis, filtering often means looking at a subset of the data
+in order to pay closer attention to that subset. 
+We can use other words to describe this such as _focusing_ and _slicing_.
+
+Whatever word you use, filtering does several things. 
+First, it can help you explore the data by focusing on only part of it;
+if your data shows lots of different things happening, 
+that can be confusing.
+But purposeful (or lucky) filtering can make what's going on clear
+by shedding light on only one thing.
+
+For example, remember the heights data?
+When we look at our entire data set and plot `height` against `age`, 
+we get kind of a mess. 
+But when we look at only the 10-year-olds---when we _filter_ the data set 
+to show only the tens, we get something clear.
+
+::: {layout-ncol="2"}
+![Height and age data, unfiltered](art/02-HeightByAgeWithGender.png){fig-align="center" width="45%"}
+
+![Same data, but just 10-year-olds](art/02-HeightByGenderAge10.png){fig-align="center" width="45%"}
+:::
+
+Of course the right-hand graph doesn't show us everything that's 
+happening in the more complete graph on the left.
+But it points us in a direction:
+it suggests that _one_ way to look at the data is to 
+compare the means of all the people at each age.
+That is, the graph of the tens helps us decide what to do about the rest of the ages.
+A different filtering might have led us in a different direction.
+
+Another, related purpose for filtering is to focus only on _relevant_ data.
+We often get data sets that have data that go beyond the scope of our investigation.
+For example, if we were doing a study about heights of children in elementary school, 
+we might get rid of all the teenagers in our data set. 
+
+Notice that the first, exploratory filtering might be temporary---in place
+just to help us decide what to do---whereas the second---excluding
+irrelevant data---might be permanent.
+
+But whatever reason for filtering, 
+notice that a good filter helps you cope with awash-ness.
+For one thing, it reduces the number of cases you're looking at,
+and a graph with fewer points is often (but not always)
+easier to understand.
+The filter may also clarify a graph by removing data that, 
+because they come from a different phenomenon,
+obscure the phenomenon you'd like to see. 
+
+## Selection as Filtering {#selection-as-filtering}
+
+You might not think of selection as filtering, 
+but in CODAP it can serve that purpose. 
+That's because of CODAP's _synchronous selection_.
+Whatever you select in one view of the data 
+gets selected in all views. 
+So if you select points in one graph, 
+they will be selected in all graphs and in the table.
+
+The live example below shows some US Census data from 2010.
+We see a table, a graph of `Age`, and a graph of `Marital_status`.
+
+1. Click on the "Widowed" bar to select all the widowed people. 
+Notice what happens in the `Age` graph.
+1. Click on "Never married." See how the selection changes.
+1. Notice that one of the never-married people is in the oldest clump.
+Who is that? Select that single point in the graph (the bottom one at age 94; 
+you may need to click elsewhere first to de-select all those widows).
+See how he is selected in the table?
+Looking in the table, we can see that he lives in New Jersey.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/age-and-marital-status-selection.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+
+The point is that when you select points in a graph or the table, 
+the visual selection---the highlighting on the screen---lets you focus
+on the selected cases. 
+Although this is not what we usually think of as _filtering_, 
+it's a dynamic way to accomplish the same thing---and even a little more,
+because you can naturally compare the selected points to the plain ones.
+
+> Note: it was easy to select the whole group because we "fused" the dots into bars.
+It would still work if they were dots, but instead of clicking on the bar to select,
+you would have had to drag a rectangle around the points you wanted. 
+Want to learn more about making bars? [Here's a link](#fusion-section).
+
+In this process we often want to select whole groups,
+as you did when you clicked on the bar for widows.
+It's worth taking a moment to remember how to select groups in the table.
+
+To do that effectively, you have to rearrange the table. 
+The next example has the same data, but no graph of marital status.
+
+We can still select the widows. Try this:
+
+1. In the table, drag the `Marital_status` column head leftward in the table,
+and drop it in the clear patch at the left edge of the table. 
+The "drop zone" will turn yellow when you're over the right place
+
+1. You have reorganized the table, making it _hierarchical_. 
+Now, when you click on the word "Widowed" in the left column, 
+you will select _all_ of the widows and widowers, in the table and in the `Age` graph.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/age-no-marital.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+::: {.datamove}
+That "drag left" gesture is an example of _grouping_, 
+a different data move we discuss in more detail [in the next chapter](#grouping-chapter). 
+If you make groups in this way, 
+it's easy to select the group in order to highlight it in different views of the data.
+:::
+
+## Filtering by Hiding {#hiding}
+
+CODAP lets you hide data in graphs.
+Often, a _filtering_ move involves either
+
+* Selecting the points you want to hide, and hiding them, or
+* selecting the points you want to see and hiding the rest.
+
+Both of those involve selecting, which is why we mentioned selection first.
+
+In the next example, we're comparing income by gender.
+We see that the median income for men is higher than that for women.
+In the graph, you can see that there are lots of people that make almost no money.
+Maybe the low median for women is because there are so many women who do not
+work outside the home, and have no "official" income. 
+
+We can filter using a different attribute; in our table, we have `Employment_status`,
+which has values that will let us look at only those people who are employed.
+
+1. In the table, drag `Employment_status` to the left and drop it in the yellow zone
+at the left edge of the table.
+1. In the `Employment_status` column, select the employed people by clicking on "Employed". 
+1. Click on the title bar of the _income graph_ to select it.
+The "palettes" appear on the right side of the graph.
+1. Go to the "eyeball" palette on the right and click it. A menu appears.
+1. Choose **Hide Unselected Cases**.
+
+When you do that, only the employed people remain in that graph.
+The median incomes for men and women both increase---but men still generally earn more.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/income-gender-employment-hiding.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+Now suppose we decide that we want to exclude people under about 25 
+because they haven't had a chance to get enough education to earn more.
+
+1. In the `Age` graph, select all the people up to about age 25. 
+Do this by dragging a rectangle around the cases you want to select. 
+If you've never done this before, it may take a couple of tries
+to develop a good strategy. 
+One is to start at the upper right of the rectangle you want,
+then drag down and to the left.
+1. Change back to the income graph by clicking in its title bar.
+1. In the eyeball palette, choose **Hide Selected Cases**.
+
+Again, the incomes readjust.
+
+You can always get cases back by going to the eyeball and choosing **Show All Cases**.
+
+::: {.callout-warning}
+When we hid the unemployed people in that first (income) graph,
+they only vanished _in that graph_. 
+They were still there in the other graph.
+That's why we switched back to the income graph when we had selected the
+younger people in the age graph;
+if we had done the "hide" in the age graph, they would have disappeared there
+and remained in the income graph.
+:::
+
+## Filtering by Setting Aside {#setting-aside}
+
+"Setting aside" in CODAP is very much like hiding,
+but it's conceptually different in an important way:
+
+> When you _hide_ cases, you're telling CODAP not to show them _in one particular graph_.
+When you _set aside_ cases, CODAP will ignore them _in all graphs and calculations_.
+
+That means you could use hiding to, for example, make one graph of just the employed people and then another, separate graph of just the unemployed. 
+
+But if you have data you want to filter out for your entire analysis---for example, 
+if you're studying employed people over 25,
+and you don't want to keep having to hide all the unemployed and the graduate students,
+you should _set aside_ those cases and proceed.
+
+You can always get set aside cases back.
+
+Set cases aside by
+
+1. selecting them, then
+1. making sure the _table_ is selected (e.g., by clicking in its title bar), and finally
+1. going to the eyeball palette of the _table_ and choosing an appropriate option.
+
+> Remember: to hide cases, use the eyeball palette of the **graph**. 
+To set them aside, do it in the **table**.
+
+## Importing data: initial choice as&nbsp;filtering {#initial-choice-section}
+
+When you import data from a big data site, or from a CODAP plugin data portal 
+such as the one for BART data or US Census data,
+you often have to specify which data you want.
+This is essential because CODAP, at least, cannot handle the entire dataset.
+It's too big. 
+For example, as of this writing, the BART data has 40 million records.
+
+A data portal typically has controls, at the outset,
+where you choose what data you want.
+You make your choices, and then press some button labeled, essentially, **get my data**.
+The site creates a data _request_ and then, if the request is OK, your data appears.
+If it's a CODAP plugin, the data shows up in a table.
+If it's on the web, it may create a **.csv** file or the equivalent,
+that you can import into your favorite data analysis program.
+If that's CODAP, simply drag the file into the window.
+
+Anyway, about those initial choices:
+
+* You might get to control what attributes (a.k.a. variables, columns in your tabe) 
+will appear in the data you get.
+* You might get to control what cases (rows in the table) will be part of the dataset.
+
+It's good to keep that distinction in mind;
+and here we're talking about the second of those bullets:
+controlling which cases you get.
+
+For example, with the BART data plugin, you can specify
+what day you want data from, and for which stations.
+That way you get April 18, 2018 from Orinda to Embarcadero (19 cases)
+instead of all 40 million.
+Much more manageable. 
+Less awash.
+
+Making that choice up front is kind of like doing a massive "set aside" operation.
+If you _could_ start with all 40 million cases, 
+you might first select the day and choose **Set Aside Unselected Cases**;
+then select the starting station, Orinda, and set aside the others;
+and finally select the destination, Embarcadero.
+
+But the choosing the data first makes the subsequent analysis feel different.
+When you use the portal,
+you're proactively deciding what you want instead of eliminating what you don't want.
+It's more like adding clay to a model than sculpting in stone.
+As a consequence,
+data analysis using a data portal is more _accretion_ than _exclusion_.
+You get a little data and see what it looks like;
+you wonder whether April 19 is the same as April 18, so you get that too,
+adding to the data you're working with;
+then you wonder whether a weekend day is different, and add the 21st (which was a Saturday).
+Then you decide you want a year of Wednesdays, but only between 5 and 11 AM...and so forth.
+
+The plus side of this, from a pedagogical point of view
+(whether you are teaching yourself or others)
+is that the learner has to think about the process a little more, and do some planning.
+They get to apply their knowledge of the world as part of imagining 
+what the data might look like.
+Furthermore, they get to start with something familiar,
+wading into the ocean of data at the beach instead of falling in miles from shore.
+
+The downside is that if you only look at the data you know you want,
+you might miss an important and relevant phenomenon 
+that happened outside the data you requested.
+More insidiously, some students might not get the data they need 
+in order to _control_ for other variables. 
+More on that [in the chapter about adjustment and control](#adjustment-chapter).
+
+## Commentary
+
+A huge dataset is totally characteristic of data science.
+And the hugeness of a dataset certainly contributes to feeling awash in data.
+
+Filtering, by its very nature, reduces the number of cases you're looking at,
+so it can be an antidote to awash-ness if you filter with a purpose.
+
+Just a couple more notes:
+
+* Of course, you don't *delete* the data, right? 
+You just hide it or set it aside.
+
+* You can think of filtering as choosing the *rows* of your dataset. 
+What about choosing *columns*? 
+I don't think of that as a "real" data move because it doesn't actually change 
+a dataset's structure or values. 
+But oh man, when you have way more attributes (columns) than you need, 
+hiding columns---hiding attributes---is a lifesaver. 
+You can do that with the **choosy** plugin. [Read about choosy here](https://codap.xyz/guides/choosy/){target="_blank"}.
+
+::: {.callout-note}
+In the "R" tidyverse, choosing what columns are in your table is one of the principal verbs.
+There, it's "selecting."
+:::

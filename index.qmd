@@ -1,0 +1,237 @@
+{{< include _awash-setup.qmd  >}}
+
+--- 
+title: "Awash in Data"
+author: "Tim Erickson"
+date: January 2026
+---
+
+
+# Introduction {- .unnumbered}
+
+This book leads you through a few introductory lessons in data science. 
+You can think of it as a self-guided textbook for teachers or students.
+If you're a teacher, you might assign chapters, 
+problems, or projects for students to read and do.
+
+In this book, you will use [CODAP](https://codap.concord.org/){target="_blank"}, the Common Online Data Analysis Platform,
+to do your data analysis. 
+CODAP is free and web-based, that is, it runs in your browser.
+You do not even need to sign in or make an account to use it.
+
+
+## Smelling Like Data Science {-}
+
+Data Science is becoming a big deal in our society.
+It's a hot profession with lots of well-paid jobs.
+Even if you are not a data scientist, data science is in your life.
+Every time you do a web search, get directions on your phone,
+or see a recommendation for a movie, a song, or a brand of ketchup,
+somebody did some data science to bring you that information.
+When you hear about the latest unemployment figures
+or the trends in income inequality,
+that comes from data science too.
+And when you hear people worry that some technological convenience
+will lead to greater surveillance and loss of privacy,
+once again, data science would make it possible.
+
+It sounds like we had better learn about data science---but it must be super complicated, right?
+Data science involves huge data sets, 
+and sophisticated computing techniques like machine learning and artificial intelligence.
+Doesn't it take years of study---and buckets of talent---to learn that stuff?
+
+As with anything, it does take years to be an expert.
+And experts may disagree about talent.
+But there are underlying ideas and ways of thinking that you can experience right now---and 
+that's what we hope this book will give you.
+We'll use medium-sized data sets---at most a few thousand cases at a time,
+along with a few common-sense techniques,
+and a drag-and-drop data platform,
+to help you get an idea of what data science,
+for lack of a better term, _smells like_.
+When you're done, 
+you'll be able to use that "sniff test" to recognize a data science problem;
+you'll have a better idea what went into the data that you see and use,
+making you a more critical and competent citizen;
+and you'll be better able to study data science in earnest, if you so desire.
+
+How should we start?
+
+And even before that, what _is_ data science, really?
+
+As of 2025, no one really knows.
+Everyone pretty much agrees that it lives somewhere in 
+the borderlands between Statistics and Computer Science.
+
+We can use our emerging sniff test to recognize it.
+We'll use two main ideas:
+
+* A data science problem often begins with a feeling of being _awash in data_.
+* Data science uses _data moves_ to manipulate data. 
+
+<span class="inline-hed">Awash in Data</span>. 
+This is a very touchy-feely thing to put in something about data science,
+but imagine: 
+there is an ocean of data and you're in a small boat,
+metaphorically trying to make your way.
+But you're in a data storm;
+the sails are flapping madly and the waves are high.
+Data are coming in over the gunwales, threatening to swamp you.
+Emotionally, you might be excited by the challenge, 
+or you might be terrified, wishing you were somewhere, anywhere else.
+
+In a data science situation---especially as a beginner---you 
+often don't know what to do.
+You have way too much data, and the data you have is confusing.
+Even though you're not literally in a boat, you are _awash in data_.
+This book, then, is about coping with "awash-ness":
+developing skills and perspectives appropriate for doing data science.
+We will explore techniques for finding the patterns and stories 
+in the ocean of data---for calming the seas and filling our sails.
+
+<span class="inline-hed">Data Moves</span>.
+These are techniques for coping with data in a data-science context. 
+One example is _filtering_, that is, looking at a subset of your data.
+Looking at a subset lets you focus on one thing; it reduces the scope of the problem.
+It's often a good way to take a step when you don't know what to do.
+By reducing the amount of data and giving you an action to take, 
+filtering reduces that awashness. 
+
+::: {.datamove}
+A move like _filtering_ is broader than the specific command you give a computer
+or what menu item to choose.
+It's an underlying thing-to-do that is about manipulating the data.
+Throughout this book, we'll use highlighted paragraphs like this one 
+to draw attention to data moves when you do them;
+we hope that you will begin to recognize them for yourself,
+and develop the habit of asking,
+when things get confusing,
+whether filtering (or _grouping_, or _summarizing_ or...)
+will move your investigation forward.
+:::
+
+<span class="inline-hed">But there's more!</span>
+Data science is more than being awash and using data moves.
+Communication is a huge part of data science, 
+and nothing is more emblematic of good data communication
+than a great visualization.
+Professional data scientists make amazing and dynamic graphics 
+that communicate the stories behind complicated, huge datasets.
+
+We will not do that here.
+We're beginners, and there is plenty for us to do that uses 
+graphs with the normal axes and points that students are already familiar with.
+
+We have included a [section about visualizations](#visualization-part-overview)
+that describes CODAP's graphing environment,
+shows some student work,
+and reflects on how to use data moves to make your graphics better.
+
+## Computers, Coding, and CODAP {-}
+
+It's utterly impractical to do data science by hand.
+Data science deals with large amounts of data,
+so it's no surprise that you will use computer technology to do this work.
+And although you can learn many things by reading,
+you will not really understand about being awash---and therefore
+you will not really understand data science---without using a computer 
+to wrestle with the data yourself. 
+
+The vast majority of online introductions to data science 
+begin by using a programming language,
+usually R or Python.
+These are languages used by professionals in the field, 
+so it makes sense to use them when you are learning.
+If you are already proficient in coding, 
+you could certainly start there.
+
+But in this book, you will use CODAP.
+
+One reason for that is that the activities here were designed
+for a four- or five-session introduction to data science
+_at the high-school level_. 
+They assume no programming experience at all. 
+Because CODAP is _not_ a programming language, 
+there is no strange syntax to learn,
+nothing to configure, no libraries to download and install.
+
+It's a tradeoff, of course:
+there are many things you cannot do in CODAP that are possible when you code. 
+Good coding also makes your work reproducible and reusable,
+recording every step of your analysis.
+
+Still, CODAP is a good place to start.
+It will let you experience data analysis and data moves 
+with a minimum of overhead---and you will still do a great deal of _computational thinking_.
+Later, when you move into coding, you can focus on that, 
+undistracted by the high winds and salt spray on that ocean of data.
+
+## Using This Book {-}
+
+This book is divided into parts, 
+as you can see in the table of contents that probably appears 
+in the sidebar on the left side of your screen.
+
+If you are here to get an introduction to data science, 
+or you're about to teach it,
+you can work sequentially through the **Lessons** part,
+referring as necessary to other parts of the book. 
+The **Data Portals** part describes some of the widgets we have developed to let you get
+your hands on some interesting data.
+We put instructions about those portals in their own chapters in order to shorten the text
+in the lessons. 
+
+The second part, **Data Moves**, is more substantial, and contains some of our thinking about
+what makes data science data science.
+If you are designing data science curriculum, you might want to read this part.
+
+Finally, **CODAP Topics** explains some of CODAP's underlying model,
+as well as some more esoteric aspects of the platform
+and its relationship to data science.
+
+### Using CODAP for lessons and examples {-}
+
+To do work on a problem in the book, or to try out an example, 
+there are two ways to open up CODAP and start working:
+
+* Look for the CODAP icon. Then use the link to open up a new tab or window in your browser.
+You will need to switch back and forth between the instructions in the book
+and the CODAP window.
+
+<script>
+    theURL = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=157977";
+    awash.codapInNewTab(theURL, "Try it with this link" );
+</script> ... You'll see data on 800 children and teens.
+
+* Often, it's even easier: 
+you can do the work in a _live illustration_, a CODAP 
+window embedded in the book itself. 
+This makes things very easy---no  switching back and forth---but it 
+has the disadvantage that you may need more screen space for your graphs and tables.
+
+::: {.callout-warning}
+There's a "gotcha" here if you're using a tablet such as an iPad. 
+If you try to drag something---and you drag things a lot in CODAP---
+you may find that the whole document scrolls instead.
+It's really annoying.
+There is a solution, though:
+press on the thing, and then _wait_ just a beat before starting to move. 
+You'll get used to it quickly.
+:::
+
+Here is an example, showing the incomes of a bunch of employed Californians in 2013. 
+You can see their marital status, too.
+Try dragging `Gender` to the vertical axis of the graph:
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/income-marital.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+
+### Can I just use my phone? {-}
+
+No. It will work, but the screen really is just too small.
+

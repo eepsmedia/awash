@@ -1,0 +1,266 @@
+{{< include _awash-setup.qmd  >}}
+
+# Income Inequality {#project-income-inequality}
+
+When we talk about "income inequality," 
+we usually mean one of two things:
+
+* Some groups have higher incomes than others. 
+Stereotypically, for example, men earn more than women; whites earn more than blacks.
+* Some *populations* have greater income *disparities* 
+than others. 
+A statistic like, "the top 1% of people have 50% of the wealth," 
+is an example of this second kind of income inequality. 
+
+In this chapter, we'll talk about the first of these.
+
+Back in [the second dig-deeper assignment](#assignment-2),
+one of the possible tasks was to address the claim that people with more education
+make more money.
+This project is more open-ended. 
+You don't have to study education level; 
+you can pick any inequality you like. 
+Typical (or stereotypical) inequalities in our society have to do with 
+
+* education, of course, but also 
+* gender, 
+* race, or 
+* whether you're Hispanic.
+
+Those are all suitable avenues to pursue.
+But as you look at what data are available, you might consider others,
+such as 
+
+* State,  
+* languages spoken,
+* veteran status,
+* immigration status,
+* poverty status, and more!
+
+## The task
+
+As before, this is a "dig-deeper" project, with its characteristic form. 
+In case you've forgotten what that is, this might help:
+
+You're exploring income inequality in the United States. 
+This might be some injustice you want to probe, 
+or just a difference.
+
+### Begin by exploring {-}
+
+Explore data that you assemble using the Microdata Portal ([see below](#microdata-portal-section)).
+
+* Check out the various attributes that are available. Choose some.
+* Download some people.
+* Make graphs, look for patterns and stories.
+* Don't be afraid to download new datasets when you see you want different attributes, years, or States.
+It's fast! It's free!
+* Come up with a claim (or question) you want to pursue.
+* Make the simplest possible graph or calculation to address your claim.
+* Then dig deeper.
+
+### How do you know when you're done? {-}
+
+You have a Google Doc (or whatever format your instructor requires). It contains:
+
+* Your name.
+* A simple claim or question.
+* A graph with the first-look, obvious results.
+* A description of why that simple approach might not be enough to really explain the data
+* A description of what you did to further the investigation ("dig deeper"). In this description,
+  * You have grouped the data by dragging an attribute (or attributes) to the left in the table.
+  * You have calculated some summary value (e.g., a mean or a sum) 
+  for each group by making a new column with a formula.
+* The results of that deeper investigation (with, e.g., a new graph of the data) 
+* A conclusion: is the story any different now? 
+* Possibly, ideas for additional "dig deeper" activities with this data set, and...
+* A link to a shared CODAP doc (like last time) so the instructor can see what you did.
+
+Your Google Doc is probably no more than two pages long. 
+Be sure to set permissions so your instructor has edit access.
+
+## The data {#microdata-portal-section}
+
+In this project, you should use the **Microdata Portal** plugin.
+You can find it in  the **Plugins** menu under **Getting Data**.
+Or click this link:
+
+<script>
+    theURL3 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2F4sAwhk140wY1Hm3QY9om%2Ffile.json";
+    awash.codapInNewTab(theURL3, "Click to get a CODAP document with the microdata portal running." );
+</script>
+
+When you are exploring the data, 
+check out the various attributes you can get in the **Attributes** section of the plugin.
+By default, you only get `Sex`, `Age`, `Year`, `State`, and `Boundaries`.
+That's just not enough!
+
+### Getting more attributes {-}
+
+Because the project is about income, you'll need data about that. 
+Here's how:
+
+1. Open up the **Attributes** section of the plugin.
+You'll see a number of categories, including **Income**.
+1. Open up the **Income** category.
+You'll see various attributes about income, including `Income-total`,
+`Income-wages`, and a few others.
+1. If you like, click the **Show descriptions** box
+to see descriptions of the attributes.
+
+The illustration below shows what the plugin looks like as you do this:
+
+::: {layout-ncol=2}
+![](art/inequality-attributes.png){width=60%}
+
+![](art/inequality-attributes-income.png){width=60%}
+:::
+
+Now, **Income** is not the only category. 
+Explore the other categories to see what else might be useful for your project.
+
+### Specifying place and time {-}
+
+Above the **Attributes** section,
+you can see sections for **Place** and **Year**.
+Those will let you restrict which States and years you get data for.
+
+The default is that you get a representative selection from all States,
+from the 2020 Census.
+
+## Data move opportunities
+
+This is real data, almost direct from the Census. 
+As a consequence, it will not be formatted or coded the way you probably want,
+and you might get cases that are irrelevant to your project.
+You may also want to summarize the income of groups, 
+for example, comparing the median incomes of people with more or less education;
+that `median` means you're summarizing.
+
+That is, you'll need to do *data moves* as part of your exploration 
+and data analysis.
+Here are some suggestions for data moves you might make:
+
+### Filtering {-}
+
+You're studying income, so you probably don't want to include 5-year-olds in your data.
+You also might not want to include people who aren't working. 
+(Or maybe you do,
+depending on the story you're telling.)
+
+This is a job for [filtering](#filtering-and-selection-chapter). 
+
+To get rid of children, you might select them in a graph of `Age` and set them aside.
+You also might discover something strange about their incomes that appear in the data;
+that could help you identify which ages the Census thinks are too young to have incomes.
+
+If you want to focus only on people with jobs, 
+check out the **Work & employment** section, and look at the `Employment_status` attribute.
+
+### Grouping {-}
+
+If you're looking at income inequality, 
+that probably means you're going to compare *groups*. 
+It might be two groups (e.g., people in *Minnesota* and *Arkansas*)
+or more groups (e.g., *White*, *Black*, *Asian*, *Other*).
+
+You use the [grouping](#grouping-chapter) data move when you put that attribute on a graph,
+or when you drag it left in a table to "promote" it in the table's hierarchy. 
+
+### Summarizing {-}
+
+When you compute some quantity that characterizes a group---and probably use it to 
+compare groups---you're [summarizing](#summarizing-chapter).
+
+The obvious thing to summarize in this project is `Income-total`. 
+Three things about that:
+
+* What's the best way to summarize income? 
+Two clear choices are `mean()` and `median()`. 
+Which one should you use?
+Or should you use both?
+* Those two examples are *measures of center*. 
+But as you dig deeper, you might want to look 
+at other possible summaries such as measures of *spread*.
+Or you might want something other than the center for your comparison, such as a percentile. 
+There's a function for that.
+* Finally, you might get insight into inequalities by
+summarizing something other than income.
+There are other "income" attributes available such as `Income-family_total`.
+There might be other things to look at as well...
+
+### Calculating and recoding {-}
+
+When you need new values for every individual case, every person,
+you may need to [calculate](#calculating-chapter) that value 
+or "recode" it from an existing attribute.
+
+Clear as mud? Some examples:
+
+**Recoding your grouping attribute**. 
+Suppose you're looking at education and income, and you've decided that you
+just want to compare people who have been to college with those who have not. 
+We did this [in the "calculating" chapter as a live example](#recoding-categorical-section).
+Check it out.
+
+**Who's an immigrant?**
+There is no direct attribute to tell you who is an immigrant.
+But in the **Race, ancestry, origins** section, there's an attribute called `Immigrate-year`.
+
+::: {.column-margin}
+![](art/inequality-immigrate.png)
+:::
+
+You can use that to help you make a new column (perhaps `Immigration`) with two values: 
+`native` and `immigrant`. 
+You can use a [formula strategy](#recode-numeric-to-categorical-section) 
+or a [grouping strategy](#recoding-categorical-section). 
+
+**Comparing incomes from different years**. 
+This is trickier! 
+
+Suppose, as you dig deeper, you want to argue that the gender difference in income
+is better in 2020 than it was 50 years earlier, in 1970. 
+You get data from both years, but you see that of course, incomes in 1970 were a lot smaller.
+
+::: {.column-margin}
+![](art/inequality-cpi.png)
+:::
+
+You notice the `CPI99` attribute in the **Income** section,
+and decide to include it in order to account for that inflation. 
+The illustration in the margin shows part of your table.
+Here's the deal:
+To convert the value of `Income-total` to a "standard" value in 1999 dollars,
+multiply the income by the value in `CPI99`. 
+
+Ergo: Make a new column (perhaps `income99`) and give it the appropriate formula.
+
+## Miscellaneous tips
+
+Census data, and the Microdata plugin, are great, but occasionally odd. 
+Here are some tips about things we've learned over the years:
+
+**Topcodes**.
+Some values---I'm thinking of poverty measures here,
+but it happens in various places---have "topcodes",
+that is, values that get put in the dataset to represent that value *or anything higher*. 
+
+Imagine you have `Age` and you have only two digits to represent it. 
+You might say, we'll let `99` stand for age 99 *and anything higher*. 
+It won't make a big difference, but if you look at a graph of `Age`, there might be a little blip at 99.
+Does that mean that there are more 99-year-olds?
+No, just that the centenarians have been lumped among those spring chickens.
+
+**States and boundaries**. 
+As you may have leaned in the [Maps](#maps-chapter) chapter,
+CODAP sometimes needs "boundary" attributes in order to make maps. 
+The microdata plugin supplies those with the `State` attribute,
+and "drags them left" by default. 
+This looks weird, but facilitates making maps by State.
+
+Of course, to use a particular value on a map (e.g., median income) you need to calculate it.
+Make a new attribute at that top level and give it a suitable formula.
+Then you can drag that attribute into a map.
+
+

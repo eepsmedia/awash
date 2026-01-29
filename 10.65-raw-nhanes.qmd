@@ -1,0 +1,167 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Raw NHANES {#project-raw-nhanes}
+
+There is an NHANES data portal available from the **Plugins** menu, 
+but it includes only a small selection of the data available.
+
+In this project, you have to process data that's much closer to the 
+original data from the government NHANES site.
+It's a lot more data. 
+Basically, it's more columns, and spread across many files.
+
+It will also be more "raw," that is, it will not be decoded.
+Here is the beginning of the demographics file to show you what you're up against.
+
+```
+    SEQN,SDDSRVYR,RIDSTATR,RIAGENDR,RIDAGEYR,RIDAGEMN,RIDRETH1,RIDRETH3,RIDEXMON,RIDEXAGM,DMQMILIZ,DMDBORN4,DMDYRUSR,DMDEDUC2,DMDMARTZ,RIDEXPRG,DMDHHSIZ,DMDHRGND,DMDHRAGZ,DMDHREDZ,DMDHRMAZ,DMDHSEDZ,WTINT2YR,WTMEC2YR,SDMVSTRA,SDMVPSU,INDFMPIR
+    130378,12,2,1,43,NA,5,6,2,NA,2,2,6,5,1,NA,4,NA,NA,NA,NA,NA,50055.450807,54374.463898,173,2,5
+    130379,12,2,1,66,NA,3,3,2,NA,2,1,NA,5,1,NA,2,NA,NA,NA,NA,NA,29087.450605000002,34084.721548,173,2,5
+    130380,12,2,2,44,NA,2,2,1,NA,2,2,6,3,1,2,7,NA,NA,NA,NA,NA,80062.674301,81196.277992,174,1,1.41
+    130381,12,2,2,5,NA,5,7,1,71,NA,1,NA,NA,NA,NA,2,2,2,2,3,NA,38807.268902,55698.607106,182,2,1.53
+    130382,12,2,1,2,NA,3,3,2,34,NA,1,NA,NA,NA,NA,4,2,2,3,1,2,30607.519774,36434.146346,182,2,3.6
+
+```
+This is CSV, that is, comma-separated values. 
+By tradition, the attribute (column) names are in the first line.
+Counting in, the fourth "column" is gender (the name of the variable is `RIAGENDR`),
+followed by the age in years (`RIDAGEYR`). 
+So the first person in this list is a 43-year-old male.
+We'll call him "Charlie."
+
+How do we know that "1" is Male?
+
+For that, you need the documentation for the `RIAGENDR` attribute.
+That lives on a page in a "codebook."
+Here is what it looks like:
+
+![Documentation for gender (`RIAGENDR`)](art/nhanes-riagendr-doc.png){fig-align="center" width="80%"}
+
+That is, values for the sex or gender attribute 
+will be `1` for `male` and `2` for `female`. 
+So the third person in our file above is 44-year-old woman.
+
+To make tables and graphs that make sense to anybody but you,
+you will need to decode the values in these raw files.
+
+::: {.datamove}
+This is a job for a "calculating" or "recoding" data move,
+which you can learn about in this book! 
+[Here is a description](#decode-numbers-to-categories)
+of how to do that for an attribute like `RIAGENDR`.
+:::
+
+### Sequence numbers 
+
+Importantly, Charlie's "sequence number," the first item (`SEQN`), is 130378. 
+You will need that!
+Every person has a unique sequence number.
+You will use the sequence numbers, `SEQN`, to connect data in one file to another.
+
+For example, the "body measurements" data file starts like this:
+
+```
+    SEQN,BMDSTATS,BMXWT,BMIWT,BMXRECUM,BMIRECUM,BMXHEAD,BMIHEAD,BMXHT,BMIHT,BMXBMI,BMDBMIC,BMXLEG,BMILEG,BMXARML,BMIARML,BMXARMC,BMIARMC,BMXWAIST,BMIWAIST,BMXHIP,BMIHIP
+    130378,1,86.9,NA,NA,NA,NA,NA,179.5,NA,27,NA,42.8,NA,42,NA,35.7,NA,98.3,NA,102.9,NA
+    130379,1,101.8,NA,NA,NA,NA,NA,174.2,NA,33.5,NA,38.5,NA,38.7,NA,33.7,NA,114.7,NA,112.4,NA
+    130380,1,69.4,NA,NA,NA,NA,NA,152.9,NA,29.7,NA,38.5,NA,35.5,NA,36.3,NA,93.5,NA,98,NA
+    130381,1,34.3,NA,NA,NA,NA,NA,120.1,NA,23.8,4,NA,NA,25.4,NA,23.4,NA,70.4,NA,NA,NA
+    130382,3,13.6,NA,NA,1,NA,NA,NA,1,NA,NA,NA,NA,NA,1,NA,1,NA,1,NA,NA
+```
+
+See the first `SEQN`, 130378? That's Charlie!
+
+You can see that his `BMXWT` (weight in kg) is 86.9, that is, 191 pounds.
+If you count carefully over the "NA" values, you'll see that his `BMXHT` (height in cm) is 179.5, or 5 feet 10 1/2 inches. 
+
+The upshot of this is that if you want to make one of our favorite
+graphs, the one of height against age,
+you will need to coordinate these two datasets.
+You'll get age from the "demographics" file
+and height from the "body measurements" file. 
+
+::: {.datamove}
+In CODAP, that means you'll use two tables, and connect them 
+(using a "joining" data move!!)
+using the sequence number `SEQN` as the connector. 
+
+The [joining chapter](#drag-to-join-section) explains how to do that.
+:::
+
+Great! Now where do you get the data?
+
+## Data on the NHANES site
+
+[Here is a link to the NHANES page for data for the 2021–2023 cycle](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?Cycle=2021-2023){target="_blank"}.
+From there you can find your way to more-current (or older) data as it becomes available. 
+
+To get data and documentation from that page, look to the left under 
+**Questionnaires, Datasets, and Related Documentation**,
+then **NHANES 08/2021 to 08/2023**.
+There you will see a list of categories of data: Demographics, Dietary, Examination, etc. 
+If you clock on one of those, you'll see a list of data files along with links to the files themselves and to documentation. 
+The rub is: the data files are in "SAS transport" format, `.xpt`. 
+
+If you know how to cope with those, great! Go for it!
+
+## Mostly raw data to download
+
+For the rest of us mortals, we have converted a number of them to ordinary `csv`. 
+
+Below, you'll see links to these, translated from `.xpt` but otherwise 
+completely undecoded CSV files.
+To decode them, you will need to look at the documentation for the dataset, as described above.
+The "info" circles are links to the correct page on the NHANES site for the corresponding documentation file. 
+
+#### Essential: {-}
+::: {#}
+<script>
+    awash.insertDownloadNHANESCSV("DEMO_L", "demographics")
+</script>
+:::
+
+#### Reliably interesting: {-}
+::: {#}
+<script>
+    awash.insertDownloadNHANESCSV("BMX_L", "body measurements");
+</script>
+:::
+
+#### Deeper in the weeds:  {-}
+::: {#}
+<script>
+    awash.insertDownloadNHANESCSV("BPXO_L", "blood pressure");
+</script>
+<br>
+<script>
+    awash.insertDownloadNHANESCSV("CBC_L", "complete blood count");
+</script>
+<br>
+<script>
+    awash.insertDownloadNHANESCSV("PAQ_L", "physical-activity");
+</script>
+<br>
+<script>
+    awash.insertDownloadNHANESCSV("BAX_L", "balance");
+</script>
+<br>
+<script>
+    awash.insertDownloadNHANESCSV("HDL_L", "HDL-cholesterol");
+</script>
+<br>
+<script>
+    awash.insertDownloadNHANESCSV("DIQ_L", "diabetes");
+</script>
+<br>
+<script>
+    awash.insertDownloadNHANESCSV("INS_L", "insulin");
+</script>
+:::
+
+
+## Credits!
+
+<a href="https://www.flaticon.com/free-icons/csv" title="csv icons">Csv icons created by rizal2109 - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/info" title="info icons">Info icons created by Freepik - Flaticon</a>

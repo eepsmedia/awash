@@ -1,0 +1,246 @@
+{{< include _awash-setup.qmd  >}}
+
+
+
+# Files: Copy, Save, Import, Export, Share {#files-chapter}
+
+At this point, you have done enough work in CODAP that you probably need to save your files.
+And if your class did the activity where different groups
+found the mean heights for males and females of particular ages,
+and entered them in a spreadsheet,
+you probably wonder how to get those into CODAP.
+And if you somehow want to share your work,
+but don't want the person you share it with to mess it up,
+you will be pleased with CODAP's sharing features.
+Finally, of course, you may have a file full of data that
+you want to get into CODAP. 
+How do you do that?
+
+This chapter, then, is about the mechanics of files in CODAP.
+The topic sounds decidedly not about content.
+Largely, that's correct:
+it's just stuff you need to know to make your life easier.
+Saving files means you do not have to type everything in.
+Saving means you will not have to start over again every time.
+
+On the other hand, it should carry a whiff of data science. 
+Data science incudes all sorts of technological actions
+including archiving and storing data.
+Saving a file may not be a _data move_---
+it doesn't manipulate the data---but it's essential to the whole process.
+
+::: {.callout-tip}
+## Teachers, note:
+
+CODAP's sharing features---described below---are
+a real boon for preparing a class session. 
+You can set up a CODAP document to be exactly the way
+you want students to see it.
+When you share, CODAP essentially takes a snapshot of the file
+and gives you a URL that you can post.
+Then, when students go to that link, each student gets their own personal
+copy of the file to work on.
+
+Similarly, a student can "turn in" a CODAP document by sending you
+a link to their file; 
+it's your private copy.
+:::
+
+
+## Saving a CODAP file {#saving}
+
+The hamburger menu---three horizontal lines in the upper-left corner
+of the CODAP screen---has the usual things you would find in a **File** menu:
+**Open**, **Save**, and so forth.
+
+::: {.column-margin}
+![The hamburger menu](art/hamburger.png){}
+:::
+
+When you choose **Save** from the hamburger menu to save your CODAP file, 
+you have two main choices: 
+save it as a Google doc, or save it as a local file. 
+Each has its pros and cons.
+
+CODAP's interface to your Google drive is a bit unorthodox. 
+As of early 2023, the navigation is rudimentary, and there is no search feature.
+If you are one of us who had trouble remembering where you put your Google docs,
+you will keep having trouble with Google docs saved by CODAP.
+
+The interface for local files also looks unfamiliar. 
+If you want to save locally, click **Local file** and then the **download** button,
+and _that_ brings up the familiar **Save** widgetry,
+where you can name the file and decide what folder to put it in.
+
+
+## Sharing a CODAP file {#sharing}
+
+The **Share...** item in the hamburger menu has two sub-items: 
+**Get Link to Shared View** and **Update Shared View**.
+
+When you first choose **Get Link to Shared View** 
+you get a dialog that says "Shared view: disabled" in great big letters.
+Do not be deterred. 
+A slightly smaller, blue button is marked "Enable sharing."
+Press that. 
+
+The box changes to say, "Shared view: enabled." 
+It also presents several other controls and links.
+
+The most important is the small link marked **Copy.** 
+When you press that, the URL for your shared view is copied to the clipboard. 
+
+This link points to a snapshot of your document at this moment. 
+Anyone who presses the link will get a _copy_ of your CODAP document in this exact state. 
+
+::: {.callout-tip}
+As we suggested above, this is perfect for teachers preparing a lesson. 
+Make your CODAP document exactly the way you want students to see it, 
+then enable sharing and copy the link. 
+Paste the link onto your class web page, and students will be transported to exactly
+the place you want to start.
+:::
+
+Here is a "gotcha": you enable sharing for your CODAP document, you get the link, 
+you publish it. 
+But your graph, you realize, is in the wrong place. 
+So you move the graph and save your document.
+Does the link change? Nope. 
+The sharing link points to a snapshot of the document _at the moment you enabled sharing_.
+
+But that's what the other item in the **Share...** menu is for:
+**Update Shared View**. 
+In our example, if you choose that after you move the graph,
+the link will now point to the adjusted CODAP document.
+
+### The relationship between sharing and saving {-}
+
+Sharing and saving are not the same thing. 
+You can share a document without saving it. 
+Will someone with the link get the right document if it isn't saved?
+Yes.
+
+::: {.callout-caution}
+## Another gotcha:
+
+Suppose you're a teacher preparing a lesson or a student preparing a presentation.
+You make the CODAP document you want and enable sharing.
+Then you post the link to the document on the web site or in a Google doc. 
+All is well.
+
+But the next morning---still before the class---you realize that one
+calculation is wrong. 
+Fortunately, you have the link, so you go to it, 
+open the shared document, and fix the calculation.
+
+Your problems are not over, however.
+You want to update the shared view, but the menu item is disabled.
+Why?
+_Because the shared view you opened is an entirely new document, not the one you shared_.
+Unless you actually saved that document---not just shared it---you will have to share it again,
+and re-paste the link into the web site. 
+
+Not only that, but if you _did_ save it, 
+you (of course) have to make the fix in the saved document,
+not in the document you get from the sharing link.
+:::
+
+## Importing data {#import-section}
+
+The simplest way to import data is to drop a **csv** file right into your CODAP window.
+CODAP reads the file and makes a table out of it.
+Ideally, the first line of the **csv** has the names of attributes.
+
+If there is a lot of data---more than 5000 cases---you will see a dialog like this one:
+
+![Dropping a **csv** with over 185,000 cases results in this dialog, saving you a long wait.](art/file-import-large.png){fig-align="center" width="60%"}
+
+### Using the Import command {-}
+
+You might also notice that there is an **Import** item in the hamburger menu.
+If you choose it, you'll see that there are two paths: **Local File** and **URL**.
+
+[Local File]{.inline-hed}: 
+Drop in or navigate to a **csv** or a **codap** file. 
+If it's a **csv**, CODAP makes a new dataset with its own table.
+If it's **codap**, the saved CODAP file  _replaces_ the one you're working on.
+
+[URL]{.inline-hed}: 
+Enter or drop in a URL. 
+You can use this to put a web page _into your CODAP document_.
+Interestingly, you can also drop a URL into your document,
+with the same effect.
+
+By the way, this is also how you can install a plugin. 
+Drop the plugin's URL into your document (or paste it into the URL box).
+read more about this [in the plugins chapter](#plugins-chapter).
+
+<!--
+xxx video showing the drag of URLS and images?
+-->
+
+But note: importing a URL will _not_ magically make data on a web page appear in a table!
+For that you need techniques in [this section](#import-from-web-page-section), below.
+
+### Importing from the clipboard {-}
+
+If you have the data in a text file or a spreadsheet, 
+but it would be inconvenient to save it as a **csv**, try this:
+
+* Select the data you want and **Copy** it to the clipboard. 
+(Be sure to include the attribute names in the first line if you can.)
+
+* Then, if you want a new dataset:
+    * In CODAP, click on the **Table** icon in the toolbar.
+    * Choose **- - new from clipboard - -** in the menu that appears.
+
+    This is exactly the same as making a **csv** and dragging it in.
+If there is a lot of data, you will see the dialog (pictured above) 
+that lets you choose how much to import.
+
+
+* Or, if you want to add data to an existing dataset:
+    * Click the "ruler" icon in the table of the dataset you want to add to.
+    * Choose **Import Case Data from Clipboard**
+
+    You will see a dialog asking if you want the clipboard 
+    to replace the data in the table 
+    or to append the clipboard data to an existing dataset.
+
+### Importing data from a web page {- #import-from-web-page-section}
+
+You will often find data you want on a web page. 
+How do you get it into CODAP?
+
+It's not always easy. 
+For one thing, people put all kinds of non-data things 
+into tables of data on their web pages.
+Or they may format them strangely. 
+That is, you may have to munge the data before it's ready for you to use. 
+If things are a mess after you import them, 
+check out [this chapter on preparing and cleaning data](#preparing-chapter). 
+
+But if everything is good, 
+one strategy is to select the table on the web page,
+copy it,
+then paste it into a spreadsheet (such as Google sheets).
+From there you can make a **csv** file 
+or just go to the **Table** tool to import the data into CODAP.
+
+You can also paste it into a plain text editor,
+and make a **csv** (or tab-separated) file,
+which you can drop into CODAP.
+
+xxx ideas to come?
+
+## Exporting data {#export-section}
+
+You can also export a **csv** file from CODAP.
+Click the ruler palette in the _table_.
+You'll find the command there.
+If you have made your table hierarchical, you can choose which level to export---
+or you can export them all.
+
+This is a good way to share data with somebody who isn't using CODAP.
+Also, sometimes you will want to take your work from CODAP to some other 
+program, in order to do something CODAP can't do.

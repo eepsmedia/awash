@@ -1,0 +1,55 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Other cool tools
+
+We have designed other plugins for CODAP that you might enjoy.
+These have their own online booklets
+in the same style as this book.
+
+## Simmer
+
+`Simmer` was originally designed as a probability simulation
+tool where you program it using 
+a block-programming interface (à la *Scratch*, 
+in fact based on the *Blockly* library from Google).
+
+So, for example, if you wanted to simulate rolling
+two dice and adding, you might write this program:
+
+![](art/two-dice-program.png){width="70%" fig-align="center"}
+
+This will result in a CODAP table with 36 cases with 
+suitable random values in the `die1` and `die2` columns.
+
+
+[Click here to go to the `simmer` documentation](https://codap.xyz/guides/simmer){target="_blank"}
+
+## Arbor
+
+`Arbor` lets you construct and analyze classification trees. 
+These are very interesting alternatives to traditional graphs
+that work well whenever you're trying to sort cases
+into two groups. 
+
+One good context is *medical*: 
+you're trying to diagnose patients as sick or well.
+But there are other great contexts such as spam detection, as in,
+based on the subject line of an email, can you tell if it's 
+spam or not?
+
+Here's another: what characteristics of *Titanic* passengers
+are associated with survival?
+Here is an `arbor` tree made with that data:
+
+![](art/titanic-3-leaves.png){width="70%" fig-align="center"}
+
+The tool will also let you make a confusion matrix
+(the familiar 2x2 table) of your diagnoses
+and see a mosaic plot of that information.
+
+For a *lot* more about trees, 
+[click this link for the `arbor` guide](https://codap.xyz/guides/before-the-CART){target="_blank"}.
+
+As you will see, that guide is also an online resource
+for a 2023 paper from *Teaching Statistics*.

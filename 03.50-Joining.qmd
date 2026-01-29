@@ -1,0 +1,344 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Joining {#joining-chapter}
+
+_Joining_ is about adding new data to your dataset. 
+It can be as simple as adding more data that's just like your existing data.
+For example, you might have data about shoe sizes for one classroom and you want to add the data
+from another classroom. 
+Or you've been keeping weather data and you want to add today's weather to the dataset.
+That's straightforward and important, 
+but there is a more complicated type of joining that requires more computational thinking to get right.
+
+In this more complicated join,
+you want to combine data that are fundamentally different
+and live in more than one dataset.
+Here are a couple of scenarios:
+
+* You have a dataset with the number of COVID cases for each State.
+You want to know how many cases there are per capita, or (as is traditional) 
+per 100,000 population.
+You have a separate dataset that has States, capitals, and populations.
+Basically, you want a new calculated column in the first dataset that's equal to 
+the number of COVID cases (first dataset) divided by the 
+population (second dataset)...and multiplied by 100000.
+What do you put in the formula to get the population _of the correct State_?
+* You have data about passengers exiting the BART system,
+including what station they entered and what station they exited. 
+The trouble is, these stations are coded as numbers.
+A separate dataset simply holds the station numbers and their names,
+for example, Downtown Berkeley is "14."
+How can you make columns for `entry` and `exit` that use that 
+second dataset to decode the numbers into names that you understand?
+
+## Just adding data 
+
+If you want to add a single case to an existing dataset, 
+the easy solution is simply to type it into the empty row at the bottom of the table. 
+If your datasets are medium-to-large, 
+that's not likely to happen very often---but it does happen, so it's good to know.
+
+If the table is already organized hierarchically, 
+you will need to click on the _number_ of a case that's in the same category
+as your new data, and choose **Insert Case** from the menu that appears.
+
+If you have two or more datasets _that are structured identically_ and you want to combine them,
+CODAP has no easy command. 
+One solution is to export them both as **csv**, 
+combine them in a text editor,
+and then re-import them. 
+
+Of course, the two datasets need to have exactly the same attributes in the same order. 
+You should also be sure to remove the attribute names that were ideally
+in the first line of the second file!
+
+## A true join and a simple solution: grouping and typing
+
+This one came up in class. A student was using a Census data portal and was studying
+how income inequality had changed over time. 
+They got income data from 1950, 1980, and 2010. 
+The problem was, the incomes in 1950 were a lot smaller that in 2010, 
+so in the graphs, it was hard to make the comparison.
+They wanted to know if they could somehow, you know, like, adjust it.
+
+With a little prompting, they looked up the consumer price index in those three years.
+Then it was a matter of grouping by year (dragging left, which made three cases, one for each year),
+creating a new column for the CPI,
+and simply typing  the CPI into those three empty cells.
+That is, they did not need to write a complicated formula,
+and they didn't need to type thousands of entries.
+
+Finally, they made a new column next to their income attribute
+and created a formula for the adjusted income. 
+The very idea of adjusting the income like that is really powerful,
+and of course happens all the time in everyday statistics. 
+[See this chapter if you want to know more](#adjustment-chapter).
+
+::: {.datamove}
+The astute reader will notice that the 
+drag-left-to-make-a-new-column-and-just-type technique here
+is the same one we used for recoding some categorical variables,
+which we counted as a _calculating_ data move (see [this section](#recoding-categorical-section)).
+It's interesting that we can use the same CODAP feature---
+dynamically reorganizing the hierarchical structure of a dataset---
+to do different data moves.
+:::
+
+xxx do we need illustrations of this process? A live place to try out adjusting?
+
+## A true, hairy, joining example
+
+> This section's example will show you how the sausage is made.
+If you just want to eat the sausage, skip to the [next section](#drag-to-join-section)!
+
+What if it's more than just three years, though? 
+What if there are hundreds of things from one dataset to type into another?
+That's impractical, you're likely to make mistakes, and it would be really tedious.
+
+For that situation, you need the computer to help.
+Sadly, to get it right can be hard.
+Computer commands to do this are really fussy, 
+and the syntaxes are often Byzantine.
+Furthermore, there are  different ways to join two datasets.
+You'll see references to "inner joins" and "outer joins" and the like.
+
+We will do only one kind here, 
+using the BART scenario from the beginning of this chapter.
+Let's describe the setup:
+
+Our main dataset (`riders`) contains records of individual people exiting the BART system.
+It tells the time--to the second---that they tagged out of the exit gate,
+plus the number of the station they entered and the 
+number of the station they exited. 
+Here is an example of what's in it:
+
+num   time       exit    enter
+----- --------- ------  --------
+65139 08:05:57   14       20
+65138 08:05:57   14       22
+65156 08:05:58   14       18
+
+That's all great,
+but if I'm doing the data analysis, 
+I want the _names_ of the stations, not their _numbers._
+
+Our second dataset (`stations`) is a list of all the BART stations.
+It includes the names of the stations _and the numbers_ 
+BART uses to designate the stations in the person records.
+Here is a snippet:
+
+code  finCode   name
+----  -------   -------------------
+14      BK      Downtown Berkeley
+18      12      12th Street
+19      LM      Lake Merritt
+20      FV      Fruitvale
+21      CL      Coliseum
+22      SL      San Leandro
+
+Reading the tables, we can see that all of our passengers 
+got off at Downtown Berkeley---and all within a second of each other---but 
+they got on at various stations: 12th Street, Fruitvale, and San Leandro.
+
+So our plan is this: for each person record, 
+remember the number of the station they exited from.
+Find that record in the station database, 
+and remember the _name_ of the station in that record.
+Finally, back in the person database, write that name in a new column. 
+
+Try this in the live illustration below or in
+<a href="https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=157788" target="_blank">
+this separate tab</a>:
+
+1. Make a new column in `riders`; call it `enterName`.
+1. Give it this weird formula; you can find the function `lookupByKey` in the 
+**Lookup Functions** section of the formula editor: 
+
+```  
+lookupByKey("stations", "StationName", "StationCode", enter) 
+```
+
+You should see the new column fill with station names.
+Of course, you should see what this remarkable data looks like; 
+make a new graph and  put `time` on the horizontal axis.
+If you like, color the points by station.
+(You will also have to make the graph *really big* to see the points!)
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/join-demo-bart-berkeley.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+::: {.callout-note}
+What a cool graph, right? 
+Be sure you think about what's happening to make the graph this way. 
+It does make sense.
+
+Then, notice that some piles are much bigger than others. 
+Why is that? 
+(It will help to understand the geography of BART. 
+[Here is a map](https://www.bart.gov/system-map){target="_blank"}.
+Find Downtown Berkeley!)
+:::
+
+Now, about that crazy function. 
+How in the world did we figure out what to put inside the parentheses?
+No normal mortal can remember, 
+so if you want to construct such a formula yourself,
+do this:
+
+1. Open the formula editor for `enterName` and delete the formula.
+1. In the **--- Insert Function---** button menu, choose **Lookup Functions**. 
+You'll see the left side of this next figure:
+
+::: {layout-ncol="2" layout-valign="bottom"}
+![Left: the lookup function menu.](art/lookup-function-menu.png){}
+
+![Right: what you get in the editor when you choose the function.](art/lookup-function-in-editor.png){}
+:::
+
+
+The info button---the little i in the circle---will give you 
+detailed (albeit still confusing) help
+with the _arguments_ of the function.
+The arguments are the four things that go inside
+the parentheses, separated by commas.
+
+Then, when you actually _choose_ the **lookupByKey** item from that menu, 
+it will insert the function
+into the function editor, with helpful text that you can edit...
+which is what you see on the right side in the figure.
+
+Those four arguments are:
+
+argument               what it means
+---------------------- --------------------------------------------------------------------------------------
+`"otherDataSet"`       The name of the other dataset, in quotes because it's a string: `"stations"`
+`"returnedAttrName"`   The name of the attribute in the other dataset that you want. That's `"StationName"`
+`"keyAttrName"`        The name of the attribute in the other dataset you're using as a "key": `"StationCode"`
+`keyValue`             The attribute in _this_ dataset that matches that key. Note, not a string, so no quotes: `enter`
+
+The concept of the _key_ is, well, key. 
+It's what's _the same_ between the two datasets.
+
+Think about it from the computer's point of view:
+for each case in the `riders` table, you have to find the right case in the `stations` dataset.
+How do you know which one?
+You do exactly as we described above when we were thinking about it by hand:
+you find the code for the station (which is in `enter`) and match it with the code in the other dataset
+(which is in `StationCode`).
+You also need to know what value to get from that `stations` record; for us, that's the name, `StationName`.
+The other attribute is the name of the dataset you're looking into, of course.
+
+This whole dance is tortuous, I know.
+But once you have it all set up correctly, 
+it can bring in thousands of data values quickly and reliably.
+
+Here are two applications you might not immediately think of, to whet your appetite:
+
+* Some datasets have geographic information, such as the latitude and longitude of BART stations. 
+If you have attributes named `lat` and `long` in your dataset, points will [plot on a map](#maps-chapter)!
+* You can do a lookup into your own dataset. 
+Suppose you have a dataset of people, including people from several generations of the same families, 
+and you give each one an ID.
+Now suppose you have information about eye color, or the ability to roll your tongue.
+You can make attributes for mother and father, 
+and use lookup to study the genetics of these traits.
+
+## An easier way to do a true join {#drag-to-join-section}
+
+Although the procedures in the previous section will help you understand the
+details of how to do a join in CODAP,
+there is an easier way: you can simply drag an attribute from one table to another.
+If you do this the right way, CODAP writes all those messy formulas for you.
+Let's do an example.
+
+The live illustration below has two tables. 
+One has numbers of vehicle registrations for each State (plus DC). 
+The other has a bunch of data on accidents in each State, 
+and that data includes the population.
+
+Now suppose we wanted to know how many registered vehicles 
+there were _per person_ in each State. 
+We'd take the number of registrations and divide it by the population. 
+But they're in different tables, and we are _so_ lazy that we do not want to 
+type in 51 large numbers. 
+
+We want to join the tables.
+
+When you do this, you have to think, "join _by what_?"
+
+In this case, we want to join them _by State_, 
+that is, we want to extend each row in table A, 
+appending all the information from a row in table B.
+Which row? _The one that has the same value for the name of the State_. 
+
+Here is what you do:
+
+1. Drag the column heading for `State` from one table, 
+and drop it on the `State` heading in the other one.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/join-drag-easy-vehicles.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+2. Check that it worked.
+Make a new column that performs the calculation. Make a graph of the result!
+Delaware had the most cars per person in 2018, at about 0.45.
+
+If you look at the formulas for the new columns,
+you'll see that they are just `lookupByKey()` formulas like the ones we laboriously constructed in the previous section.
+
+### The Berkeley problem revisited
+
+Let's use this sweet dragging technique to solve the problem 
+of finding the names of the stations
+where our passengers entered the BART system. 
+The same live illustration appears below that we saw in an earlier section. 
+But this time…
+
+1. Drag `StationCode` from the **stations** table
+and drop it on `enter` in the **riders** table.
+
+New columns will appear in **riders** that include the name of the station, as before.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/join-demo-bart-berkeley.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+### Complications with dragging to join {-}
+
+Is that all? _Yes_, but of course it can get more complicated than that.
+
+For example, with the vehicle data, 
+you might have noticed that the new information for DC did not get copied. 
+This is because one table 
+has `District of Columbia` for the name and the other one has `Dist. of Col.`. 
+It didn't match exactly, so it did not copy the data over.
+
+Also, with the vehicles, 
+the order of the drag did not matter because there were the same number
+of States in both tables.
+
+But in the Berkeley-BART example, the 900-plus-case **riders** 
+table had many copies of each station code in the `enter` column, 
+because many people might have gotten on there to go to Berkeley.  
+In that case, we wanted to add the station-name information 
+to the **riders** table, so we dragged
+_from_ **stations** _to_ **riders**.
+
+If you do that drag in the other direction, 
+CODAP will just add information from the first record it finds. 
+In that case, for every station, 
+you would get information (only) from the first passenger 
+to travel from that station to Berkeley.
+

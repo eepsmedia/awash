@@ -1,0 +1,281 @@
+{{< include _awash-setup.qmd  >}}
+
+# Graphing Tips {#graphing-tips}
+
+This chapter includes a few short sections about
+"advanced" CODAP graphing tips. 
+
+## Re-ordering categoricals
+
+If you make a graph with a categorical attribute,
+by default CODAP orders the alphabetically.
+Sometimes, this is maddeningly unhelpful!
+
+In many cases, the solution is quick and easy:
+grab the categorical value by the name, and drag it where you want it. 
+
+::: {.column-page-right}
+<script>
+    theURL4 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FhzD6A7ZtJl7CEmNV3ZPl%2Ffile.json";
+    awash.liveDemoAt(theURL4);
+</script>
+:::
+
+In this live example, we're looking at age (and mean age), grouped by marital status. 
+
+The order doesn't make sense. 
+So re-order the marital-statuses by dragging the *labels* (like **Never married**) up and down.
+
+## Fusion Power: Bar charts {#fusion-section}
+
+If you have made a categorical graph,
+you can change the default "dot" display into a bar chart, which may be more familiar. 
+
+Also, sometimes, when you have created [summary](#summarizing-chapter) values
+(such as the means of something for several groups),
+it may be effective and appropriate to display those aggregate values as bars. 
+
+### Your basic bars {-}
+
+Make bars using the "configuration" palette 
+    ![](art/palettes/config.png){fig-align="center"}
+and choose the option **Fuse Dots into Bars**.
+
+For example, using the same data with marital status (but not age), here is a "before" picture:
+
+![](art/vis-bar-charts-before.png)
+
+...and the "after" picture. 
+
+![](art/vis-bar-charts-after.png)
+
+### Making proportion bars {-}
+
+As you can see, you can then scale the chart in various ways.
+
+The "percent" scaling is particularly useful.
+If you plop a legend attribute into the graph, the bars will split, like this:
+
+![](art/vis-bar-charts-split-count.png)
+
+It looks like there are a lot more divorced women than men in this sample.
+But what is the proportion? 
+Choose **Percent** in the configuration palette:
+
+![](art/vis-bar-charts-percentage.png)
+
+Aha! Now we can see the proportions of men and women for each marital category. 
+
+::: {.callout-tip}
+Once the data are in bars, you can select an entire set of cases 
+by clicking on its bar.
+:::
+
+### Controlling bar length with a formula {-}
+
+One last feature. What does the **Formula** option do?
+
+Using the same dataset, we have `Marital_status` on the vertical axis
+and click **Formula** in the configure palette.
+That invokes the formula editor.
+
+We enter `mean(Age)` and see bars whose lengths are the mean ages of the people in that category.
+And it makes sense! Widowed people are older,
+never-marrieds are younger. 
+
+![](art/vis-bar-charts-formula.png)
+
+### Your turn {-}
+
+Use the live example below to practice any of these techniques:
+
+::: {.column-page-right}
+<script>
+    const theURL10 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FGMpMOfMYryGDhghNPaX0%2Ffile.json";
+    awash.liveDemoAt(theURL10);
+</script>
+:::
+
+
+
+## Showing data directly as bars {#bar-for-each-point}
+
+CODAP generally shows cases as dots. 
+But if you are plotting *one* attribute, the configuration palette
+    ![](art/palettes/config.png){fig-align="center"}
+will let you plot *numeric* data as bars.
+
+For example, if we get some NHANES data and put `Height` on the vertical axis,
+and choose **Bar for Each Point**, we see this:
+
+![](art/vis-bar-for-each.png)
+
+Which is a bit confusing but kind of cool; each bar is the height of an individual. 
+But you can sort the data by `Height` in the table,
+and miraculously, the bars re-order as well:
+
+![](art/vis-bar-for-each-sorted.png)
+
+::: {.callout-warning}
+## Two caveats (as of January 2025)
+1. Remember that you can only do this if there is only one numeric attribute on the graph.
+If you already have two, the **Bar for Each Point** box doesn't appear.
+1. This sort-to-reorder-the-bars feature sometimes doesn't work. 
+You have been warned!
+:::
+
+### Bars often work great with summaries! {-}
+
+That last, sorted graph works well in that it gives us a different
+kinda-cumulative view of the distribution of heights. 
+But it's an exception;
+mostly, dots work better to represent individual cases. 
+
+But part of what we do to alleviate being awash in data is to 
+group data and summarize, 
+removing detail so we can see an overall pattern.
+
+In an [early lesson](#children-and-teens-2), 
+we summarized heights by age and plotted one do---one mean height---for each **Age** (5 to 19) 
+to see how we grow.
+If you wanted to see that with bars instead of dots,
+use the live example below and do the following:
+
+1. Make a new graph
+1. Put `meanHeight` on the vertical axis. 
+1. Choose **Bar for Each Point** from the "Configure" palette.
+This creates a messy graph!
+1. Click on `Age` and choose **Sort Ascending**. Ta-daa!
+
+Because we're looking at `Height`, and bars, by their nature, extend to zero, 
+it's as if we're looing at a row of (rectangular) people. 
+You can really see the difference of heights, in proporrtion,
+between five- and nineteen-year-olds.
+
+Note, though: this still only works of there is one attribute on the graph.
+If you put `Age` on the horizontal axis, you get dots again.
+
+::: {.column-page-right}
+<script>
+    const theURL3 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?url=https://codap.xyz/static-data/codap/nhanes%20ages%205%20to%2019.codap#shared=https%3A%2F%2Fcfm-shared.concord.org%2FOt0FyAI0YVMIUpeiO9hr%2Ffile.json";
+    awash.liveDemoAt(theURL3);
+</script>
+:::
+
+
+## Histograms {#histograms}
+
+How do you make a histogram in CODAP? 
+You might expect (correctly) that you will fuse dots into bars at some point,
+but first you need to *bin* the data.
+
+::: {.callout-note}
+I am making a distinction here between  *bar charts* and *histograms*.
+We just made bar charts when we fused dots with categorical values.
+Notice that they had spaces between the bars.
+
+In a histogram, the data are numerical, and there is no gap between the bars. 
+:::
+
+The live illustration below has 1000 `height`s of people between 25 and 35 years old.
+We want to make the dot plot into a histogram.
+Do the following:
+
+1. Select the graph and open the configuration palette ![](art/palettes/config.png){fig-align="center"}
+1. Choose **Group into Bins**.
+
+The graph adjusts into bins; notice that each bin is 10 cm wide.
+
+3. Again in the configuration palette, choose **Fuse Dots into Bars**.
+
+Now you have a histogram! 
+Use the configuration palette to experiment with the other controls,
+such as the bin width.
+
+::: {.column-page-right}
+<script>
+    const theURL2 = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FuwLBlAEvrH8Zew7P7lKa%2Ffile.json";
+    awash.liveDemoAt(theURL2);
+</script>
+:::
+
+You would think that if you put `Gender` on the vertical axis, that it would split the
+histogram.
+But as of February 2025, you will only get the binned-dots version---not fused.
+Still useful, though!
+
+## Connecting the dots {#connecting-the-dots}
+
+When we teach graphing real data by hand in secondary school, 
+we often have to work to get students to stop connecting their dots with lines. 
+
+But sometimes, it's appropriate. 
+A time series is such a situation, or any time the 
+thing you're plotting might possibly be changing continuously.
+Also, sometimes you might need lines to emphasize the direction of a change.
+
+To connect your points, use the ruler palette and check the **Connecting Lines** item.
+
+To practice, we'll look at time-series data 
+from a site in the Blodgett Forest in 2017. 
+
+In the live example below, you see
+the temperature 10 feet above the ground 
+and also the temperature 140 feet above the ground, 
+every 15 minutes for three days at the end of September.^[The `decimalDate` 
+is the day of the year, with ".0" being midnight local time (PDT).
+The `when` attribute shows time and date---at Greenwich, 
+which is 7 hours ahead of Blodgett in California.)]
+
+You can see the overall pattern: it gets warmer in the day and cooler at night. 
+What else you can see?
+
+Then, change the plot: 
+
+* Click the graph to make the palettes appear.
+* Go to the ruler palette and choose **Connecting Lines**. 
+You'll see the lines appear and the points get smaller. 
+* You can make them larger or smaller still---or even make them disappear!---using the paintbrush palette.
+
+
+::: {.column-page-right}
+<script>
+    const theURL6 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://codap.xyz/plugins/blodgett/#shared=https%3A%2F%2Fcfm-shared.concord.org%2FjhcMbQqknKR4OjF82616%2Ffile.json";
+    awash.liveDemoAt(theURL6);
+</script>
+:::
+
+It's OK to connect the dots because the temperature would still have a value
+in between the points, and a linear connection is a reasonable guess.
+
+Extra task to try: 
+
+* Plot `T_soil` against `T_10ft`. 
+* Plop `stringDate` into the graph and expand the dot size (so you can see the color). 
+* Look at the pattern and try to understand it!
+Especially: why is it tilted that way?
+
+Notice that it's still appropriate---in fact, 
+almost essential---to connect the dots to see the pattern.
+
+### The big connecting-line gotcha {-}
+
+The next dataset shows 18 months of high temperatures from Chicago and San Francisco.
+
+We've already colored the points by `station`. 
+All you have to do it connect the points. 
+
+Dang! What's that additional line? 
+Ah: it's where the last point of Chicago connects to the first point in San Francisco. 
+
+The fix is easy: drag `station` to the left, that is, group by station.
+The lines connect points in the same group.
+
+::: {.column-page-right}
+<script>
+    const theURL7 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://codap.xyz/plugins/worldWeather/#shared=https%3A%2F%2Fcfm-shared.concord.org%2FVHKRUzCLB8hG8xEJDDbY%2Ffile.json";
+    awash.liveDemoAt(theURL7);
+</script>
+:::
+
+

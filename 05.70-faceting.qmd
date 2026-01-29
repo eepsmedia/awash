@@ -1,0 +1,152 @@
+{{< include _awash-setup.qmd  >}}
+
+# Faceting aka Layout {#faceting-chapter}
+
+The "faceting" feature of CODAP is worth a chapter of its own.
+I'm using this f-word in this book partly as a sop to users of R and `ggplot`, 
+because that's what it's called there.
+But in the CODAP interface, you'll see the word "Layout" in tool tips. 
+
+
+## Introduction
+
+But what is it? Here's the idea:
+
+You know how when you drag a categorical attribute (like `gender`) to an axis, 
+the categories (`male` and `female`) appear there?
+Then, the dots arrange themselves appropriately in that section of the graph,
+with all the `male` dots in their own section and the `female` dots in theirs.
+
+What you might not have thought is: "Each of these sections of the graph is actually a
+little graph!" They might share an axis (e.g., `height` or `income`), 
+but the arrangement of the dots in each section is a mini-graph,
+filtered (ooh, data move!) by gender, according to the value of that categorical attribute.
+
+This is the idea behind faceting: each mini-graph is a *facet* of the display,
+like a facet on the face of a gem.
+
+That's all ordinary CODAP graph-making, but you might not have realized 
+that you can do *additional splits* in order to get certain results.
+The key is to drop categorical attributes, 
+not on axes (which are on the left and the bottom of a graph)
+but rather *at the top or right side* of a graph.
+
+::: {.datamove}
+Note that any of this splitting by categorical values is an example of **grouping**.
+:::
+
+## [Cautionary] Example
+
+For example, the following graph shows incomes for a few hundred Texans in 2020,
+broken down by education.
+
+![](art/facet-0.png)
+
+Ha! It sure looks as if you have a better shot at a higher income if you get more education.
+I wonder if there is a gender difference?
+
+Let's further group the data by `Sex`. 
+To do this, we drag `Sex` to the *top* of the graph.
+A yellow region will appear when you're in the right place, and if you hover there long
+enough, you'll see a tool tip.
+The resulting graph looks like this:
+
+![The red arrow shows where we dropped `Sex`](art/facet-1-sex.png)
+
+And then, if we wanted to further group by employment status, we could drag employment status to the right side of the graph:
+
+![](art/facet-2-employ.png)
+
+I show you all this so you can see the technique, 
+but also the danger: this graph contains a whole lot of information,
+but it's almost useless because it's so hard to grasp what's happening.
+As I said on the introductory page to this part, it's *too much work* for the reader!
+
+## Improving the middle graph
+
+Even the middle graph---the one with education, further split by `Sex`---is hard to read clearly.
+The problem is, first, that we have 16 graphs to deal with. 
+But second, you can't directly compare male and female incomes 
+because you have to refer to two different axes.
+
+Suppose we dragged `Sex` to the right instead of the top?
+We get this:
+
+![](art/facet-3-sex-right.png)
+
+Now we can sort of see that men earn more than women, but what we *really* want is for 
+the genders to be right next to each other within each education category.
+
+For that, we need to split by `Sex` *first*, and then by education:
+
+![](art/facet-4-sex-first-ed-right.png)
+
+Now, with a little effort, we can see the gender differences,
+and how they change with more education. 
+
+::: {.callout-important}
+## A big takeaway
+
+This one situation---where you group using two categoricals on the same axis, hierarchically---is
+one of the most important reasons to use this facet/layout gesture. 
+
+The key is to think about which one you drop first, on the "regular" axis.
+The answer is to drop the "inside" attribute first---but you will never remember that.
+At least I don't. 
+So I just resign myself to redoing about half of these graphs. 
+No matter. It's quick!
+:::
+
+The graph is still hard to read, though. 
+If the point is to communicate something about education and persistent gender differences,
+we should do better.
+Here are some suggestions for how to improve the message:
+
+* Reduce the number of education categories 
+(see [this section about recoding](#recoding-categorical-section)).
+You might make it binary: degree/no degree or college/no college.
+* Rescale the axes to suppress large values. 
+This will expand the positions of the means on the plot, 
+making differences easier to see.
+* Abandon the individual points and summarize!
+(that is, drag `Sex` and education to the left and make a new column...)
+Then, [plot the medians as bars](#bar-for-each-point).
+* Use color to make one attribute clearer.
+
+I did the last two bullets to get this:
+
+![](art/facet-5-education-sex-bars.png){width=80% fig-align="center"}
+
+Although it's still a complicated graph, it's much cleaner, and communicates a message:
+You make more money the more education you have,
+but at every level, men earn more than women.
+
+::: {.datamove}
+And what data moves did we use? 
+**Grouping** and **summarizing**. 
+
+If we had recoded the education categories, that would have been **calculating**
+(though if my students call it **recoding** I'm fine!).
+
+And if we had, thoughtfully, removed people who were not in the labor force,
+that is, used the `Employment status` information we left out, 
+that would have been **filtering**.
+
+(Actually, I *did* use filtering, I realized: 
+I set aside the children with incomes of 9,999,999.)
+
+My point being: in order to take hundreds of raw, multivariate Texans and 
+turn them into a comprehensible display,
+I needed to alter the dataset in various ways.
+:::
+
+## Your turn! Practice with the Texans.
+
+Here's the data in a live example. Try out these various techniques!
+
+::: {.column-page-right}
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FayYNA4pdjRewXpRQHEz7%2Ffile.json";
+    awash.liveDemoAt(theURL);
+</script>
+:::

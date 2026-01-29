@@ -1,0 +1,229 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# CODAP Graph Basics {#graph-basics-chapter}
+
+
+## CODAP graphs in general
+
+In a graph, by default, CODAP represents each case as a dot.
+
+As we mentioned [up in the commentary for the _summarizing_ data move](#summarizing-commentary),
+CODAP is oriented to individual cases that are "atomic" bits of data,
+for example, people in a Census, 
+or moments of time in a record of some phenomenon.
+In these situations, dots are pretty good representations. 
+
+Every graph has, basically, two axes.
+When you put an attribute on an axis,
+each dot moves 
+so that its location corresponds to its value for that attribute.
+
+If the attribute is numeric or a date, the axis has numbers or dates, 
+and CODAP centers the dot on that value. 
+If the attribute is categorical,
+CODAP places the dot in a bin labeled by the categorical value.
+By separating the dots into bins, CODAP is _grouping_ them:
+categorical plots give you a data move for free.
+
+If you plop an attribute into the middle of a graph,
+the points color depending on the values of that "legend" attribute.
+That gives you a kind of third dimension in your graph,
+which you can use to show additional relationships,
+or to emphasize one of the attributes on an axis.
+
+People seem to understand all of that intuitively,
+and it gets them pretty far.
+But there's more.
+
+## CODAP Graphing Tips
+
+The next few sections describe some of the features of CODAP graphs
+that you might not find on your own. 
+
+### Palettes
+Blue-green palettes are attached to the right side of a graph.
+There is a vertical array of icons;
+each one has a number of controls or choices inside it.
+
+Palettes also appear when you select a table, a map, or a slider. 
+We'll describe those features here as well, even though this chapter
+is about visualization. 
+
+The palettes appear only when the graph or table is selected.
+That is, there is only ever _one_ set of palettes on the screen at a time. 
+
+<table>
+<tr>
+  <th>icon</th>
+  <th>description</th>
+</tr>
+<tr>
+  <td width="100" height="88">
+    ![](art/palettes/rescale.png){fig-align="center"}
+  </td>
+  <td>
+  Rescale tool. Press to show all points or rescale column widths.
+  </td>
+</tr>
+<tr>
+  <td>
+    ![](art/palettes/eyeball.png){fig-align="center"}
+  </td>
+  <td>
+  "Eyeball" palette. 
+  In a graph, use it to show or hide points. 
+  
+  In a table, use it to set cases aside.
+  </td>
+</tr>
+<tr>
+  <td>
+    ![](art/palettes/ruler.png){fig-align="center"}
+  </td>
+  <td>
+  "Ruler" palette.
+  In a graph, display summaries (e.g., means, percents, standard deviation).
+  
+  In a table, make new attributes or export data.
+  </td>
+</tr>
+<tr>
+  <td>
+    ![](art/palettes/paintbrush.png){fig-align="center"}
+  </td>
+  <td>
+  "Paintbrush" palette.
+  Change the appearance of points in a graph.
+  Control color, stroke, and size.
+  </td>
+</tr>
+<tr>
+  <td>
+    ![](art/palettes/snapshot.png){fig-align="center"}
+  </td>
+  <td>
+  "Snapshot" palette.
+  Take a picture of the graph, and then export that picture.
+  Edit the picture first if you wish in the **Draw Tool**.
+  </td>
+</tr>
+<tr>
+  <td>
+    ![](art/palettes/config.png){fig-align="center"}
+  </td>
+  <td>
+  Configuration palette. 
+  In a graph with a numeric axis, bin the data.
+  Where appropriate, fuse dots into bars.
+  </td>
+</tr>
+<tr>
+  <td width="66">
+    ![](art/palettes/delete.png){fig-align="center"}
+  </td>
+  <td>
+  Trash can. In a table (only), delete cases.
+  </td>
+</tr>
+</table>
+
+::: {.callout-warning}
+## Gotcha!
+You will frequently select _cases_, i.e., select points in Graph A,
+and then want to use the eyeball tool in graph B.
+If you just click in Graph B, however,
+you may change or eliminate the selection of points!
+The solution is to click on Graph B's _title bar_.
+Then the selection from Graph A is preserved.
+:::
+
+### Rescaling graphs
+
+**To rescale a numeric graph**, grab numbers on its axis and drag parallel to the axis.
+
+It matters where you grab the numbers! 
+On a horizontal axis:
+
+* If you grab a number on the left end of the axis, and drag left, 
+it's as if you're pushing numbers off the left edge of the graph.
+The axis expands from the _right_ edge of the graph,
+so you're "zooming in."
+* If you grab on the left and drag _right_, 
+you're pulling more numbers onto the graph.
+This looks like zooming _out_.
+* Similarly, if you grab a number at the right edge of the graph, 
+you can zoom in or out by dragging right or left, respectively.
+* But if you grab a number in the _middle_ of the graph, 
+the graph pans left or right as you drag.
+No change of scale.
+
+The cursor when you're over an axis is a hand that orients
+itself to give you a hint about what will happen.
+Watch it carefully and you'll see!
+
+The behavior on a _vertical_ axis is the same, 
+but with dragging up and down instead of left and right.
+
+:::{.callout-note}
+This is the kind of thing that you really learn by doing.
+Just grab numbers and drag. 
+You will understand it very quickly.
+:::
+
+#### Zooming in and out more quickly {-}
+
+There is an alternative to dragging.
+If you hold down **option**
+(**alt** on Windows),
+and hover over an axis, the cursor turns into a magnifying glass.
+Clicking zooms in at that point on the axis.
+Shift-clicking zooms out.
+
+Similarly, alt-clicking in the body of a graph zooms in.
+
+#### Rescaling a categorical axis {-}
+
+**For a categorical axis**, rescaling doesn't really make sense.
+But you can still drag!
+When you do, you can re-order the categorical values on the graph.
+
+### The paintbrush palette
+
+Most of the controls there are self-explanatory if you've used any graphics program.
+As you will see, you can change the color of dots or bars and the color of the "stroke" or outline.
+For categorical values that might be in a legend,
+you can color the values any way you like.
+
+You can also change the size of the points.
+
+::: {.callout-note}
+You might well ask,
+"Can I write a formula to control the size of the dots,
+or attach another attribute to them?"
+
+No. 
+
+Dang! Maybe one day!
+:::
+
+All that is pretty obvious.
+There are two things, though, that you might not think of:
+
+* If you make the size of the dots as small as possible, they disappear. 
+This has two great uses:
+  * If you've connected the dots, making a line plot, this removes the dots at the "corners."
+  * If you've added a box plot, you can make the underlying points go away!
+* If you make the background transparent, 
+you can stack two graphs on top of one another (!)
+
+::: {.callout-note}
+### Transparent graph gotcha
+
+Sadly, there is no way to automatically set two graphs to 
+be scaled the same.
+
+Yet another "dang!"
+
+Still, with care you can get some very cool visualizations!
+:::

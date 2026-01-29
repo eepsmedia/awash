@@ -1,0 +1,107 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Screen Space {#screen-space-chapter}
+
+When you use CODAP to explore data, 
+pretty soon you run out of screen space.
+Instead of being awash in _data_,
+you find yourself awash in graphs and text and tables. 
+
+This chapter has strategies to help you cope.
+
+## Shrink your table 
+
+We want to see all the data at once, 
+and for some reason, we seem to think that making the table as large as possible is the way to do it.
+There are two things wrong with this:
+first, in a data science context, there's usually way too much data to see this way;
+and second, looking at a table is (usually) a terrible way to see all the data.
+That's why we have graphs.
+
+So the first solution to your lack of screen space is to _shrink your table_. 
+
+The problem with that is that you still need to see the attribute names---the column headings---in 
+order to drag them to graphs. 
+
+Therefore, make your tables _wide_ but _short_. 
+You probably need to see only a row or two of the data 
+in order to remember what kind of values are in which columns.
+
+::: {layout-ncol="2" .column-page-right}
+![Left: a big table.](art/screen-space-big-table.png){fig-align="center" width="45%"}
+
+![Right: a _short_ table---there's room for work!](art/screen-space-short-table.png){fig-align="center" width="45%"}
+:::
+
+## Case card view {#case-card-view-section}
+
+If you have a lot of attributes, even if your table is wide, 
+they might not fit on the screen.
+That means you're constantly scrolling back and forth to get to the attributes you want. 
+
+You might need _case card view_. 
+It's an alternative to the table that shows you the values for one case, 
+but oriented vertically instead of horizontally.
+Often, this takes up much less space than the table,
+and shows you more attributes. 
+
+![Using the case card view: even more room for work.](art/screen-space-case-card.png){fig-align="center" width="100%"}
+
+
+To get case card view, 
+
+* click the little icon in the table's upper left corner.
+Try it in the live illustration below.
+* Then change the analysis. 
+For example, drag `Marital` and plop it in the `Age` graph (replacing `N_Married`) to see how marital status is related to age.
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/screen-space-playground.html";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+## Minimizing and renaming components
+
+In the upper right of every _component_---table, graph, text object, map, whatever---you'll
+see an X and a big minus sign.
+The X lets you delete the component, of course.
+The minus sign lets you _minimize_ it, that is, shrink it so only its title bar shows. 
+Click the minus sign again to make it full size.
+
+Try that on the components in the illustration in the previous section.
+
+Of course, if you have a bunch of minimized things you can't tell them apart...or can you?
+
+Click once on the _title_ of a component to select the title; then you can edit it to be anything you want.
+This can be a good practice, especially if you are preparing graphs for a presentation.
+You can name your graph something like "how education relates to employment" instead of "people."
+
+## The tiles menu
+
+Suppose you have a lot of graphs, and you can't find the one you want.
+Even if you've given them names, it can be hard.
+Maybe they're overlapping, or even scrolled off the screen.
+
+No problem! Use the little-used **Tiles** menu near the upper right of the screen.
+It shows you a list of all of your components. 
+Not only that, but all you have to do is hover over a title, 
+and the component pops to the front so you can see what it is 
+
+![The tiles menu shows all of your components.](art/screen-space-tiles-menu.png){width="60%"}
+
+
+## Using choosy
+
+`Choosy` is a very sweet tool that you can find in the **Plugins** menu.
+
+It does a number of things, but the one that's important here is that 
+it makes it easy to *hide* attributes. 
+You know how you can use *hide* or *set aside* to hide rows in a table (a *filtering* data move)?
+Choosy lets you hide *columns*,
+which is a lifesaver if your dataset has lots of attributes.
+
+For more about choosy, [see this guide](https://codap.xyz/guides/choosy/).
+

@@ -1,0 +1,54 @@
+{{< include _awash-setup.qmd  >}}
+
+# The cold rain {#project-rain-temp}
+
+In this project, you will use weather data to explore a question of your choice.
+Here is an example question that you may certainly use:
+
+> What is the relationship between temperature and precipitation?
+
+You could start this by creating a claim. 
+Where I live, a good first claim might be:
+
+> It's colder when it rains. 
+
+## Weather data
+
+You can get weather data from the NOAA plugin.
+Go to the **Plugins** menu, then **Getting Data**, 
+then **NOAA Weather**.
+Figure out how to get data, get some, and start exploring.
+It is colder when it rains? 
+Is there some other obvious, simple claim you can address?
+
+## Example start
+
+For me, I got one year of data from San Francisco airport.
+I made a new attribute called `anyPrecip` (calculating!) 
+with this formula:^[Notice the cool syntax with the trinary `?-and-:` operator; it's an alternative to `IF()`.]
+
+`precip > 0 ? "wet" : "dry"`
+
+and plotted that against the high temperature:
+
+![](art/projects-rain-temp-SFO-simple.png)
+
+And as you can see, it *is* colder when it rains. 
+
+Are we done?
+Of course not. 
+It's too simplistic.
+See if you can figure out why. 
+
+## Your task
+
+You will get different data, of course, and analyze it,
+assessing your own claim or answering your own question.
+Then, did deeper, of course.
+Add nuance.
+Be a devil's advocate.
+
+### Alternative data
+
+You could get data from somewhere else, of course.
+[Here is another source](https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://codap.xyz/plugins/worldWeather/){target="_blank"} with cities in other countries.

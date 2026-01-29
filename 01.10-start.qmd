@@ -1,0 +1,124 @@
+{{< include _awash-setup.qmd  >}}
+
+# Getting Started with CODAP {#getting-started-chapter}
+
+CODAP has been designed to be easy to use. 
+See if you agree.
+
+<script>
+    awash.codapInNewTab(
+        "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#file=examples:Getting%20started%20with%20CODAP",
+         "Here is a link to a fresh CODAP document in a new browser tab"
+         );
+</script>
+... or you can work in the live illustration below.
+
+You should see a box that gives you a choice 
+called **Open Document or Browse Examples**. Choose that. 
+
+Then, under **Example Documents**, pick **Getting Started with CODAP**, 
+then click **Open**. You should see a box that looks like this:
+
+![The "Getting Started" box](art/start01-WelcomeToCodap.png){width=60%}
+
+Alternatively, you can try to do these tasks in the live illustration below, 
+although space will be cramped:
+
+::: {.column-page-right}
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#file=examples:Getting%20started%20with%20CODAP";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+It should be pretty self-explanatory. 
+Try to do the five tasks, and if you need to see how, 
+the **Show me** links will play tiny videos of how it's done. 
+
+When you're done, all five boxes will be checked. 
+More importantly, you will have made a graph or two.
+
+## Commentary (aka TL;DR)^[Teachers and other oldsters, just in case this is new: `TL;DR` means "Too Long; Didn't Read."]
+
+We will include sections like this from time to time. Here is some meta-commentary, 
+that is, commentary about this commentary:
+
+* You can learn a lot in this book even if you skip these sections. 
+But doing things---actually interacting with the data---is more important than reading.
+* Teachers: 
+we will have suggestions for how to present this material and why we think it's important.
+* Students: 
+this may tell you what the teacher cares about in case you want to focus on something.
+
+Enough meta. Onward!
+
+### Overview {-}
+The file has data about things like `LifeSpan`, `Speed`, and `Diet` 
+for 27 species of mammal. 
+Doing the activity, you make graphs of these attributes. 
+This dataset is problematic in a number of ways, 
+and does not smell like data science. Nevertheless, it's a good place to start.
+
+> What we're calling *attributes* you could just as well 
+call *variables* or even *column headings*. 
+Sometimes I will use _variable_ when my audience is likely to understand what I mean,
+and when _attribute_ might make them pause longer than I want.
+Why "attributes?" See [this section from a later chapter](#why-attributes).
+
+When you first make a graph, the points appear randomly 
+(but they still represent the data; try clicking on one and see what happens in the table). 
+To organize the points, that is, to make a meaningful graph,
+do what we  always tell students to do when making graphs by hand: 
+*label your axis*, that is, 
+drag a label---the name of an attribute---from the column heading to an axis of the graph.
+
+### The "Starting CODAP" Lesson {-}
+You could conceivably assign this for homework so that students "hit the ground running." 
+But it also works well simply to give them the link in class and let them do the task together.
+
+* Encourage talking to others.
+* Walk around and make sure everybody is eventually making graphs; 
+at the end everyone should have bivariate graphs---different attributes on the two axes. 
+These could be scatter plots or parallel dot plots.
+* If students are having trouble, have other students help them before you do.
+
+The underlying point is that students do not need _you_ to explain things. 
+They can figure out a lot by themselves, and in collaboration with other students. 
+
+They should be secure in making graphs in just a few minutes. 
+Stop them from spending too much time with this data set, 
+and maybe lead the class in a discussion. Some possible issues:
+
+* Did anybody get lots of colored points in your graph? How did you do that? 
+("Plop" an attribute into the middle of a graph)
+* The graph of `Speed` and the graph of `Diet` are qualitatively different.
+How? Why?
+* What happens when you click on a point in a graph?
+(The same case gets selected in the table---and in any other graphs)
+* What happens when you _hover_ over a point in a graph?
+* What does one row of the table represent? (Importantly: a _species_, 
+not the common response, an _animal_.)
+* How do you change the size of the points in a graph? 
+(It's in the "paintbrush" [palette](#palettes). 
+But maybe don't tell them;
+Let somebody discover it and tell the class.)
+* Why are there no birds in this dataset?
+
+> These discussions have multiple purposes.
+They help students listen to each other and feel part of a community.
+And they also let you highlight software features that students will need to know about.
+Ideally, _students_ highlight these features to each other,
+so it's not always your voice.
+
+> This is important because students will go in different directions.
+If we wrote instructions for everything students might need,
+we would forever be teaching features and never get to exploring;
+furthermore, many students would be bored.
+So we delay learning about some features until students need them or discover them by accident.
+The best transmission is often viral: 
+Zak sees that Annabelle has a graph with colored points, so he asks her how she got them.
+Then, in the discussion, she gets to tell the class and we can 
+step in with the cool enhancement:
+_here, in the paintbrush palette, is where you can change the colors_.
+Everybody will remember.
+

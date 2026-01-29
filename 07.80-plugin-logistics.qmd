@@ -1,0 +1,74 @@
+{{< include _awash-setup.qmd  >}}
+
+# Plugin Logistics {#plugins-chapter}
+
+Although CODAP is pretty capable just on its own,
+we often wish it would do more.
+This is especially important in data science.
+
+Fortunately, we have plugins. Plugins extend CODAP's functionality. 
+These lessons have already used plugins such as the BART data portal.
+
+The thing is, in the lessons you're seen, the plugins were already installed.
+Somebody set up a codap file with the plugin in place and shared it. 
+
+But what if you're a teacher and you want to set up a new file for your students,
+one that uses a new plugin? 
+How do you do that?
+
+There are at least two ways. 
+
+## But first...
+
+Some basics.
+
+A plugin occupies a rectangular area in the CODAP window.
+In that way it's like a table or a graph.
+
+But it's more elaborate than that. 
+It's like its own web page, in what's called an "iFrame."
+It has a URL that's different from the CODAP page, 
+but it can communicate with CODAP and the data
+you're using.
+
+## Method 1: Drag and Drop
+If you have the plugin open in a tab of its own,
+it might look weird because it's not inside CODAP yet. 
+
+No matter. 
+Grab the URL widget next to the URL, and drag it to the tab where you have CODAP.
+Do not drop yet!
+That CODAP tab will open, and you can now drag the plugin's URL into the page and drop it.
+
+This is especially useful when you're developing a plugin, so you see it without its surrounding iFrame. 
+
+You may also use this technique if you click the
+links on codap.xyz; some of those links lead to 
+"raw" plugins.
+
+## Method 2: Import the URL
+You might be given the URL for a plugin.
+To use that, 
+
+1. Go to the "hamburger" menu upper-left in the
+CODAP window, and choose **Import**. 
+1. In the box that appears, choose **URL**.
+1. In the next box, paste or type the URL into the appropriate space.
+1. Click **IMPORT** and the plugin should appear. 
+
+Try that in the live example below. 
+You'll get a game about selling insurance, called `genova`. 
+Try a price of, oh, 200 to start.
+Its URL is:
+
+```
+https://codap.xyz/plugins/genova/
+```
+
+::: {.column-page-right}
+<script>
+    theURL = "https://codap.concord.org/app/";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+

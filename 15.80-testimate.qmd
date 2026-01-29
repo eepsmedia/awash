@@ -1,0 +1,41 @@
+{{< include _awash-setup.qmd  >}}
+
+# Traditional Tests {#testimate-chapter}
+
+As you have read in previous chapters, 
+we are super enthusiastic about using randomization approaches to inference. 
+Nevertheless, there are some situations 
+(such as when reading a scientific journal)
+where it may be useful to know about
+traditional "frequentist" tests and estimates. 
+
+This chapter gives you the briefest possible introduction to 
+`testimate`, a CODAP plugin that performs these traditional tests. 
+You'll find it in the **Plugins** menu under **Statistical Inference**.
+
+When you want to know more, [see this guide to the plugin](https://codap.xyz/guides/testimate/000-index.html){target="_blank"}.
+
+The live example below is all set up for you to perform a test. 
+We see NHANES data on 20 individuals, including `BMI` and `Sex`. 
+Is the mean BMI the same for the two genders? 
+The graph suggests that females have a higher mean value.
+
+1. Drag the outcome variable `BMI` from the table into the test,
+where is says **drop attribute here**.
+A test appears, testing whether BMI could be zero.
+Answer: no way. We move on.
+1. Drag the predictor, `Sex`, to the right-hand spot in the test.
+The test does not change, but a menu appears, 
+because more tests are available now.
+1. Use the menu to change the test to **difference of means**.
+Now we see a P-value of about 0.04.
+1. Play with the various controls! Do a one-way ANOVA!
+Change the data and see the test update!
+
+::: {.column-page-right}
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://codap.xyz/plugins/testimate/#shared=https%3A%2F%2Fcfm-shared.concord.org%2FrMGchKVf5G6pXnaaGxqD%2Ffile.json";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+

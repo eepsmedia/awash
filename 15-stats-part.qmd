@@ -1,0 +1,290 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Statistics, Data Science, and CODAP {#stats-part-overview}
+
+Some people say that data science lives in the untamed frontierland
+between statistics and computer science.
+There is a lot of truth to that.
+Data science is all about data, the traditional domain of stats,
+but its "awash" nature also demands computation and everything that comes with it.
+
+This creates tension and pressure when you're teaching or learning data science. 
+The two fields often have different terminology for the same ideas.
+And there are cultural differences between the fields,
+with each one often claiming that this or that topic is absolutely essential
+for data science. 
+
+It's easy for the more computational side of things to take the role of the 
+hot, up-to-date, relevant newcomer,
+and portray stats as the stodgy, "okay, boomer" partner in this dance.
+
+So let's ask, what part of traditional statistics really needs to be part
+of learning about data science? 
+
+I don't have a definitive, comprehensive answer to that, 
+but I have opinions and suggestions for _part_ of the answer. 
+That's what this section is all about.
+
+## What's in Stats 101?
+
+For the purposes of this section, when I say "statistics"
+I will mean "the contents of the introductory statistics course."
+That's an important distinction because many Real Life Statisticians
+actually do data science in their everyday work:
+they use computational tools and deep thinking abut data
+to find the stories hidden in vast amounts of data.
+
+But you are probably either a student in an introductory course---in
+data science or statistics---or a teacher in such a course.
+Or you may even be associated with a computer science course such as APCSP.
+In any of these cases, the contents of the _course_ may be more relevant
+for this discussion.
+
+So: what's in Stats 101?
+
+Stereotypically, it starts with "descriptive statistics" 
+and then moves on to "inferential statistics."
+It also usually includes some "modeling."
+Let's look at these elements.
+
+[Modeling]{.inline-hed} can mean 
+many different things in different contexts.
+A mathematical model is typically a _simplification_ of reality.
+Reality is complex and messy,
+but if we make a good model, we can learn about the simplified situation
+and apply that understanding to reality, for example, by making predictions.
+These predictions won't be perfect, but they can be pretty good.
+
+But how do we make a good model? 
+In a stats class, one task might be to look at points on a scatter plot
+and make a _linear model_, that is, find a line that approximates the data as well as possible.
+
+There are various techniques for doing this; 
+a famous one is _least-squares regression_,
+which gives you the (deceptively-named) "line of best fit."
+
+
+[Descriptive statistics]{.inline-hed} includes making a variety 
+of graphs that show one or two variables, and making summary calculations.
+These summary calculations tend to be measures of _center_ such as the mean and the median,
+and measures of _spread_ such as the standard deviation and the interquartile range.
+The summaries also include _proportions_ such as the percent of light bulbs that are defective.^[ 
+Another name for such a summary value is a _statistic_.] 
+
+These numbers lead to getting more comfortable with _distributions_ of data.
+Students learn to identify and reason about the shape, center, and spread of distributions,
+and to identify and cope with _outliers_.
+
+The overall idea is to be able to make graphs and calculations 
+in order to draw conclusions about data.
+Students use graphs and summary values to address claims and answer questions 
+about the situation that gave rise to the dataset.
+
+And if that sounds kind of like what we've been doing all along, you're right.
+Data science has a lot in common with descriptive statistics,
+but with bigger datasets and, importantly, more variables.
+The sheer size of modern datasets leads to that "awash" sense 
+and the need for more computation (and data moves) in order to cope.
+
+[Inferential Statistics]{.inline-hed} is different.
+You can think of it in many ways; here are two:
+
+* You use it to draw conclusions about a _population_ from a (sometimes small) _sample_.
+* You use it to decide if some difference you observed is "real," that is, 
+whether it might have arisen by chance.
+
+Let's illustrate the population/sample situation with a prototypical task: polling.
+
+Two candidates, Grunt and Flaky, are running for Senate. 
+You do a poll of 100 people and 55 support Grunt. 
+In fact, 5,000,000 people will be voting. 
+Will Grunt win?
+
+The obvious answer is, Grunt will get 55% of five million votes;
+we expect Grunt to win 55 to 45. 
+
+But will Grunt get _exactly_ 55%? 
+Of course not!
+The 100 people we asked were only a sample.
+Even the very best sample---a random one---will not precisely mirror the
+population (the five million voters).
+Randomness will throw it off.
+This _sampling variation_ could result in our getting "too many" or "too few"
+Grunt voters in our sample. 
+
+So the question is, how confident are we that,
+having gotten 55 out of 100 randomly-chosen voters,
+Grunt will get more than 2,500,000 in the election?
+
+Now let's consider another situation.
+The illustration shows the height distributions of boys and girls aged 11 and 17.
+
+![Gender differences in height. Left: age 11; right: age 17.](art/700-heights-age-11-and-17.png){}
+
+It's really obvious that at age 17, the boys are taller. 
+More precisely, it's obvious that the _mean height_ of the boys is greater---individual
+boys may be quite short, and individual girls can be taller than most boys.
+
+But at age 11, it's not as clear. 
+For this set of data, the girls have a higher mean.
+But is that just because of the particular girls we have data for,
+or is this a "real" difference?
+
+In all of the situations we've just looked at---the polling and the two height comparisons---the
+underlying question is really, 
+_could the difference we observe "plausibly" arise by chance_?
+
+In the case of the 17-year-olds, the answer is no. 
+For the 11-year-olds, it seems plausible: maybe there's really no (mean) height difference
+between the boys and the girls.
+For the Grunt/Flaky poll, it's not obvious either way. 
+It looks good for Grunt, but with a bigger poll, we might see Flaky pull ahead.
+
+Most of the second half of an introductory statistics course is all about questions like these.
+You learn a number of techniques for addressing these issues.
+And all of them are related to _probability_.
+
+
+## What part of that is important for introductory data science?
+
+Let me re-issue this caveat: 
+This is the opinion of a single author,
+and is subject to a lot of rethinking and revision.
+
+But here are three "stats" things I think would be worth covering in an
+introductory data science course.
+
+
+### Sample size and stability {-}
+
+Summary values (a.k.a _measures_, a.k.a. _statistics_) are more _stable_
+the larger the sample.
+
+In the polling example, we might wonder, 
+"Suppose I had taken a different sample of 100 voters.
+How different would the result have been?"
+We can make a simulation to answer that question.
+We can then change the size of the poll---the _N_---and see what that does.
+
+:::{.callout-tip}
+## An aside
+If you were simulating Grunt and Flaky, what probability would you use
+for assigning a voter to Grunt? 
+An obvious answer is 55%, until you stop and realize that 55% is the result of the _poll_,
+not the true, underlying probability of a voter voting for Grunt. 
+That's exactly what we _don't_ know!
+The sneaky trick we use is to simulate using 50%, 
+pretending there is _no_ difference between Grunt and Flaky, 
+and seeing how often you get 55% in spite of that. 
+
+Later, you might use a variety of "true" probabilities and decide
+over what _range_ of probabilities 55% is _plausible_.
+That's called a _confidence interval_.
+:::
+
+I think it's important that
+students build intuition about how poll results might vary.
+The most important realization is that the percent that will vote for Grunt
+will vary _less_ the larger the poll is. 
+That's what I mean by _stable_.
+
+When you study statistics (or science) you'll find out that the spread
+of the results goes down as the square root of _N_. 
+But for now, a basic intuition is more important:
+If your data shows that the median income for Chilean-Americans is greater 
+than the median income for whites in general,
+don't take it too seriously if you have only two Chilean-Americans in your sample. 
+
+### Plausibility and chance {-}
+
+For the most part, looking at a graph (like the one above with heights) 
+is enough to tell you whether some difference is important. 
+
+But once in a while, you need to check using inferential techniques. 
+
+In a stats course, you will learn various techniques that apply in different situations.
+But they all ask and answer the same question: 
+_If there were no difference, how likely is it that this difference would arise by chance_?
+If it could happen reasonably often, we'd say it's _plausible_.
+If it would be rare---depending how rare---we'd call it _implausible_;
+and as a shorthand, we might say the effect is "real."
+
+In introductory data science, it's worth learning this basic idea and learning to apply it.
+But here you will not learn the many varied techniques.
+You'll just learn two.
+
+The first is to simulate "binomial" situations and use those simulations to
+reason about some underlying proportion or probability.
+Polling is such a context:
+there is an underlying proportion (the proportion of Grunt voters)
+and we pull a number of values at random (100 poll participants).
+By simulating many times, we learn how varied poll results can be,
+and how that spread depends on the sample size.
+
+A second technique is _randomization_.
+We ask, is there an association between gender and height?
+To decide, we artificially break any association by scrambling the values of `Gender`
+and computing the difference in means.
+By re-scrambling many times and re-computing that difference,
+we learn whether the "true" unscrambled value
+would be unusual if there were no association.
+
+Randomization is for assessing the association between two variables. 
+What about estimating some parameter of _one_ variable, like the mean rainfall in a city?
+For that we can use a technique (and a CODAP plugin) called the _bootstrap_.
+This is the "randomization" equivalent of the confidence interval. 
+
+Mastering those two will set you up to understand the rest when the time comes. 
+
+### How good is your model? {-}
+
+_Modeling_ is a third area that a budding data scientist should address.
+
+Modeling has many facets, but right here, 
+I'm talking about _using a function to approximate data_.
+We use models in order to make predictions and to understand some underlying principles.
+
+Imagine a scatter plot with a more-or-less linear swath of points.
+We want a good model, in this case, a line, that approximates the pattern we see.
+But what makes a model good?
+
+The first part of that answer is that the line or curve you propose should 
+have about the same shape as the data.
+It should have some of the same properties, too.
+For example, if the data are curved, you probably shouldn't be satisfied with a line.
+
+Another example: if the data are _distances_, they can never go below zero.
+So if your model is a function that goes below zero, it might not be a good model. 
+
+Sometimes it's hard to decide if messy or zoomed-out data are curved or not,
+or, more generally, if the curve is the same shape as the data.
+In that case, it often helps to plot the _residuals_ from the model
+in order to see if there is some underlying pattern you want to account for.
+
+The second part of the answer is that you want to make your model pass close to the points.
+
+To figure out how close the model is,
+create a measure of goodness of fit---a number, a statistic---that tells us 
+how good the model passes to the data.
+At its crudest, the measure is the sum of the distances of all the points from the line.
+^[In fact, for the so-called "best fit" or _least squares_ procedure, 
+it's the sum of the _squares_ of the _vertical_
+distances from the points to the line.]
+
+Then you change the line until that number is as small as possible. 
+In that case, the line is as close as it can be to the points. 
+
+But what do you change?
+For a line, you can change the slope and the intercept,
+the $m$ and $b$ in $y = mx + b$.
+Those are two _parameters_ that determine the line.
+So the trick is to figure out, of all possible values of slope and intercept,
+which ones give the smallest measure of goodness of fit.
+
+If you use least squares, you can use calculus to figure that out.
+But for an introduction to data science, 
+your eyeball can do a pretty good job.
+You'll use sliders to vary the parameters and just look and see.
+
+The key underlying idea is that of the measure itself.

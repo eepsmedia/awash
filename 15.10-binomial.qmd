@@ -1,0 +1,349 @@
+{{< include _awash-setup.qmd  >}}
+
+# Probability and Binomial Simulator {#binomial-chapter}
+
+Probability and Statistics intersect when you do inference. 
+And some of the most important situations in probability are binomial.
+We have a plugin for that.
+
+The Binomial Simulator lets you set up binomial situations and then choose a number of trials. 
+The plugin emits the data from the random trials 
+into a CODAP table where you can then analyze the data. 
+
+The especially cool thing about this plugin is that it pays attention to language.
+This is because students often have trouble 
+disentangling the various parts of a binomial problem,
+and I (Tim) think that part of that is the language we use to describe the context.
+
+What does that mean? I'll give you a detailed example, 
+and then a problem set you can use with students---or yourself.
+
+## The Aunt Belinda Problem
+
+For me, Aunt Belinda is one of those prototypical problems 
+that you can refer back to time and again.
+As you will see, it's really also an inference problem;
+it's structured just like a significance test,
+but it's designed to be understandable as a first example of the genre. Here we go!
+
+Your Aunt Belinda claims to have magical powers. 
+She says she can make nickels come up heads when she flips them.
+You ask for a demo, and give her 20 nickels.
+She mumbles some magical-sounding words over the nickels and flings them into the air. 
+You scurry around to pick them up and find that of the 20 nickels, 16 came up heads. 
+
+Is it magic?
+
+We're not sure, but let's make the question a little different:
+
+If Aunt Belinda had _no_ powers, how often would we get 16 heads in 20 flips?
+
+Of course, in the classroom, you do this with real coins and collect data from the students. 
+You get maybe fifty trials and see that 16 heads is at least rare. 
+But of course you want more data, so it becomes a job for a computer. 
+
+In the live illustration or separate link below, 
+we have set up the simulator correctly for this problem. 
+Notice:
+
+* Under **Settings** you have all the numbers for our investigation:
+  * The probability of heads is 1/2. You can put fractions, decimals, or percentages in this box.
+  * The number of trials, "20," is listed under **Settings** as "flips per experiment." 
+  That's the number of coins Aunt Belinda flips.
+  * The number of experiments---200 in this case---is arbitrary but should be large. 
+* Under **Vocabulary** is the cool stuff: the words we would use to describe the 
+different parts of the context. 
+In this case, they're all pretty clear except for maybe "experiment,"
+which could just as easily be "trial" or "set" or "run."
+
+Try this:
+
+1. Click **Engage** to do the 20-flip experiment 200 times. A table appears. 
+1. Graph `heads` to see how many heads came up during each set of 20 tosses. 
+1. Observe how many times out of 200 you got 16 (or more) heads. Not very many!
+
+::: {.column-page-right}
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https://cfm-shared.concord.org%2F36lTX3NK5L2hjnXpqW0G%2Ffile.json";
+    awash.liveDemoAt(theURL);
+</script>
+:::
+
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https://cfm-shared.concord.org%2F36lTX3NK5L2hjnXpqW0G%2Ffile.json";
+    awash.codapInNewTab(theURL, "Click this to make a new tab set up for Aunt Belinda." );
+</script>
+
+Then, with the class, you have to ask the payoff question:
+
+> What does this result tell us about Aunt Belinda?
+
+Accept all answers. Maybe she cheated. Maybe the coins were weighted. 
+Maybe she really has magical powers.
+But guide the class to the payoff answer: 
+either she was lucky, or something other than chance was working here. 
+
+If you want to go further,
+
+* Try to find the probability that you get 16 or more heads in 20 tosses of a fair coin. 
+Here, I'm not advocating going into combinatorics, but rather
+finding a better *empirical* probability. 
+To do that, you need more cases; simply increase that 200 number and/or press **Engage** more times. 
+This could lead to a *summarizing* data move, creating a formula in some column
+that gets moved to the left. 
+
+* Help students clarify why we're interested in the probability of 16 *or more* 
+in this Aunt Belinda context, instead of just the probability of 16.
+
+### Another way to make CODAP calculate for you
+
+Don't forget that CODAP has all kinds of useful tools in the graph. 
+If you aren't ready to make a summary column and drag it left, just do this:
+
+* Go to the eyeball palette and check **Show measures for selection**.
+* In the graph, go to the "ruler" palette and set it to report **Count** and **Percent**.
+
+Then, when you select the extreme points, you can see how many there are and what percent they represent.
+
+## Exercises!
+
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/#shared=https%3A%2F%2Fcfm-shared.concord.org%2FP55Kh5ZgzkVEwn90eplZ%2Ffile.json";
+    awash.codapInNewTab(theURL, "Start with this CODAP document for these exercises." );
+</script>
+<br>
+
+1. You have about a one in five chance of making a great artwork in a day. After five days, what is the chance that you have produced at least one great work?
+
+::: {.callout-tip}
+## Start in the vocabulary
+
+The basic event in this case is a *day*. 
+The results are *great art* or *not so great*. 
+Then it says, what do you call a set of 10 days? Well, in this problem, it’s 5, not 10, right? 
+Call it a *week* and change the 10 to 5. 
+Now the description text says you’ll be making 100 weeks. That’s fine; increase it if you want. 
+This is a fantasy: if I were to do 100 weeks, how much great art would I produce during each of those weeks? That’s what you’ll simulate in one run. Try it. 
+Don’t forget to set the probability!)
+:::
+
+2. Your plants grow 1 cm on sunny days and not at all on cloudy days. 5/6 of all days are sunny. How tall will the plants be after 30 days? What is a reasonable range for your prediction?
+(Again, the basic event is a *day*.)
+
+1. Aloysius is taking a 10-item true-false test about which he knows nothing. What’s the chance that he will get a grade of 70%? (Or higher)
+(Basic event, a *question*.)
+
+1. How much worse are his chances if it is a 20-item test?
+
+1. 100 people each play 50 games of roulette, betting one chip on red every time. How many of them are winners? What is the most that a player has won? How much did the house win altogether from these people?
+(you might call 50 games a *session*)
+
+1. Suppose Grunt and Flaky, two Senate candidates, have equal numbers of supporters. 
+You do a poll of 100 voters. 
+    * What's the chance that the poll shows one of them having 54% or more of the voters?
+    * Redo the problem with 1000 voters in each poll. Now what's the chance of 54% or more?
+
+1. Every day you have a 1% chance of sleeping through your alarm. 
+What's the chance that you go through a week without that happening? 
+How about a month? 
+An entire year?
+
+1. Invent an entirely new binomial problem and solve it!
+
+## Teacher notes on the exercises
+
+These problems should give you plenty of ideas 
+for additional problems you---or your students---could write.
+
+They also give you and your students ample opportunity 
+to address other important issues that come up in 
+stats and probability settings. Here are some:
+
+Binomial problems let you discuss *variability*. 
+Although there may be a clear expected number of "successes,"
+every trial can be different. 
+For example, we *expect* the plants to grow 25 cm.
+
+But do they? 
+Sometimes they do, sure, but they usually grow some other amount. 
+
+Then there are issues around *sample size*. 
+We've already mentioned how you need more trials 
+to get a good value for the probability of 16 or more heads. 
+But there's another issue.
+Looking at Aloysius and his 20-item test, we see the chance of getting 70% or more *goes down*
+in comparison to his 10-item test.
+That's because there's less variability in the results 
+(expressed as a percentage) from larger samples:
+his grade from random guessing will tend to be closer to 50% on 20 items than 10. 
+
+This exposes a point of confusion: 
+in Belinda, we increased the number of experiments (the third **Settings** box)
+to get a more precise probability and increase the sample size.
+In Aloysius, we increased the number of questions in the test,
+and that number is in a *different box*.
+
+So, we ask students, what is the difference between the numbers in those two boxes?
+Ultimately, the answer is (mostly) that the last box is all about precision,
+getting enough data points---and every "experiment" or "test" is a data point---
+to know the probability of some condition (heads ≥ 16, score ≥ 70%) more precisely.
+
+The second box, on the other hand, is part of the context itself. 
+
+:::{.callout-tip}
+## Empirical vs theoretical
+
+I like doing these problems empirically, at least at first.
+The theoretical approach, with combinations and permutations and factorials, 
+needlessly snows the students. 
+This approach is more humane and understandable.
+But it is not without cost, and you pay it right here:
+in the theoretical approach, you never have to decide how many times to try it.
+:::
+
+### Roulette {-}
+
+Having said that, what about the Roulette problem?
+First, of course, someone has to learn about Roulette and figure out that
+(for standard US Roulette tables anyway) the probability of winning
+when you bet on red is 18/38,
+and that the payout is 1:1. 
+
+But then there's the issue of what the "100" is doing in this problem.
+Here it naturally fits in the third **Settings** box, 
+despite our saying that the number there is arbitrary, just good to be large.
+
+Sure. Except the problem asks how many people out of 100 make money. 
+So if you run the simulation *once* you get one answer.
+If you run it again, your answer may be different.
+So you could run it many times, and learn the distribution of the number of winners, 
+the maximum winnings, and the house's take. 
+
+That is, you can take the simulation another level up.
+It's not just a set of 50 spins of the wheel, done 100 times,
+but rather {50 spins done 100 times} --- done many times. 
+
+### Grunt and Flaky: the Bayesian thing {-}
+
+Note that you have to describe the Grunt and Flaky problem carefully. 
+The question we _really_ want to ask is:
+
+> Suppose, in our poll of 100 voters, Grunt gets 54%. 
+What's the probability that he is actually ahead?
+
+Notice that our question, 
+"Suppose they're tied, what's the chance that Grunt appears to get 54%?" 
+is a different question, and not really what we want to know. 
+
+The thing we really want to know is a _Bayesian_ problem, 
+not part of the traditional intro stats course.
+
+## Exploring the effect of sample size
+
+Perhaps after you've done other things for a while, 
+return to this binomial simulator 
+and revisit the Aloysius problems above. 
+
+The general "Aloysius" question is something like this:
+
+> Aloysius is taking a true-false test with $n$ questions. 
+He actually knows nothing about the subject.
+What's the chance that he passes the test with a score of 70% or better?
+
+We're looking for a function, really, $P(n)$. 
+But that's too complicated here, so we use the simulator 
+to find some empirical values for $P$ for various values of $n$. 
+We will discover that the probability gets quite a bit smaller as $n$ increases.
+
+Notice, though, that you can find an exact answer for $P$ for very small values such as $n=1$ (0.5) and $n=2$ (0.25).
+
+### A more general look at sample size {-}
+
+We may not care, ultimately, whether our students eventually solve these problems theoretically, using combinatorics. 
+But I hope we care whether students develop a little intuition about sample size.
+
+In particular, I think we want them to see how increasing sample size makes a result more precise. 
+What do we mean by that? 
+It's actually kind of subtle.
+
+Suppose we recreate Aunt Belinda, but use differing numbers of coins. 
+
+When we simulate 400 sets of 20 coins, we can make a graph with 400 points representing the number of heads.
+It's a mound-shaped distribution, centered roughly on 10 heads.
+
+Now do the same with 100 coins. 
+You'll get a very similar graph, but centered at 50 heads. 
+
+Now suppose we want to compare the two graphs more directly. 
+We can make a single graph showing the two distributions, 
+but it's messed up because one graph goes from 0 to 20,
+while the other goes from 0 to 100. 
+
+![](art/binomial-belinda-20-100.png){width=60% fig-align="center"}
+
+We can make another column to plot: instead of `heads`,
+let's calculate `percentHeads`. 
+
+![](art/binomial-belinda-20-100-percent.png){width=60% fig-align="center"}
+
+Now look at the *spreads* in those distributions in the two graphs. 
+
+* In the first graph, the small sample has the smaller spread. 
+* In the second graph, the small sample has the larger spread.
+
+You can even stick standard deviations on the graphs, 
+or make box plots,  
+(use the ruler palette) 
+and get precise numbers. 
+
+The takeaway should be: 
+if you flip more coins, just by randomness, 
+the *number* of coins will generally be further from 50%.
+But the *percentage* of coins should be closer. 
+
+That first observation goes with the "random walk" context:
+the longer you walk, on average, the farther you are from your starting point.
+
+The second is an example of the law of large numbers: 
+the more events you collect, the closer your estimate of the 
+probability will be to the true probability. 
+
+### Beyond coins {-}
+
+That's all fine and abstract. 
+But we want our students to be able to connect this understanding to real-world situations. 
+
+:::{.callout-tip}
+## Eventually...
+
+We should refer to a paper by Karin Binder and me about
+inference, but it's not done yet!
+
+Until then, a few words...
+:::
+
+A great example is polling. 
+
+You can extend the Grunt and Flaky context up above, 
+but change it like this:
+
+Suppose, in a Senate contest between Grunt and Flaky, 
+Grunt actually, truly has the support of 52% of the voters.
+
+* You do a poll of 25 voters. 
+What's the probability that the poll shows Grunt winning?
+What's the probability that the poll has Flaky with more than 55%?
+
+* Answer the same questions for a sample size of 100.
+
+* Now do a sample size of 400. Now a sample size of 1600!
+
+![Example results with Grunt (52%) and Flaky](art/binomial-Grunt-sample-size.png){width=60% fig-align="center"}
+
+* Say in words what those percentages on the right really mean
+in terms of the context. 
+Put another way: suppose you're working for the Grunt campaign. 
+What does this information tell you about the quality of information you can get from a poll?
+* Now record the standard deviations for the spreads in percentage for each sample size. 
+Plot them against sample size---and see if you can find a function
+that predicts the spread from sample size.

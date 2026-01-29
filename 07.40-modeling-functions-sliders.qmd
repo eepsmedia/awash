@@ -1,0 +1,182 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Modeling with Functions {#functions-chapter}
+
+In this chapter, we'll discuss one particular kind of modeling:
+approximating data with functions.
+
+This kind of work, at the high-school level, is often not very data-sciencey.
+You get two columns of data, X and Y, and you're trying to find a
+function so that if you make a scatter plot,
+the function comes close to the points.
+You are not awash in data.
+
+You do, however, have a mathematical challenge involving data.
+It's also the case that challenges like this "smell like" regular science-science.
+So it can be data and science without being data science. 
+
+That said, we can note:
+
+* Some rich data-science problems could well have components that require some modeling of this sort.
+* Techniques for modeling using functions or other structures (such as trees) 
+often end up connecting to machine learning, which connects to AI, 
+which is increasingly a part of data science. 
+So being able think flexibly about modeling can be a good foundation for learning about AI.
+
+## Resource for Algebra II, Precalc, and beyond
+
+I have another book, 
+[available on paper](https://www.amazon.com/Model-Shop-Functions-Geometry/dp/1530290503), 
+called "The Model Shop."
+It's a collection of activities that connect
+geometry to functions through data.
+The activities are cool, but not within the scope of this book here.
+
+That book has illustrations from Desmos and Fathom,
+but you can almost do everything in CODAP.
+
+## Basic modeling tools
+
+If your graph has two numeric attributes---that is.
+it's a scatter plot---various modeling tools are available.
+
+### Lines
+
+You can find both 
+a least-squares line and a movable line in the ruler palette. 
+The movable line is especially cool;
+a line appears with handles, and as you change the line,
+the formula for the line updates.
+
+If you have grouped the data
+(by dragging a categorical leftwards),
+the least-squares tool creates a separate line for each group.
+
+### Show squares
+
+If you check the **Show squares** box in the ruler palette,
+CODAP constructs a square on each residual segment and displays
+the sum of squares.
+
+This is perfect for explaining the meaning of a least-squares model.
+That said, I am personally more interested in getting a model
+that's pretty good than optimizing one. 
+
+
+### More general functions
+
+The ruler palette also has a **Plot function** command.
+If you select it, a white area appears at the top of the plot;
+if you click it, the formula editor appears.
+
+Two caveats:
+
+* As with formulas for attributes,
+what you enter should only be the part after the equals sign.
+That is, if you're entering $$A = \pi r^2$$,
+
+what you enter is `pi * r^2`
+
+* As that formula suggests, the formula editor does not do
+implied multiplication. 
+So enter a function like $$y = 2x(x-a)$$
+as `2 * x * (x - a)`
+
+### Sliders
+
+In the previous example, `2 * x * (x - a)`, 
+that quantity `a` is a *parameter*. 
+In CODAP, you should use a *slider* to represent it. 
+
+You'll find sliders in the toolbar. 
+Click the icon to create a slider in your workspace. 
+
+By default, the slider will have a name like `V1` (that is, value 1) and a value of 0.5. 
+Obviously, you slide the widget to change the value.
+Two things are not obvious:
+
+* The slider is actually an *axis* just like the axis of a graph,
+so you can rescale the axis by dragging the numbers, 
+just as you do in a graph axis.
+* The *name* of the slider is editable as well.
+So rename it to something sensible (like `a` or `density` 
+or whatever).
+
+
+## Nonlinear practice
+
+Want to practice? 
+The live example below show data from a video of a cotton ball falling. 
+It's very rough data, but the plot shows a distinct curve
+that we suspect of being quadratic.
+It may not start at time zero, however, 
+and it might not have been released at exactly `location = 0`.
+So we might need *three* sliders, 
+one for the quadratic coefficient,
+one for the vertical translation,
+and one for the horizontal translation. 
+
+::: {.column-page-right}
+<script>
+    const theURLcotton = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2F1STRuMCMRf9oWUUWOvYY%2Ffile.json";
+    awash.liveDemoAt(theURLcotton);
+</script>
+:::
+
+### Residual plots
+
+One thing I miss in CODAP that was present in Fathom 
+was an easy way to see residuals. 
+In Fathom, we learned how powerful residuals 
+could be in helping create and assess functional models like these. 
+
+Until CODAP learns that trick, you can make your own.
+They're not automatic, but my students were (mostly) able to handle it.
+
+I suggest that students make two new attributes, often called `model` and `residual`.
+In the cotton-ball data, the formula for `residual` is `location - model`.
+The formula for `model` is whatever you wrote for the dynamic function with the sliders. 
+
+Then you can make two plots:
+
+* Your main plot, `location` vs `frame`, with the quadratic function.
+* Your residual plot, `residual` vs `frame`.
+
+As you adjust your sliders---and adjust the scale on the residual plots as the points move---you try
+to get the points in the residual plot to be roughly flat and roughly zero.
+By "flat,", we mean that there is no systematic pattern to the residuals.
+
+If you can't do that, 
+for example, if no matter what you do there's some pattern,
+that's a clue that there is something wrong with your model. 
+
+In the case of the cotton-ball data, I can get a pretty good fit *except for the last point*. 
+That suggests that the quadratic model might be OK for a few frames, but that it breaks down as time goes on. 
+
+## Remember chemistry?: that Glucose thing
+
+In the NHANES data, you will sometimes find multiple columns that measure the same thing. 
+When they report glucose, for example, there are two columns for the value of "fasting glucose." 
+
+* One is measured in `mg/dl`, that is, milligrams per deciliter. 
+* The other is in `mmol/L`, that is, millimoles per liter.
+
+If you plot them against one another, what function would you expect?
+
+Do it, find a model, and use the result to determine the molecular weight of glucose! 
+(Check your work by googling it.)
+
+::: {.column-page-right}
+<script>
+    const theURLglucose = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2FMlAqsFtmCpeI0r3MZOwk%2Ffile.json";
+    awash.liveDemoAt(theURLglucose);
+</script>
+:::
+
+## More complex example: BMI
+
+Using the NHANES plugin, get data that includes `BMI`.
+
+What do you think influences BMI?
+Get that data too, and figure out the formula for `BMI`.

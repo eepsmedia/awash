@@ -1,0 +1,58 @@
+{{< include _awash-setup.qmd  >}}
+
+# CODAP Topics {#codap-part-overview}
+
+You will have learned enough to drive CODAP pretty well
+simply by doing the [getting-started lesson](#getting-started-chapter).
+
+In the next few chapters, we'll reflect on some of the basics.
+Some of it is just good background to have as you get more advanced;
+some of it is material that is crucial for some more sophisticated techniques.
+
+This part also includes stuff (like saving files) that you have to learn
+about every piece of software you use,
+but really has nothing to do with data science _per se_.
+
+Then we'll look at some more advanced topics that have come up 
+when students have engaged with this material.
+
+## CODAP Terminology {- #why-attributes}
+
+Before we turn you loose, however, a few words on terminology.
+In a sense, what you call something doesn't matter,
+especially if you are comfortable calling it something else,
+and you don't create any ambiguity.
+We will not send the vocabulary police to your door.
+But we in the inside-CODAP world use specific terms to refer to things.
+Since we have thought pretty hard about these terms,
+I will share some of those with you now.
+
+CODAP is _case-centric_. 
+Everything revolves around the **case**.
+A case is a single unit of data, a row in the table, a point on a graph.
+If it's Census microdata,
+a case represents one person.
+When students are confused about their data, the problem is frequently that they do not 
+understand what the case is in their data set.
+And when you are designing an investigation that's worthy of making you awash in data,
+"What is a case?" is often a crucial question.
+
+
+[Attributes]{.inline-hed}
+are properties of the case. 
+They appear as columns in tables.
+You could call them _variables_, but that word is already overloaded in math class.
+Besides, in general, they don't vary. 
+So we call them attributes.
+If a case is a _person_, that person might have attributes like `height` and `political-party`. 
+
+[Values]{.inline-hed}
+are the actual data that appear in the table cells. 
+Every case has a value for each attribute. 
+For example, suppose a case is a person with an attribute of `name`.
+That attribute might have a value of `Aloysius`.
+In a graph, that value determines where the dot goes. 
+Some values might be missing. That's OK; those points won't appear in the graph.
+Students often confuse attributes with values;
+they will say, "make a graph of _high school grad_" when they mean, 
+"make a graph of _Education._"

@@ -1,0 +1,74 @@
+{{< include _awash-setup.qmd  >}}
+
+# Data Moves Portfolio {#data-moves-portfolio}
+
+> This text is adapted from the actual assignment I gave students in Canvas.
+
+**About the Due Date**: Turn in sooner rather than later, so we have time to go around again if there are any problems.  
+
+**Purpose**: Demonstrate your proficiency and understanding of data moves.
+
+**Logistics**: Submit a link to a Google Doc that gives me edit permission. 
+Expect to submit several times, every time you add a new part. 
+Note: When you resubmit, put a note near the top that tells me what you added so I don't have to hunt! 
+
+**Additional useful resource**: Did you know that this book has a chapter for each data move? 
+No? [Check it out!](#datamove-part-overview)
+
+
+You have all used these data moves. 
+This assignment documents your understanding and proficiency, 
+not only in doing them but also in recognizing them. 
+
+For each data move, submit at least *two pieces of evidence* from your work, 
+either new or from a past assignment. 
+Include the rationale for the move: 
+**Why did you do it**? 
+**What did it accomplish**?
+
+Which data moves should you do?
+
+* Filtering
+* Calculating or recoding
+* Grouping
+* Summarizing
+* Joining (not required but cool if you can do it!)
+
+The evidence can take any form, but here are two ideas that work:
+
+* A snippet cut and pasted (or newly written) that shows that you did the move. 
+There is explanatory text that points out what you did and its rationale. 
+This text could be in a separate paragraph or in a Google Doc comment sticky. 
+[Here is an example of a short portfolio entry for grouping and summarizing](https://docs.google.com/document/d/1X8xzDAhCCeYfSNchk_GVs0dvwPeS_A1wG71s0WMJtPg/edit?tab=t.0#heading=h.zh1niav89v5h){target="_blank"}.
+* A screencast video showing you doing this move(s), 
+with audio or callouts explaining what's happening and why. 
+One free tool for doing such videos is [Loom](https://www.loom.com/), 
+which works great in my experience (year 2020). 
+You can also make screencasts 
+using Zoom ([here is a YouTube about that](https://www.youtube.com/watch?v=BihTASJA6-w){target="_blank"}). 
+Keep videos short. 
+Note: early returns show that these videos can be extremely convincing. 
+Viewers can tell you know what you're doing.
+
+You can use the same video or the same snippet to support more than one data move.
+
+## Variety of Evidence {-}
+The two or more examples for each data move should show 
+that you can use the data move for different purposes. 
+For example, if you're doing summarizing, 
+if both of your examples are about computing mean income in a new column and plotting it, 
+they're kinda the same. 
+What else can you compute as a summary? 
+(Oh, maybe a percentage, using count(), instead of a mean() thing.) 
+The more different, the more variety, the better.
+
+Another example: the **calculating** data move is sometimes more like **recoding**.
+Having one of each is a good idea!
+
+## The difference between 3 and 4 {-}
+(Our projects were all graded on a 4-point scale)
+
+A three shows that you can do the move and understand why you should use it.
+
+A four shows that you're more fluent in using a data move. Your examples show more variety, and are more convincing that you could use this move spontaneously in a new situation. Your explanations might show a broader overview, for example, connecting one use to another or showing how different data moves work together. An example using data we haven't used in a big assignment (e.g., NHANES or NOAA) can help show your ability to use a data move in a new situation. 
+

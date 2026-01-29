@@ -1,0 +1,54 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# The Census/ACS Data Portals {#census-acs-chapter}
+
+This chapter describes two portals to datasets with US Census microdata. 
+We will also refer to these as "ACS" data.
+That refers to the American Community Survey,
+which is run all the time by the US Census, 
+but between the decennial Census years.
+
+We call it "microdata" because it's not the usual Census data you read about,
+the kind that tells you how many plumbers live in your county.
+This is data about _individuals_,
+which makes it deeply interesting;
+every case, every row is a story, some actual person.
+We find ourselves caring more about these people than we do about most data. 
+
+As to the number of plumbers, that's now something you have to calculate yourself. 
+
+The basic idea in either of these portals is this:
+
+* Use the **options** or **attributes** tab to tell the plugin
+which attributes (columns) you want to import.
+You should shop around to see what you want. 
+
+* Type how many people you want into the box. 
+There may be limits, but if not, don't try to get more than about 5000 at a time.
+
+* Press a button labeled something like **get people** to download your data.
+
+## The "small" portal
+
+<script>
+    theURL = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=157964";
+    awash.codapInNewTab(theURL, "Link to 2013 ACS data from California." );
+</script>
+
+## The "bigger" portal
+
+<script>
+    theURL2 = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=157965";
+    awash.codapInNewTab(theURL2, "Even more Census data, including other States and other years." );
+</script>
+
+## The latest "Microdata Portal"
+
+<script>
+    theURL3 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2F4sAwhk140wY1Hm3QY9om%2Ffile.json";
+    awash.codapInNewTab(theURL3, "Click to get a CODAP document with the microdata portal running." );
+</script>
+
+> You can also access this portal from any CODAP document by choosing 
+**Microdata Portal** in the **Plugins** menu.

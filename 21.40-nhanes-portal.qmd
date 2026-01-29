@@ -1,0 +1,32 @@
+{{< include _awash-setup.qmd  >}}
+
+# The NHANES Data Portal {#nhanes-chapter}
+
+This brief chapter describes a data portal that gives
+you access to several thousand cases from the
+2017–2020 (pre-COVID) National Health And Nutrition Examination Survey 
+([NHANES](https://www.cdc.gov/nchs/nhanes/index.htm){target="_blank"}).
+This is similar to the dataset where we got the 800 children and teens we used 
+in two of the lessons in this book.
+
+<script>
+    theURL = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html?di=https://concord-consortium.github.io/codap-data-interactives/data-science-worlds/nhanes/nhanes.html";
+    awash.codapInNewTab(theURL, "Here is a link to a CODAP document with the NHANES portal installed." );
+</script>
+
+![The **options** panel in the NHANES portal.](art/21-nhanes-portal-options.png){fig-align="center" width="60%"}
+
+A box at the top of the portal lets you choose your sample size,
+and a button will get your data.
+When the data downloads, a CODAP table appears with the data in it.
+
+The portal has four panels:
+
+* **summary**: This describes what you have chosen to download.
+It includes a list of the attributes you have chosen.
+* **options**: (Shown in the illustration.) 
+Here you can choose which attributes you want.
+You can pick them from several different broad categories. 
+This is similar to the Census/ACS portal design you have already used.
+* **challenges**: some ideas for tasks
+* **about**: some information about NHANES.

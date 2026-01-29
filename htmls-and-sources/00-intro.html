@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>intro</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="00-intro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="00-intro_files/libs/quarto-html/quarto.js"></script>
+<script src="00-intro_files/libs/quarto-html/popper.min.js"></script>
+<script src="00-intro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="00-intro_files/libs/quarto-html/anchor.min.js"></script>
+<link href="00-intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="00-intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="00-intro_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="00-intro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="00-intro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+    <script src="src/awash-functions.js"></script>
+<section id="introduction" class="level1 unnumbered">
+<h1 class="unnumbered unnumbered">Introduction</h1>
+<p>This book leads you through a few introductory lessons in data science. You can think of it as a self-guided textbook for teachers or students. If you’re a teacher, you might assign chapters, problems, or projects for students to read and do.</p>
+<p>In this book, you will use <a href="https://codap.concord.org/">CODAP</a>, the Common Online Data Analysis Platform, to do your data analysis. CODAP is free and web-based, that is, it runs in your browser. You do not even need to sign in or make an account to use it.</p>
+<section id="smelling-like-data-science" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="smelling-like-data-science">Smelling Like Data Science</h2>
+<p>Data Science is becoming a big deal in our society. It’s a hot profession with lots of well-paid jobs. Even if you are not a data scientist, data science is in your life. Every time you do a web search, get directions on your phone, or see a recommendation for a movie, a song, or a brand of ketchup, somebody did some data science to bring you that information. When you hear about the latest unemployment figures or the trends in income inequality, that comes from data science too. And when you hear people worry that some technological convenience will lead to greater surveillance and loss of privacy, once again, data science would make it possible.</p>
+<p>It sounds like we had better learn about data science—but it must be super complicated, right? Data science involves huge data sets, and sophisticated computing techniques like machine learning and artificial intelligence. Doesn’t it take years of study—and buckets of talent—to learn that stuff?</p>
+<p>As with anything, it does take years to be an expert. And experts may disagree about talent. But there are underlying ideas and ways of thinking that you can experience right now—and that’s what we hope this book will give you. We’ll use medium-sized data sets—at most a few thousand cases at a time, along with a few common-sense techniques, and a drag-and-drop data platform, to help you get an idea of what data science, for lack of a better term, <em>smells like</em>. When you’re done, you’ll be able to use that “sniff test” to recognize a data science problem; you’ll have a better idea what went into the data that you see and use, making you a more critical and competent citizen; and you’ll be better able to study data science in earnest, if you so desire.</p>
+<p>How should we start?</p>
+<p>And even before that, what <em>is</em> data science, really?</p>
+<p>As of the Spring of 2020, the COVID Spring, no one really knows. Everyone pretty much agrees that it lives somewhere in the borderlands between Statistics and Computer Science.</p>
+<p>We can use our emerging sniff test to recognize it. We’ll use two main ideas:</p>
+<ul>
+<li>A data science problem often begins with a feeling of being <em>awash in data</em>.</li>
+<li>Data science uses <em>data moves</em> to manipulate data.</li>
+</ul>
+<p><span class="inline-hed">Awash in Data</span>. This is a very touchy-feely thing to put in something about data science, but imagine: there is an ocean of data and you’re in a small boat, metaphorially trying to make your way. But you’re in a data storm; the sails are flapping madly and the waves are high. Data are coming in over the gunwales, threatening to swamp you. Emotionally, you might be excited by the challenge, or you might be terrified, wishing you were somewhere, anywhere else.</p>
+<p>In a data science situation—especially as a beginner— you often don’t know what to do. You have way too much data, and the data you have is confusing. Even though you’re not literally in a boat, you are <em>awash in data</em>. This book, then, is about coping with “awash-ness”: developing skills and perspectives appropriate for doing data science. We will explore techniques for finding the patterns and stories in the ocean of data—for calming the seas and filling our sails.</p>
+<p><span class="inline-hed">Data Moves</span>. These are techniques for coping with data in a data-science context. One example is <em>filtering</em>, that is, looking at a subset of your data. Looking at a subset lets you focus on one thing; it reduces the scope of the problem. It’s often a good way to take a step when you don’t know what to do. By reducing the amount of data and giving you an action to take, filtering reduces that awashness.</p>
+<div class="datamove">
+<p>A move like <em>filtering</em> is broader than the specific command you give a computer or what menu item to choose. It’s an underlying thing-to-do that is about manipulating the data. Throughout this book, we’ll use highlighted paragraphs like this one to draw attention to data moves when you do them; we hope that you will begin to recognize them for yourself, and develop the habit of asking, when things get confusing, whether filtering (or <em>grouping</em>, or <em>summarizing</em> or…) will move your investigation forward.</p>
+</div>
+<p><span class="inline-hed">But there’s more!</span> Data science is more than being awash and using data moves. Communication is a huge part of data science, and nothing is more emblematic of good data communication than a great visualization. Professional data scientists make amazing and dynamic graphics that communicate the stories behind complicated, huge datasets.</p>
+<p>We will not do that here. We’re beginners, and there is plenty for us to do that uses graphs with the normal axes and points that students are aleady familiar with.</p>
+<p>We have included a <a href="#visualization-chapter">chapter about visualizations</a> that describes CODAP’s graphing environment, shows some student work, and reflects on how to use data moves to make your graphics better.</p>
+</section>
+<section id="computers-coding-and-codap" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="computers-coding-and-codap">Computers, Coding, and CODAP</h2>
+<p>It’s utterly impractical to do data science by hand. Data science deals with large amounts of data, so it’s no surprise that you will use computer technology to do this work. And although you can learn many things by reading, you will not really understand about being awash—and therefore you will not really understand data science—without using a computer to wrestle with the data yourself.</p>
+<p>The vast majority of online introductions to data science begin by using a programming language, usually R or Python. These are languages used by professionals in the field, so it makes sense to use them when you are learning. If you are already proficient in coding, you could certainly start there.</p>
+<p>But in this book, you will use CODAP.</p>
+<p>One reason for that is that the activities here were designed for a four- or five-session introduction to data science <em>at the high-school level</em>. They assume no programming experience at all. Because CODAP is <em>not</em> a programmming language, there is no strange syntax to learn, nothing to configure, no libraries to download and install.</p>
+<p>It’s a tradeoff, of course: there are many things you cannot do in CODAP that are possible when you code. Good coding also makes your work reproducible and reusable, recording every step of your analysis.</p>
+<p>Still, CODAP is a good place to start. It will let you experience data analysis and data moves with a minimum of overhead—and you will still do a great deal of <em>computational thinking</em>. Later, when you move into coding, you can focus on that, undistracted by the high winds and salt spray on that ocean of data.</p>
+</section>
+<section id="using-this-book" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="using-this-book">Using This Book</h2>
+<p>This book is divided into parts, as you can see in the table of contents that probably appears in the sidebar on the left side of your screen. (To make the sidebar appear or disappear, click the icon with the four gray horizontal bars—perhaps a Big Mac icon?)</p>
+<p>If you are here to get an introduction to data science, or you’re about to teach it, you can work sequentially through the <strong>Lessons</strong> part, referring as necessary to other parts of the book. The <strong>Data Portals</strong> part describes some of the widgets we have developed to let you get your hands on some interesting data. We put instructions about those portals in their own chapters in order to shorten the text in the lessons.</p>
+<p>The next part, <strong>Data Moves</strong>, is more substantial, and contains some of our thinking about what makes data science data science. If you are designing data science curriculum, you might want to read this part.</p>
+<p>Finally, <strong>CODAP Structure and Features</strong> explains some of CODAP’s underlying model, as well as some more esoteric aspects of the platform and its relationship to data science.</p>
+<section id="using-codap-for-lessons-and-examples" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="using-codap-for-lessons-and-examples">Using CODAP for lessons and examples</h3>
+<p>To do work on a problem in the book, or to try out an example, there are two ways to open up CODAP and start working:</p>
+<ul>
+<li>Look for the CODAP icon. Then use the link to open up a new tab or window in your browser. You will need to switch back and forth between the instructions in the book and the CODAP window.</li>
+</ul>
+
+<script>
+    theURL = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=157977";
+    awash.codapInNewTab(theURL, "Try it with this link." );
+<script> You'll see data on 800 children and teens.
+
+* Often, it's even easier: 
+you can do the work in a _live illustration_, a CODAP 
+window embedded in the book itself. 
+This makes things very easy---no  switching back and forth---but it 
+has the disadvantage that you may need more screen space for your graphs and tables.
+
+> There's a "gotcha" here if you're using a tablet such as an iPad. 
+If you try to drag something---and you drag things a lot in CODAP---
+you may find that the whole document scrolls instead.
+It's really annoying.
+There is a solution, though:
+press on the thing, and then _wait_ just a beat before starting to move. 
+You'll get used to it quickly.
+
+Here is an example, showing the incomes of a bunch of employed Californians in 2013. 
+You can see their marital status, too.
+Try dragging `Gender` to the vertical axis of the graph:
+
+
+::: {.column-page-right}
+<script>
+    theURL = "htmls-and-sources/income-marital.html";
+    awash.liveDemoAt(theURL);
+</script>
+<p>:::</p>
+</section>
+<section id="can-i-just-use-my-phone" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="can-i-just-use-my-phone">Can I just use my phone?</h3>
+<p>No.&nbsp;It will work, but the screen really is just too small.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

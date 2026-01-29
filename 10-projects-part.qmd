@@ -1,0 +1,87 @@
+{{< include _awash-setup.qmd  >}}
+
+# Small Projects: Dig Deeper {#projects-part-overview}
+
+The core of the course is what we will call "dig deeper" assignments. These are mini-projects; 
+here is a short intro:
+
+We all love the idea of students doing projects. 
+In a data science course, 
+a goal might be to have students experience the entirety of the process of data science, doing a project of their own design on a topic of their own choosing. 
+
+I love that idea. 
+But the danger is that we assign a big semester project without preparing the students well enough. 
+In a data-oriented project, students will sometimes find data they aren't equipped to analyze; 
+or sometimes they do an "analysis" that doesn't actually use any of the skills we want them to show. 
+This genre of small-ish data project is specifically and intentionally designed 
+to prepare students to succeed. 
+
+Here is the basic structure:
+
+1. Mess around with the data until you find something interesting. If you already have an idea what to look for, fine.
+1. Make a claim about the interesting thing you see. This should be simple, easy, and obvious. (example: men earn more than women)
+1. Make a visualization (a graph) that illustrates the claim. As part of that, explain what the graph is telling you and whether it supports or refutes the claim. 
+1. Now the key thing: dig deeper. Refine your claim, look for nuance. How? One strategy is to play devil's advocate with your claim. Is it possible that your claim is not true? Why? Can you demonstrate that with data and a new visualization? 
+1. Do that digging and make a new visualization.
+1. Explain what you found, including what additional analysis you did, why you chose to do that, and what the new results are.
+1. If you can, repeat: did deeper still, or at least explain other questions you have or additional nuance you would like to bring to the topic.
+
+An example of a "dig deeper" on the claim about men earning more than women might be, 
+"could this be because of a difference in education?" 
+To answer that question, you need to group the people, not just by gender, 
+but also by education level (data move: grouping), 
+then maybe take the median income in each group (summarizing), 
+and then make a display that tells the story. 
+
+In this case, one usually finds that the gender gap is just as bad (or worse) for women as education increases. 
+
+This particular example relates back to conditional probability, and also to science: with so many attributes (aka variables, or "columns in the table") 
+students learn to "control" variables in context in order to answer questions. 
+
+Here is a student-facing guide to this genre.
+
+## "Dig Deeper": additional advice for students
+
+Students! Here is some advice!
+
+Watch out, though: this is from the author of this online book to *his* students, 
+not from your teacher to you. 
+
+Here are some good practices to follow for these projects, and things to look out for. I have discussed all of these in class, but they may have gotten by you. I have put them here, all together.
+
+**Permission**. These are Google Docs. Share them with me using `teacher's email`.
+
+**Audience**. For the main narrative here, 
+your audience is an intelligent and interested adult who knows nothing about CODAP. 
+Think of it as a short nytimes.com article, 
+or a blog post on Medium, or something like that. 
+In your appendix, the audience is me. 
+
+**Avoid CODAP Jargon**. Your reader doesn't care. 
+So talk about the data in the real-world context. 
+Instead of "I dragged gender to the left," 
+say "I grouped the data by gender" or even, 
+"if we look at the two genders separately..."
+
+**Appendix**. If you write for that intelligent non-CODAP person, 
+you will naturally cut out lots of interesting material. 
+So put all that in an appendix. 
+You can think of it as a place to put all the things 
+you want me to know about that this audience person doesn't need to know. 
+This can include:
+
+* How you did particular things in CODAP. 
+This is where you can tell me you dragged left or whatever, 
+especially if you did something cool, or there's something you're still confused about. 
+* Questions you didn't resolve, questions you finally did resolve, 
+blind alleys you followed, mistakes, blinding realizations.
+* Reflection about the specific data and what you think about it; 
+or reflection about working with data in general in this way.
+
+You don't *have* to include an appendix, of course, 
+but some of the most interesting stuff from y'all has been in these appendices. 
+Also: it's another way to show me what you have mastered.
+
+## Claims or questions?
+
+xxx Tim natters about why he likes claims for students beginning on this path, but gives advice about making good questions. 

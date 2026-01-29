@@ -1,0 +1,191 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# A Small Project {#small-project}
+
+This assignment is very much like [the previous one](#assignment-2), with enhancements.
+
+## What’s the same?
+
+The data: pick from
+
+<script>
+    theURL = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=157964";
+    awash.codapInNewTab(theURL, "ACS Census data from California in 2013." );
+</script> (has income, education, race, etc)
+
+<script>
+    theURL = "https://codap.concord.org/app/static/dg/en/cert/index.html#shared=157963";
+    awash.codapInNewTab(theURL, "BART data." );
+</script>
+(2015--2018)
+
+<script>
+    theURL3 = "https://codap.concord.org/releases/latest/static/dg/en/cert/index.html#shared=https%3A%2F%2Fcfm-shared.concord.org%2F4sAwhk140wY1Hm3QY9om%2Ffile.json";
+    awash.codapInNewTab(theURL3, "Even more Census data" );
+</script>
+This includes other States and other years. Ooooh. 
+
+
+### What do I do? {-}
+
+* Predict something. Make a claim.
+* Do a quick investigation. Display a table or graph. Reflect on what it says. 
+* Dig deeper: Figure out how that can be enhanced 
+(make it more nuanced; or investigate something related, 
+inspired by the original; or play devil’s advocate, etc.)
+* Collect data, analyze it, and make a table or graph that speaks to the issue
+* Reflect on what you found out. Possibly, dig even deeper and reflect again.
+* Make a shared link to your CODAP document.
+
+### Logistics {-}
+* Make it a Google Doc for simplicity.^[Your instructor may allow other formats. PDF? Video?]
+* Give your instructor edit permission on the document. 
+They will get an email with the link, so that's how you can turn it in.
+* The report should include a link to the shared CODAP document. 
+
+## What’s enhanced?
+
+### You may pick your topic {-}
+
+* Advice: mess around with the data before you decide. 
+Make graphs. Think about what they mean. A question or a claim will occur to you. Note:
+* If you choose BART data, the [BART Data Portal chapter](#bart-chapter) has a section 
+    with [suggestions for BART topics](#bart-suggestions).
+    That section also has instructions about the “secret meeting game.” 
+    Finding the secret meeting is a suitable topic for this investigation. 
+* If you choose Census/ACS data, 
+you may have already started looking at social-justice topics in a previous assignment, 
+    through income differences. That’s a fruitful direction (though not the only one). 
+
+        
+### Other enhancements {-}
+
+* If it makes sense (and it probably will), do a second “dig deeper” cycle. 
+* Communication is part of data science: 
+  * Make this work stand alone. Do not assume that the reader has read the assignment.
+  * Similarly, give it narrative sense
+    * It’s not a numbered list of steps! Make paragraphs! Make them flow! 
+    * The opening paragraph, or some text near it, should motivate the investigation. 
+    Why is this interesting—even a little bit?
+  * Pay attention to space. 
+  Usually, if you just paste your graph into the document, 
+  it will be bigger than it has to be. 
+  * Make your graphs sing!
+* _Recoding_ might be useful: making a new column that’s more what you want
+* Briefly describe the data at an appropriate place in the report, including the sample size(s).
+* When you present an analysis, explain what you did. 
+If you used “data moves,” say so! Did you filter? 
+Did you write a summary formula (like with `sum( )`? What was it?)
+* Did you drag a column to the left to make groups? 
+Why did you choose that column?
+* Do not exceed three pages. 
+* Vital: somewhere, perhaps in your conclusions, reflect on this experience. 
+What interests you about this? (Or not; be honest!) 
+How is this different from your experience with school math classes?
+
+## Commentary
+
+Ideally, the [previous assignment](#assignment-2) prepared students
+well for this project.
+Do plan on class time to help them,
+and remind them of various resources such as their peers and this book.
+
+Despite any warnings you might have given about keeping the projects small,
+some students will probably want to do things that 
+go beyond what you have covered in class.
+Here are three that happened to us:
+
+[Recoding]{.inline-hed}:
+Suppose they have income and  want to get rid of the number.
+Instead, they want categories, like "none," "not much," and "a lot," 
+based on some cut points in the numeric income attribute.
+This is called _recoding_.
+
+They will want a new attribute, a new column, whose value depends on the income attribute.
+(They should not eliminate that original, but make a new one.)
+There are two basic strategies: make a formula (which in this case will 
+have some `if()` statements); 
+or do something that involves typing values into cells. 
+If you have 1000 cases, the typing strategy had better be pretty strategic!
+
+They will find some ideas about how to do this 
+[in the chapter on the _calculating_ data move](#calculating-chapter).
+
+::: {.datamove}
+This data move, which we call _calculating_, 
+resembles _summarizing_, but it creates a new value for each case in a collection
+rather than a value that summarizes a group.
+Both data moves often---but not always---use formulas.
+:::
+
+Another classic use of recoding comes up with the `Hispanic` attribute.
+It has many categories (`notHispanic`, `Mexican`, `Guatemalan`, `Cuban`, etc...).
+It would be great, in some situations, to have a simpler version of that column,
+maybe called `LatinX` with only two values: `Sí` and `No`.
+That section explains an easy way to do that.
+
+[Adding data from elsewhere]{.inline-hed}:
+Sometimes you want to connect the data from two datasets together.
+This is another data move, called _joining_, [which you can read about in its own chapter](#joining-chapter).
+
+Joining can be ridiculously complex, but our student's idea was
+reasonable and straightforward:
+they wanted to compare education levels for people from the richest five States
+with education levels from the poorest five States. 
+The ACS data did not rate States by wealth,
+but it's easy to find a listing on Google.
+
+So they simply asked only for data from those ten States, and then recoded
+the state names into a new column with values `rich` and `poor`. 
+
+[Getting your own data]{.inline-hed}:
+Some students may find data about something else that excites them online.
+If they find a **csv** file with the data they want, 
+they can drag and drop it into CODAP as described 
+in [this section on importing files](#import-section).
+
+The danger for you, the teacher, is that they get data for which
+grouping and summarizing don't make sense. 
+So you may want to have them get approval if they stray too far from the 
+data sources we suggest.
+
+
+### Income inequality and Census data {-}
+
+If a student chooses Census data and your claim has a social-justice feel to it, 
+there's a good chance that it's at least partly about income inequality.
+
+Note that there are (at least) two different ways we talk about income differences: 
+
+* Some groups earn more than others. 
+You often hear about this in the news as a “gender gap” or “race gap” in income.
+* Within a group, the difference between the richest and the poorest 
+might be especially large. 
+You often hear about “rising income inequality,” 
+that is, that difference now is bigger than it was in the past. 
+Or we might compare the USA with, say, Sweden, where incomes are more equal.
+To do this comparison, you need a number: a _measure_ of income inequality.
+One such measure is 
+the “[Gini coefficient](https://en.wikipedia.org/wiki/Gini_coefficient){target='_blank'}.”
+
+Trying to come up with your own measure of income inequality 
+is an interesting challenge. 
+
+### Assessing the Project {-}
+
+Ernie Chen, the teacher-of-record for the Applied Math class where we ran this
+in 2020, used this simple 20-point plan.
+Use or modify as you wish:
+
+---------------------------------------------  ---
+Clearly-stated claim                            1
+Initial graph                                   3
+Does the graph show or refute initial claim?    1
+Grouping: dragging to the left                  3
+Summary column creation                         3
+Enhancement: dig deeper                         4
+Communication/writing/readability               4
+Reflection                                      1
+---------------------------------------------  ---
+

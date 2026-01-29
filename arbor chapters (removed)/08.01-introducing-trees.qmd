@@ -1,0 +1,52 @@
+{{< include _awash-setup.qmd  >}}
+
+
+
+# Fbola: Introducing Trees {#tree-introduction-chapter}
+
+Let's begin our study of trees with a pandemic.
+We've all just been through COVID, so let's not go there.
+Instead, we'll invent a new disease, called Fbola
+(it's the one that comes after Ebola).
+
+We've heard on the news that one of the main symptoms of Fbola 
+is a red rash covering your face.
+Before patents get the rash, however, they have a fever for a couple of days. 
+Doctors think that anyone with the rash or the fever is highly contagious.
+
+We want to screen students arriving at school;
+if we find a student with Fbola, we will send them home.
+One sensible policy might look like this:
+
+* If you have a rash, you have to go home.
+* If you don't have a rash, we take your temperature. 
+If you have a fever, you have to go home.
+* Otherwise, you stay in school.
+
+We can express that in a tree diagram:
+
+```{r  echo = FALSE, out.width = "30%", fig.cap='A tree representing the logic of our Fbola policy.', fig.align='center'}
+knitr::include_graphics(c("art/trees-fbola-intro.png"))
+```
+
+Notice that the diagram has the same logic as the words. 
+Another version of the words uses the logical connector `or`.
+Of course, the "or" is "inclusive";
+it means, one or the other, _or both_:
+
+> If you have a rash _or_ if you have a fever, you have to go home. 
+
+Let's move on. 
+
+We got the information about how to tell if somebody has Fbola from the news,
+and the news people presumably got it from some doctors or a health agency.
+But where did they get their information? 
+From data.
+
+Let's imagine there is no agency publishing advice. 
+We decide to collect data on our own and analyze it.
+We notice that people have rashes and fevers
+
+
+
+

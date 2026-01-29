@@ -1,0 +1,52 @@
+{{< include _awash-setup.qmd  >}}
+
+
+# Optimizing Trees {#tree-optiization-chapter}
+
+## 
+## A few words about machine learning and trees {-}
+
+In a formal, more advanced data science class, 
+where you use R or Python or some other programming language 
+to set up and run your analyses,
+the topic of _machine learning_ (ML) is often a part of the syllabus.
+The basic idea is to have computers make decisions based on data,
+possibly with some help from humans,
+but doing a lot of calculations on their own.
+These decisions often involve _optimization_,
+that is, finding the best _something_ given the situation.
+
+One example is route-finding. 
+The humans have told the program to find the quickest route from here to there.
+The program sifts through mounds of data (e.g., maps, traffic data)
+and, unseen by the humans, proposes a lot of possible routes. 
+It then picks the quickest---or the top few---to display.
+
+Trees fit into this picture because data scientists often use ML techniques to
+figure out the best tree given a situation. 
+Their software looks at different tree structures, that is, 
+the programs try out different attributes at different branch points; 
+they also look at different parameters, such as the 
+cut points on numeric attributes. 
+The ML algorithm figures out the best tree based on the data.
+
+But what does "best" mean? 
+The humans have to supply a way of telling how good a proposed tree is.
+This is a calculation that results in a number. 
+The algorithm tries to find the tree with the best value for this number.
+We'll call this number a _measure of goodness_. 
+
+This means that you (the human) have to pick the measure of goodness.
+There are quite a few to choose from,
+and what you choose will influence the result.
+
+In this book, the cool part is that you can design your own measure.
+One example of a simple measure might be the number of false negatives (`FN`). 
+
+In these lessons, you'll have to do two things:
+
+* Design or choose a measure of goodness that makes sense in the context of the situation.
+* Use that measure to construct various trees "by hand" to find a good one.
+
+Later, when you use an official ML algorithm, the computer will do all the 
+constructing and testing. 
